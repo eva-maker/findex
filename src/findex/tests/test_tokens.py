@@ -1,4 +1,4 @@
-from findex_lab_01.tokens import tokenize
+from findex.tokens import tokenize
 
 
 def test_simple_words():

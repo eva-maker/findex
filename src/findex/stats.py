@@ -3,8 +3,8 @@ import tracemalloc
 from collections import Counter
 from pathlib import Path
 
-from findex_lab_01.corpus import iter_documents
-from findex_lab_01.tokens import tokenize
+from findex.corpus import iter_documents
+from findex.tokens import tokenize
 
 
 def compute_stats(corpus_dir: Path) -> dict:
