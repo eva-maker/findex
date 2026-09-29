@@ -1,22 +1,16 @@
 from collections import defaultdict
-from dataclasses import dataclass
 from pathlib import Path
 
 from findex.corpus import iter_documents_with_meta
+from findex.models import DocMeta, Posting
 from findex.tokens import tokenize
 
+import argparse
+import time
+import tracemalloc
 
-@dataclass(frozen=True, slots=True)
-class Posting:
-    doc_id: int
-    freq: int
+from findex.serialize import save_json, save_pickle
 
-
-@dataclass(frozen=True, slots=True)
-class DocMeta:
-    doc_id: int
-    path: Path
-    length: int  # кількість токенів у документі
 
 
 def build_index(corpus_dir: Path):
@@ -38,16 +32,34 @@ def build_index(corpus_dir: Path):
     return postings, doc_meta
 
 
+def _save_index(postings: dict, doc_meta: dict, out_path: Path) -> None:
+    if out_path.suffix == ".json":
+        save_json(postings, doc_meta, out_path)
+    else:
+        save_pickle(postings, doc_meta, out_path)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Build an inverted index from a corpus.")
+    parser.add_argument("corpus_dir", type=Path, help="Directory with .txt documents")
+    parser.add_argument("--out", type=Path, default=Path("index.bin"), help="Output index file")
+    args = parser.parse_args()
+
+    tracemalloc.start()
+    start = time.perf_counter()
+
+    postings, doc_meta = build_index(args.corpus_dir)
+    _save_index(postings, doc_meta, args.out)
+
+    elapsed = time.perf_counter() - start
+    _current, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+
+    print(f"Indexed {len(doc_meta)} documents, {len(postings)} unique terms")
+    print(f"Saved to {args.out}")
+    print(f"Time:        {elapsed:.4f}s")
+    print(f"Peak memory: {peak / 1024 / 1024:.2f} MB")
+
+
 if __name__ == "__main__":
-    postings, doc_meta = build_index(Path("data/raw"))
-    print(f"Unique terms: {len(postings)}")
-    print(f"Documents: {len(doc_meta)}")
-
-    the_postings = postings["the"]
-    total_the = sum(p.freq for p in the_postings)
-    print(f"'the' зустрічається в {len(the_postings)} документах, разом {total_the} разів")
-
-    for term, plist in list(postings.items())[:5]:
-        doc_ids = [p.doc_id for p in plist]
-        assert doc_ids == sorted(doc_ids), f"не відсортовано: {term}"
-    print("перевірка сортування: ок (на вибірці)")
+    main()
