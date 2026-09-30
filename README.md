@@ -32,8 +32,6 @@
 
 ## Lab 2 — Inverted index: dictionaries, hashing, memory
 
-Продовження на тому самому корпусі (20 книг з Project Gutenberg, ~15 МБ).
-
 `build_index()` — один прохід по `iter_documents_with_meta()` з лаби 1:
 для кожного документа рахую локальні частоти термінів, потім додаю по
 одному запису `Posting(doc_id, freq)` в кінець списку постінгів кожного
