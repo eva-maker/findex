@@ -12,7 +12,6 @@ import tracemalloc
 from findex.serialize import save_json, save_pickle
 
 
-
 def build_index(corpus_dir: Path):
     postings: defaultdict[str, list[Posting]] = defaultdict(list)
     doc_meta: dict[int, DocMeta] = {}
