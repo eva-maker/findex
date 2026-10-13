@@ -1,0 +1,12 @@
+[
+  {"query": "athenians",  "relevant": ["peloponnesian", "lysistrata"]},
+  {"query": "wages",      "relevant": ["political_economy", "value_of_money"]},
+  {"query": "war",        "relevant": ["peloponnesian", "lysistrata"]},
+  {"query": "money",      "relevant": ["value_of_money", "political_economy"]},
+  {"query": "gold",       "relevant": ["value_of_money", "political_economy"]},
+  {"query": "computers",  "relevant": ["giant_brains", "computers_on_the_farm", "electronic_texts", "data-acquisition"]},
+  {"query": "machines",   "relevant": ["giant_brains", "sewing_machine", "deadly_thinkers", "data-acquisition"]},
+  {"query": "electronic", "relevant": ["electronic_texts", "data-acquisition", "giant_brains"]},
+  {"query": "alchemy",    "relevant": ["magic_and_experimental"]},
+  {"query": "hackers",    "relevant": ["little_brother", "cyberpunk"]}
+]

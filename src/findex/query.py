@@ -166,6 +166,7 @@ def _lex(text: str) -> list[tuple[str, object]]:
 
 # парсер
 
+
 class _Parser:
     def __init__(self, tokens: list[tuple[str, object]]):
         self.tokens = tokens
