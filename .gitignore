@@ -1,8 +1,10 @@
 data/
 venv/
+.venv/
 __pycache__/
 *.pyc
+.pytest_cache/
 .env
-index.bin
-index.json
-index.pkl
+*.bin
+*.pkl
+index*.json

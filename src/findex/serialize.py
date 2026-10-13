@@ -20,12 +20,14 @@ from pathlib import Path
 
 from findex.models import DocMeta, Index, Posting
 
+from findex.timing import timed
+
 
 def save_pickle(index: Index, path: Path) -> None:
     with open(path, "wb") as f:
         pickle.dump(index, f)
 
-
+@timed
 def load_pickle(path: Path) -> Index:
     with open(path, "rb") as f:
         return pickle.load(f)

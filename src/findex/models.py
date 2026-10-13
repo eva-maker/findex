@@ -25,6 +25,13 @@ class Index(Mapping):
         self._postings = dict(postings)
         self._doc_meta = dict(doc_meta)
 
+
+    def __eq__(self, other: object) -> bool:
+        return self is other
+
+    def __hash__(self) -> int:
+        return object.__hash__(self)
+
     # протокол контейнера 
 
     def __len__(self) -> int:

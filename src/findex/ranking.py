@@ -1,5 +1,7 @@
 import argparse
+import functools
 import heapq
+import logging
 import math
 from collections import defaultdict
 from dataclasses import dataclass
@@ -7,10 +9,12 @@ from operator import itemgetter
 from pathlib import Path
 from typing import Protocol
 
+from findex.corpus import read_document
 from findex.models import Index, Posting
 from findex.query import QueryError, parse
 from findex.serialize import open_index
-from findex.tokens import tokenize
+from findex.snippets import make_snippet
+from findex.timing import log, timed
 
 
 class Scorer(Protocol):
@@ -58,6 +62,15 @@ class SearchResult:
         return f"{self.score:7.3f}  [{self.doc_id}] {self.title}"
 
 
+@functools.lru_cache(maxsize=256)
+def matching_ids(index: Index, query: str) -> tuple[tuple[str, ...], frozenset[int]]:
+    """Boolean-частина пошуку, закешована. Повертає незмінні tuple/frozenset:
+    кеш віддає один і той самий об'єкт усім, тож його не можна було б мутувати."""
+    tree = parse(query)
+    return tuple(tree.positive_terms()), frozenset(tree.evaluate(index))
+
+
+@timed
 def search(
     index: Index,
     query: str,
@@ -66,11 +79,13 @@ def search(
 ) -> list[SearchResult]:
     """Спершу query language визначає, які документи ПІДХОДЯТЬ (Boolean),
     потім scorer впорядковує їх за релевантністю."""
-    tree = parse(query)
-    matched = tree.evaluate(index)
+    hits_before = matching_ids.cache_info().hits
+    terms, matched = matching_ids(index, query)
+    cache_hit = matching_ids.cache_info().hits > hits_before
+    log.debug("запит %r: кеш %s", query, "HIT" if cache_hit else "miss")
 
     scores: defaultdict[int, float] = defaultdict(float)
-    for term in set(tree.positive_terms()):          # терміни під NOT балів не дають
+    for term in set(terms):                          # терміни під NOT балів не дають
         for posting in index.get(term, ()):
             if posting.doc_id in matched:
                 scores[posting.doc_id] += scorer(term, posting, index)
@@ -89,21 +104,32 @@ def main() -> None:
     parser.add_argument("query", type=str)
     parser.add_argument("--scorer", choices=("bm25", "tfidf"), default="bm25")
     parser.add_argument("-k", type=int, default=10)
+    parser.add_argument("-v", "--verbose", action="store_true", help="показати лог часу й кешу")
+    parser.add_argument("--repeat", type=int, default=1, help="повторити запит N разів (щоб побачити кеш)")
     args = parser.parse_args()
+
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 
     scorer = BM25() if args.scorer == "bm25" else TfIdf()
     try:
         with open_index(args.index_path) as index:
-            results = search(index, args.query, scorer=scorer, k=args.k)
+            for _ in range(args.repeat):
+                results = search(index, args.query, scorer=scorer, k=args.k)
+            terms, _matched = matching_ids(index, args.query)
+
+            print(f"Query: {args.query!r}  scorer={scorer}")
+            if not results:
+                print("Nothing found.")
+            for rank, result in enumerate(results, start=1):
+                print(f"{rank:2}. {result}")
+                text = read_document(index.doc(result.doc_id).path)
+                snippet = make_snippet(text, terms)
+                if snippet:
+                    print(f"      {snippet}")
     except QueryError as error:
         print(f"Помилка запиту: {error}")
         return
-
-    print(f"Query: {args.query!r}  scorer={scorer}")
-    if not results:
-        print("Nothing found.")
-    for rank, result in enumerate(results, start=1):
-        print(f"{rank:2}. {result}")
 
 
 if __name__ == "__main__":

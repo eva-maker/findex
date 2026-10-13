@@ -8,8 +8,10 @@ from findex.corpus import iter_documents_with_meta
 from findex.models import DocMeta, Index, Posting
 from findex.serialize import save_index
 from findex.tokens import tokenize
+from findex.timing import timed
 
 
+@timed
 def build_index(corpus_dir: Path, positions: bool = False) -> Index:
     postings: defaultdict[str, list[Posting]] = defaultdict(list)
     doc_meta: dict[int, DocMeta] = {}
