@@ -15,46 +15,69 @@ dict/list при збереженні й відновлюємо dataclasses пр
 """
 import json
 import pickle
-from collections import defaultdict
+from contextlib import contextmanager
 from pathlib import Path
 
-from findex.models import DocMeta, Posting
+from findex.models import DocMeta, Index, Posting
 
 
-def save_pickle(postings: dict, doc_meta: dict, path: Path) -> None:
+def save_pickle(index: Index, path: Path) -> None:
     with open(path, "wb") as f:
-        pickle.dump({"postings": postings, "doc_meta": doc_meta}, f)
+        pickle.dump(index, f)
 
 
-def load_pickle(path: Path):
+def load_pickle(path: Path) -> Index:
     with open(path, "rb") as f:
-        data = pickle.load(f)
-    return data["postings"], data["doc_meta"]
+        return pickle.load(f)
 
 
-def save_json(postings: dict, doc_meta: dict, path: Path) -> None:
+def save_json(index: Index, path: Path) -> None:
     plain_postings = {
         term: [[p.doc_id, p.freq] for p in plist]
-        for term, plist in postings.items()
+        for term, plist in index.items()
     }
     plain_doc_meta = {
-        str(doc_id): {"doc_id": m.doc_id, "path": str(m.path), "length": m.length}
-        for doc_id, m in doc_meta.items()
+        str(m.doc_id): {"doc_id": m.doc_id, "path": str(m.path), "length": m.length}
+        for m in index.docs()
     }
     with open(path, "w", encoding="utf-8") as f:
         json.dump({"postings": plain_postings, "doc_meta": plain_doc_meta}, f)
 
 
-def load_json(path: Path):
+def load_json(path: Path) -> Index:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    postings = defaultdict(list)
-    for term, plist in data["postings"].items():
-        postings[term] = [Posting(doc_id=doc_id, freq=freq) for doc_id, freq in plist]
-
-    doc_meta = {
-        int(doc_id): DocMeta(doc_id=m["doc_id"], path=Path(m["path"]), length=m["length"])
-        for doc_id, m in data["doc_meta"].items()
+    postings = {
+        term: [Posting(doc_id=d, freq=fr) for d, fr in plist]
+        for term, plist in data["postings"].items()
     }
-    return postings, doc_meta
+    doc_meta = {
+        int(k): DocMeta(doc_id=m["doc_id"], path=Path(m["path"]), length=m["length"])
+        for k, m in data["doc_meta"].items()
+    }
+    return Index(postings, doc_meta)
+
+
+def save_index(index: Index, path: Path) -> None:
+    if path.suffix == ".json":
+        save_json(index, path)
+    else:
+        save_pickle(index, path)
+
+
+def load_index(path: Path) -> Index:
+    if path.suffix == ".json":
+        return load_json(path)
+    return load_pickle(path)
+
+
+@contextmanager
+def open_index(path: Path):
+    """with open_index(p) as ix: ... — індекс гарантовано закривається при виході,
+    навіть якщо всередині with стався виняток або return."""
+    index = load_index(path)
+    try:
+        yield index            # все, що до yield — це __enter__
+    finally:
+        index.close()          # все, що після — це __exit__

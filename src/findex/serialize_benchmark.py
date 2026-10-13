@@ -5,9 +5,9 @@ from findex.index import build_index
 from findex.serialize import load_json, load_pickle, save_json, save_pickle
 
 
-def bench_format(name: str, save_fn, load_fn, postings, doc_meta, path: Path):
+def bench_format(name: str, save_fn, load_fn, index, path: Path):
     start = time.perf_counter()
-    save_fn(postings, doc_meta, path)
+    save_fn(index, path)
     save_time = time.perf_counter() - start
 
     size_kb = path.stat().st_size / 1024
@@ -20,8 +20,8 @@ def bench_format(name: str, save_fn, load_fn, postings, doc_meta, path: Path):
 
 
 if __name__ == "__main__":
-    postings, doc_meta = build_index(Path("data/raw"))
+    index = build_index(Path("data/raw"))
 
     print(f"{'Формат':<10} {'Розмір':>13}   {'Save':>12}   {'Load':>12}")
-    bench_format("pickle", save_pickle, load_pickle, postings, doc_meta, Path("index.pkl"))
-    bench_format("json", save_json, load_json, postings, doc_meta, Path("index.json"))
+    bench_format("pickle", save_pickle, load_pickle, index, Path("index.pkl"))
+    bench_format("json", save_json, load_json, index, Path("index.json"))

@@ -5,7 +5,8 @@ import time
 import tracemalloc
 from pathlib import Path
 
-from findex.serialize import load_json, load_pickle
+from collections.abc import Mapping
+from findex.serialize import open_index
 
 
 def doc_ids(postings: list[Posting]) -> list[int]:
@@ -111,12 +112,6 @@ def evaluate_query(query: str, postings: dict, engine: str = "merge") -> list[in
     return result
 
 
-def _load_index(path: Path):
-    if path.suffix == ".json":
-        return load_json(path)
-    return load_pickle(path)
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description="Search a saved inverted index.")
     parser.add_argument("index_path", type=Path, help="Path to a saved index file")
@@ -127,22 +122,18 @@ def main() -> None:
     tracemalloc.start()
     start = time.perf_counter()
 
-    postings, doc_meta = _load_index(args.index_path)
-    result_ids = evaluate_query(args.query, postings, engine=args.engine)
+    with open_index(args.index_path) as index:
+        result_ids = evaluate_query(args.query, index, engine=args.engine)
 
-    elapsed = time.perf_counter() - start
-    _current, peak = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
+        elapsed = time.perf_counter() - start
+        _current, peak = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
 
-    print(f"Query: {args.query!r} (engine={args.engine})")
-    print(f"Found {len(result_ids)} document(s):")
-    for doc_id in result_ids:
-        meta = doc_meta[doc_id]
-        print(f"  [{doc_id}] {meta.path.name} ({meta.length} tokens)")
+        print(f"Query: {args.query!r} (engine={args.engine})")
+        print(f"Found {len(result_ids)} document(s):")
+        for doc_id in result_ids:
+            meta = index.doc(doc_id)
+            print(f"  [{doc_id}] {meta.path.name} ({meta.length} tokens)")
 
     print(f"\nTime:        {elapsed:.4f}s")
     print(f"Peak memory: {peak / 1024 / 1024:.2f} MB")
-
-
-if __name__ == "__main__":
-    main()
