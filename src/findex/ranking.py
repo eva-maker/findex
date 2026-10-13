@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Protocol
 
 from findex.models import Index, Posting
+from findex.query import QueryError, parse
 from findex.serialize import open_index
 from findex.tokens import tokenize
 
@@ -63,13 +64,16 @@ def search(
     scorer: Scorer = BM25(),
     k: int = 10,
 ) -> list[SearchResult]:
-    """Ранжований пошук: кожен термін запиту додає вагу в scores[doc_id]."""
-    scores: defaultdict[int, float] = defaultdict(float)
+    """Спершу query language визначає, які документи ПІДХОДЯТЬ (Boolean),
+    потім scorer впорядковує їх за релевантністю."""
+    tree = parse(query)
+    matched = tree.evaluate(index)
 
-    # запит нормалізуємо тим самим tokenize, що й документи при індексації
-    for term in set(tokenize(query)):
+    scores: defaultdict[int, float] = defaultdict(float)
+    for term in set(tree.positive_terms()):          # терміни під NOT балів не дають
         for posting in index.get(term, ()):
-            scores[posting.doc_id] += scorer(term, posting, index)
+            if posting.doc_id in matched:
+                scores[posting.doc_id] += scorer(term, posting, index)
 
     # топ-k без повного сортування: O(n log k)
     top = heapq.nlargest(k, scores.items(), key=itemgetter(1))
@@ -88,8 +92,12 @@ def main() -> None:
     args = parser.parse_args()
 
     scorer = BM25() if args.scorer == "bm25" else TfIdf()
-    with open_index(args.index_path) as index:
-        results = search(index, args.query, scorer=scorer, k=args.k)
+    try:
+        with open_index(args.index_path) as index:
+            results = search(index, args.query, scorer=scorer, k=args.k)
+    except QueryError as error:
+        print(f"Помилка запиту: {error}")
+        return
 
     print(f"Query: {args.query!r}  scorer={scorer}")
     if not results:

@@ -70,7 +70,7 @@ def test_any_callable_is_a_scorer(index):
 
 
 def test_search_is_sorted_descending_and_respects_k(index):
-    results = search(index, "common rare x", k=3)
+    results = search(index, "common OR rare OR x", k=3)
     assert len(results) == 3
     assert [r.score for r in results] == sorted((r.score for r in results), reverse=True)
 

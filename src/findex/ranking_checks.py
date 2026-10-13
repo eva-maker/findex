@@ -21,7 +21,7 @@ def check_rare_beats_common(index: Index) -> None:
     print(f"частий термін: {common!r} (є в {index.df(common)} документах)")
     print(f"рідкісний термін: {rare!r} (є в {index.df(rare)} документах)")
 
-    results = search(index, f"{common} {rare}", k=3)
+    results = search(index, f"{common} OR {rare}", k=3)
     for r in results:
         print(f"  {r}")
     has_rare = any(p.doc_id == results[0].doc_id for p in index[rare])

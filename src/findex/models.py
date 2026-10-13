@@ -8,6 +8,7 @@ from pathlib import Path
 class Posting:
     doc_id: int
     freq: int
+    positions: tuple[int, ...] = ()   # позиції токенів у документі (лише якщо індекс збудовано з --positions)
 
 
 @dataclass(frozen=True, slots=True)
@@ -19,9 +20,12 @@ class DocMeta:
 
 class Index(Mapping):
     def __init__(self, postings: dict[str, list[Posting]], doc_meta: dict[int, DocMeta]):
+        # dict(...) а не сам defaultdict: у defaultdict звернення до неіснуючого
+        # ключа тихо СТВОРЮЄ порожній запис замість KeyError, і індекс "псується".
         self._postings = dict(postings)
         self._doc_meta = dict(doc_meta)
 
+    # протокол контейнера 
 
     def __len__(self) -> int:
         return len(self._postings)          # len(index) = кількість термінів
@@ -38,6 +42,7 @@ class Index(Mapping):
     def __repr__(self) -> str:
         return f"Index(terms={len(self):_}, docs={self.num_docs:_})"
 
+    # обчислювані атрибути 
 
     @property
     def num_docs(self) -> int:
@@ -48,6 +53,13 @@ class Index(Mapping):
         if not self._doc_meta:
             return 0.0
         return sum(m.length for m in self._doc_meta.values()) / self.num_docs
+
+    @functools.cached_property
+    def has_positions(self) -> bool:
+        """Чи збудовано індекс з позиціями токенів (потрібні для фраз)."""
+        for plist in self._postings.values():
+            return bool(plist[0].positions)
+        return False
 
 
     def doc_length(self, doc_id: int) -> int:
@@ -63,7 +75,12 @@ class Index(Mapping):
     def docs(self) -> Iterator[DocMeta]:
         return iter(self._doc_meta.values())
 
+    def doc_ids(self) -> set[int]:
+        return set(self._doc_meta)
+
     def close(self) -> None:
+        """Звільнити пам'ять. Викликається з open_index при виході з with."""
         self._postings = {}
         self._doc_meta = {}
         self.__dict__.pop("avg_doc_length", None)
+        self.__dict__.pop("has_positions", None)

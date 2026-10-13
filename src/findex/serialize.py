@@ -32,8 +32,14 @@ def load_pickle(path: Path) -> Index:
 
 
 def save_json(index: Index, path: Path) -> None:
+    def plain(p: Posting) -> list:
+        row = [p.doc_id, p.freq]
+        if p.positions:
+            row.append(list(p.positions))      # третім елементом — позиції, якщо є
+        return row
+
     plain_postings = {
-        term: [[p.doc_id, p.freq] for p in plist]
+        term: [plain(p) for p in plist]
         for term, plist in index.items()
     }
     plain_doc_meta = {
@@ -49,7 +55,7 @@ def load_json(path: Path) -> Index:
         data = json.load(f)
 
     postings = {
-        term: [Posting(doc_id=d, freq=fr) for d, fr in plist]
+        term: [Posting(d, fr, tuple(rest[0]) if rest else ()) for d, fr, *rest in plist]
         for term, plist in data["postings"].items()
     }
     doc_meta = {
