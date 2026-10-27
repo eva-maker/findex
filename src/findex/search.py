@@ -140,7 +140,7 @@ def main() -> None:
         meta = doc_meta[doc_id]
         print(f"  [{doc_id}] {meta.path.name} ({meta.length} tokens)")
 
-    print(f"\nTime:        {elapsed:.4f}s")
+    print(f"\nTime: {elapsed:.4f}s")
     print(f"Peak memory: {peak / 1024 / 1024:.2f} MB")
 
 

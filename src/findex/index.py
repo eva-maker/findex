@@ -12,7 +12,6 @@ import tracemalloc
 from findex.serialize import save_json, save_pickle
 
 
-
 def build_index(corpus_dir: Path):
     postings: defaultdict[str, list[Posting]] = defaultdict(list)
     doc_meta: dict[int, DocMeta] = {}
@@ -57,7 +56,7 @@ def main() -> None:
 
     print(f"Indexed {len(doc_meta)} documents, {len(postings)} unique terms")
     print(f"Saved to {args.out}")
-    print(f"Time:        {elapsed:.4f}s")
+    print(f"Time: {elapsed:.4f}s")
     print(f"Peak memory: {peak / 1024 / 1024:.2f} MB")
 
 
