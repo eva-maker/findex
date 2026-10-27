@@ -20,8 +20,7 @@ class DocMeta:
 
 class Index(Mapping):
     def __init__(self, postings: dict[str, list[Posting]], doc_meta: dict[int, DocMeta]):
-        # dict(...) а не сам defaultdict: у defaultdict звернення до неіснуючого
-        # ключа тихо СТВОРЮЄ порожній запис замість KeyError, і індекс "псується".
+
         self._postings = dict(postings)
         self._doc_meta = dict(doc_meta)
 
