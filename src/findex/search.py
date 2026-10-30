@@ -1,24 +1,29 @@
+"""Булеві операції над відсортованими списками doc_id (Лаба 2): merge і set.
+
+Це бібліотечний модуль. Командний рядок тепер у findex.cli (команда `findex search`).
+"""
+
+from collections.abc import Callable, Mapping, Sequence
+from typing import Literal
+
 from findex.models import Posting
 
-import argparse
-import time
-import tracemalloc
-from pathlib import Path
-
-from collections.abc import Mapping
-from findex.serialize import open_index
+Engine = Literal["merge", "set"]
+Op = Literal["AND", "OR", "NOT"]
+type IdList = list[int]
 
 
-def doc_ids(postings: list[Posting]) -> list[int]:
+def doc_ids(postings: Sequence[Posting]) -> IdList:
     """Postings уже відсортовані за doc_id (це гарантія build_index) —
     тут просто дістаємо самі id."""
     return [p.doc_id for p in postings]
 
 
-# двовказівниковий merge по відсортованих списках 
+# двовказівниковий merge по відсортованих списках
 
-def merge_and(a: list[int], b: list[int]) -> list[int]:
-    result = []
+
+def merge_and(a: IdList, b: IdList) -> IdList:
+    result: IdList = []
     i = j = 0
     while i < len(a) and j < len(b):
         if a[i] == b[j]:
@@ -32,8 +37,8 @@ def merge_and(a: list[int], b: list[int]) -> list[int]:
     return result
 
 
-def merge_or(a: list[int], b: list[int]) -> list[int]:
-    result = []
+def merge_or(a: IdList, b: IdList) -> IdList:
+    result: IdList = []
     i = j = 0
     while i < len(a) and j < len(b):
         if a[i] == b[j]:
@@ -51,9 +56,9 @@ def merge_or(a: list[int], b: list[int]) -> list[int]:
     return result
 
 
-def merge_not(a: list[int], b: list[int]) -> list[int]:
+def merge_not(a: IdList, b: IdList) -> IdList:
     """a NOT b: doc_id з a, яких немає в b."""
-    result = []
+    result: IdList = []
     i = j = 0
     while i < len(a):
         if j >= len(b) or a[i] < b[j]:
@@ -67,73 +72,49 @@ def merge_not(a: list[int], b: list[int]) -> list[int]:
     return result
 
 
-# альтернатива через set 
+# альтернатива через set
 
-def set_and(a: list[int], b: list[int]) -> list[int]:
+
+def set_and(a: IdList, b: IdList) -> IdList:
     return sorted(set(a) & set(b))
 
 
-def set_or(a: list[int], b: list[int]) -> list[int]:
+def set_or(a: IdList, b: IdList) -> IdList:
     return sorted(set(a) | set(b))
 
 
-def set_not(a: list[int], b: list[int]) -> list[int]:
+def set_not(a: IdList, b: IdList) -> IdList:
     return sorted(set(a) - set(b))
 
 
-_ENGINES = {
+_ENGINES: dict[Engine, dict[Op, Callable[[IdList, IdList], IdList]]] = {
     "merge": {"AND": merge_and, "OR": merge_or, "NOT": merge_not},
     "set": {"AND": set_and, "OR": set_or, "NOT": set_not},
 }
 
 
-def evaluate_query(query: str, postings: dict, engine: str = "merge") -> list[int]:
+def evaluate_query(
+    query: str,
+    postings: Mapping[str, Sequence[Posting]],
+    engine: Engine = "merge",
+) -> IdList:
     """Проста ліва-направо оцінка: 'a b' = AND, явні OR / NOT між термінами."""
     ops = _ENGINES[engine]
     tokens = query.split()
     if not tokens:
         return []
 
-    def get(term: str) -> list[int]:
+    def get(term: str) -> IdList:
         return doc_ids(postings.get(term.lower(), []))
 
     result = get(tokens[0])
     i = 1
     while i < len(tokens):
-        tok = tokens[i].upper()
-        if tok in ("OR", "NOT"):
+        word = tokens[i].upper()
+        if word == "OR" or word == "NOT":
             i += 1
-            term_ids = get(tokens[i])
-            result = ops[tok](result, term_ids)
+            result = ops[word](result, get(tokens[i]))
         else:
-            term_ids = get(tokens[i])
-            result = ops["AND"](result, term_ids)
+            result = ops["AND"](result, get(tokens[i]))
         i += 1
     return result
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Search a saved inverted index.")
-    parser.add_argument("index_path", type=Path, help="Path to a saved index file")
-    parser.add_argument("query", type=str, help='e.g. "cat dog", "cat OR dog", "cat NOT dog"')
-    parser.add_argument("--engine", choices=("merge", "set"), default="merge")
-    args = parser.parse_args()
-
-    tracemalloc.start()
-    start = time.perf_counter()
-
-    with open_index(args.index_path) as index:
-        result_ids = evaluate_query(args.query, index, engine=args.engine)
-
-        elapsed = time.perf_counter() - start
-        _current, peak = tracemalloc.get_traced_memory()
-        tracemalloc.stop()
-
-        print(f"Query: {args.query!r} (engine={args.engine})")
-        print(f"Found {len(result_ids)} document(s):")
-        for doc_id in result_ids:
-            meta = index.doc(doc_id)
-            print(f"  [{doc_id}] {meta.path.name} ({meta.length} tokens)")
-
-    print(f"\nTime:        {elapsed:.4f}s")
-    print(f"Peak memory: {peak / 1024 / 1024:.2f} MB")

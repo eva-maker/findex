@@ -1,9 +1,15 @@
 import argparse
 import json
 from pathlib import Path
+from typing import TypedDict
 
 from findex.ranking import BM25, TfIdf, search
 from findex.serialize import open_index
+
+
+class Case(TypedDict):
+    query: str
+    relevant: list[str]
 
 
 def precision_at_k(titles: list[str], relevant_fragments: list[str], k: int = 5) -> float:
@@ -18,14 +24,14 @@ def main() -> None:
     ap.add_argument("index_path", type=Path)
     ap.add_argument("queries", type=Path)
     args = ap.parse_args()
-    cases = json.loads(args.queries.read_text(encoding="utf-8"))
+    cases: list[Case] = json.loads(args.queries.read_text(encoding="utf-8"))
     scorers = {"TF-IDF": TfIdf(), "BM25": BM25()}
     totals = dict.fromkeys(scorers, 0.0)
     print("| Запит | " + " | ".join(scorers) + " |")
     print("|---|" + "---:|" * len(scorers))
     with open_index(args.index_path) as index:
         for case in cases:
-            row = []
+            row: list[str] = []
             for name, scorer in scorers.items():
                 titles = [r.title for r in search(index, case["query"], scorer, k=5)]
                 p = precision_at_k(titles, case["relevant"])

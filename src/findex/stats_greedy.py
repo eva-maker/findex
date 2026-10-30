@@ -4,15 +4,15 @@ from collections import Counter
 from pathlib import Path
 
 from findex.corpus import iter_documents
+from findex.stats import CorpusStats, MeasuredStats
 from findex.tokens import tokenize
 
 
-def compute_stats_greedy(corpus_dir: Path) -> dict:
-
-    documents = list(iter_documents(corpus_dir))       # whole corpus held in memory at once
-    all_tokens = []
+def compute_stats_greedy(corpus_dir: Path) -> CorpusStats:
+    documents = list(iter_documents(corpus_dir))  # whole corpus held in memory at once
+    all_tokens: list[str] = []
     for doc in documents:
-        all_tokens.extend(list(tokenize(doc)))          # whole token stream held in memory at once
+        all_tokens.extend(list(tokenize(doc)))  # whole token stream held in memory at once
 
     term_counts = Counter(all_tokens)
 
@@ -24,7 +24,7 @@ def compute_stats_greedy(corpus_dir: Path) -> dict:
     }
 
 
-def run_with_measurement_greedy(corpus_dir: Path) -> dict:
+def run_with_measurement_greedy(corpus_dir: Path) -> MeasuredStats:
     tracemalloc.start()
     start = time.perf_counter()
 
@@ -34,9 +34,11 @@ def run_with_measurement_greedy(corpus_dir: Path) -> dict:
     _current, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
 
-    stats["elapsed_seconds"] = round(elapsed, 4)
-    stats["peak_memory_mb"] = round(peak / 1024 / 1024, 2)
-    return stats
+    return {
+        **stats,
+        "elapsed_seconds": round(elapsed, 4),
+        "peak_memory_mb": round(peak / 1024 / 1024, 2),
+    }
 
 
 if __name__ == "__main__":

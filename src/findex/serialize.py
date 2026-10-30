@@ -13,37 +13,50 @@ json — безпечніша, читабельна альтернатива д�
 dataclasses не серіалізуються в json напряму, тому конвертуємо їх у прості
 dict/list при збереженні й відновлюємо dataclasses при завантаженні.
 """
+
 import json
+import logging
 import pickle
+from collections.abc import Generator
 from contextlib import contextmanager
 from pathlib import Path
 
 from findex.models import DocMeta, Index, Posting
-
 from findex.timing import timed
+
+log = logging.getLogger(__name__)
+
+
+class IndexLoadError(Exception):
+    """Індекс не вдалося завантажити: немає файлу або він пошкоджений.
+
+    Це «очікувана» помилка: CLI показує її одним рядком, без traceback.
+    """
 
 
 def save_pickle(index: Index, path: Path) -> None:
     with open(path, "wb") as f:
         pickle.dump(index, f)
 
-@timed
+
 def load_pickle(path: Path) -> Index:
     with open(path, "rb") as f:
-        return pickle.load(f)
+        obj: object = pickle.load(f)
+    # pickle.load повертає Any; isinstance звужує тип до Index (narrowing)
+    # і заодно відсікає файл, у якому лежить щось інше.
+    if not isinstance(obj, Index):
+        raise IndexLoadError(f"{path}: у файлі лежить не індекс findex")
+    return obj
 
 
 def save_json(index: Index, path: Path) -> None:
-    def plain(p: Posting) -> list:
-        row = [p.doc_id, p.freq]
+    def plain(p: Posting) -> list[int | list[int]]:
+        row: list[int | list[int]] = [p.doc_id, p.freq]
         if p.positions:
-            row.append(list(p.positions))      # третім елементом — позиції, якщо є
+            row.append(list(p.positions))  # третім елементом — позиції, якщо є
         return row
 
-    plain_postings = {
-        term: [plain(p) for p in plist]
-        for term, plist in index.items()
-    }
+    plain_postings = {term: [plain(p) for p in plist] for term, plist in index.items()}
     plain_doc_meta = {
         str(m.doc_id): {"doc_id": m.doc_id, "path": str(m.path), "length": m.length}
         for m in index.docs()
@@ -53,7 +66,7 @@ def save_json(index: Index, path: Path) -> None:
 
 
 def load_json(path: Path) -> Index:
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         data = json.load(f)
 
     postings = {
@@ -72,20 +85,33 @@ def save_index(index: Index, path: Path) -> None:
         save_json(index, path)
     else:
         save_pickle(index, path)
+    log.info("індекс збережено: %s (%d байт)", path, path.stat().st_size)
 
 
+@timed
 def load_index(path: Path) -> Index:
-    if path.suffix == ".json":
-        return load_json(path)
-    return load_pickle(path)
+    if not path.is_file():
+        raise IndexLoadError(f"файл індексу не знайдено: {path}")
+    try:
+        if path.suffix == ".json":
+            return load_json(path)
+        return load_pickle(path)
+    except IndexLoadError:
+        raise
+    except Exception as error:
+        # Будь-яка інша поломка формату (обрізаний файл, чужі байти, інша версія
+        # класів) для користувача означає одне: цей файл не індекс.
+        raise IndexLoadError(
+            f"{path}: файл індексу пошкоджений або має невідомий формат"
+        ) from error
 
 
 @contextmanager
-def open_index(path: Path):
+def open_index(path: Path) -> Generator[Index]:
     """with open_index(p) as ix: ... — індекс гарантовано закривається при виході,
     навіть якщо всередині with стався виняток або return."""
     index = load_index(path)
     try:
-        yield index            # все, що до yield — це __enter__
+        yield index  # все, що до yield — це __enter__
     finally:
-        index.close()          # все, що після — це __exit__
+        index.close()  # все, що після — це __exit__

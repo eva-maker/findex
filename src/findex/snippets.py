@@ -30,7 +30,8 @@ def make_snippet(text: str, terms: Iterable[str], width: int = 80, mark: str = "
         lo += 1
     while center < hi < len(norm) and not norm[hi].isspace():
         hi -= 1
-    pieces, pos = [], lo
+    pieces: list[str] = []
+    pos = lo
     for _t, s, e in matches:
         if s >= lo and e <= hi:
             pieces += [norm[pos:s], mark, norm[s:e], mark]

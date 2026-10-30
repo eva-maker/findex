@@ -2,11 +2,12 @@
 
 Запуск: uv run python -m findex.ranking_checks
 """
+
 from pathlib import Path
 
 from findex.index import build_index
 from findex.models import Index, Posting
-from findex.ranking import BM25, TfIdf, search
+from findex.ranking import BM25, Scorer, TfIdf, search
 
 
 def rarest_word(index: Index) -> str:
@@ -25,7 +26,11 @@ def check_rare_beats_common(index: Index) -> None:
     for r in results:
         print(f"  {r}")
     has_rare = any(p.doc_id == results[0].doc_id for p in index[rare])
-    print("ОК: на першому місці документ із рідкісним терміном" if has_rare else "УВАГА: перевір корпус")
+    print(
+        "ОК: на першому місці документ із рідкісним терміном"
+        if has_rare
+        else "УВАГА: перевір корпус"
+    )
     print()
 
 
@@ -35,7 +40,7 @@ def check_saturation(index: Index) -> None:
     base = index[rare][0]
     bm25, tfidf = BM25(), TfIdf()
 
-    def contribution(scorer, tf: int) -> float:
+    def contribution(scorer: Scorer, tf: int) -> float:
         return scorer(rare, Posting(base.doc_id, tf), index)
 
     print(f"термін {rare!r}, документ [{base.doc_id}]; внесок у рахунок залежно від tf:")
@@ -46,7 +51,9 @@ def check_saturation(index: Index) -> None:
     for name, scorer in (("BM25", bm25), ("TF-IDF", tfidf)):
         first = contribution(scorer, 1)
         gain_20th = contribution(scorer, 20) - contribution(scorer, 19)
-        print(f"{name}: 20-те повторення додає {gain_20th:.4f} = {gain_20th / first:.1%} від першого входження")
+        print(
+            f"{name}: 20-те повторення додає {gain_20th:.4f} = {gain_20th / first:.1%} від першого входження"
+        )
     print()
 
 
@@ -70,9 +77,13 @@ def check_short_beats_long(index: Index) -> None:
     _ratio, term, short, long_ = best
     for label, p in (("короткий", short), ("довгий", long_)):
         meta = index.doc(p.doc_id)
-        print(f"  {label:9} {meta.path.stem[:40]:40} довжина {meta.length:>7}  BM25={bm25(term, p, index):.3f}")
+        print(
+            f"  {label:9} {meta.path.stem[:40]:40} довжина {meta.length:>7}  BM25={bm25(term, p, index):.3f}"
+        )
     ok = bm25(term, short, index) > bm25(term, long_, index)
-    print(f"термін {term!r}, в обох по одному входженню. " + ("ОК: короткий вище" if ok else "УВАГА"))
+    print(
+        f"термін {term!r}, в обох по одному входженню. " + ("ОК: короткий вище" if ok else "УВАГА")
+    )
     print()
 
 

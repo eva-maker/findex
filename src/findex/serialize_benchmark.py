@@ -1,11 +1,19 @@
 import time
+from collections.abc import Callable
 from pathlib import Path
 
 from findex.index import build_index
+from findex.models import Index
 from findex.serialize import load_json, load_pickle, save_json, save_pickle
 
 
-def bench_format(name: str, save_fn, load_fn, index, path: Path):
+def bench_format(
+    name: str,
+    save_fn: Callable[[Index, Path], None],
+    load_fn: Callable[[Path], Index],
+    index: Index,
+    path: Path,
+) -> None:
     start = time.perf_counter()
     save_fn(index, path)
     save_time = time.perf_counter() - start
@@ -16,7 +24,9 @@ def bench_format(name: str, save_fn, load_fn, index, path: Path):
     load_fn(path)
     load_time = time.perf_counter() - start
 
-    print(f"{name:<10} {size_kb:>10.1f} KB   save: {save_time*1000:>7.2f} ms   load: {load_time*1000:>7.2f} ms")
+    print(
+        f"{name:<10} {size_kb:>10.1f} KB   save: {save_time * 1000:>7.2f} ms   load: {load_time * 1000:>7.2f} ms"
+    )
 
 
 if __name__ == "__main__":

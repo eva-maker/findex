@@ -1,21 +1,26 @@
 """Скільки байтів займає ОДИН постінг у трьох варіантах + як росте словник.
 
-Запуск (з кореня проєкту, на мітці lab-02):
+Запуск (з кореня проєкту, на будь-якій версії):
     uv run python posting_size.py
 """
+
 import gc
 import sys
 import tracemalloc
 from array import array
 from dataclasses import dataclass
 
-from findex.models import Posting  # dataclass(frozen=True, slots=True)
-
 N = 100_000  # скільки постінгів створюємо для виміру
 
 
 @dataclass
 class PostingPlain:  # звичайний dataclass: без slots, без frozen
+    doc_id: int
+    freq: int
+
+
+@dataclass(frozen=True, slots=True)
+class PostingSlots:  # як Posting у Лабі 2: два поля, slots, frozen
     doc_id: int
     freq: int
 
@@ -35,7 +40,7 @@ def bytes_per_item(make_items) -> float:
 # як у справжньому індексі: doc_id від 0 до 19, freq невеликі.
 # Малі цілі (до 256) Python не створює щоразу, а бере готові - це чесна картина.
 plain = bytes_per_item(lambda: [PostingPlain(i % 20, i % 5 + 1) for i in range(N)])
-slots = bytes_per_item(lambda: [Posting(i % 20, i % 5 + 1) for i in range(N)])
+slots = bytes_per_item(lambda: [PostingSlots(i % 20, i % 5 + 1) for i in range(N)])
 
 
 def make_array():

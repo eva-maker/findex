@@ -11,8 +11,11 @@
     not_expr -> 'NOT' not_expr | atom
     atom     -> TERM | PHRASE | '(' or_expr ')'
 """
+
 import re
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from typing import Literal
 
 from findex.models import Index
 from findex.tokens import tokenize
@@ -24,28 +27,30 @@ class QueryError(ValueError):
 
 # вузли дерева
 
-class Node:
+
+class Node(ABC):
     """Базовий клас: дає всім вузлам оператори &, |, ~ та спільний інтерфейс."""
 
-    def __and__(self, other):
+    def __and__(self, other: object) -> Node:
         if not isinstance(other, Node):
             return NotImplemented
         return And(self, other)
 
-    def __or__(self, other):
+    def __or__(self, other: object) -> Node:
         if not isinstance(other, Node):
             return NotImplemented
         return Or(self, other)
 
-    def __invert__(self):
+    def __invert__(self) -> Node:
         return Not(self)
 
-    def evaluate(self, index: Index) -> set[int]:
-        raise NotImplementedError
+    @abstractmethod
+    def evaluate(self, index: Index) -> set[int]: ...
 
+    @abstractmethod
     def positive_terms(self) -> list[str]:
         """Терміни, що додають бали в рейтинг (все, крім тих, що під NOT)."""
-        raise NotImplementedError
+        ...
 
 
 @dataclass(frozen=True)
@@ -65,18 +70,21 @@ class Phrase(Node):
 
     def evaluate(self, index: Index) -> set[int]:
         if not index.has_positions:
-            raise QueryError("фразовий пошук потребує індексу з позиціями: findex.index --positions")
+            raise QueryError(
+                "фразовий пошук потребує індексу з позиціями: findex index --positions"
+            )
 
         # для кожного слова фрази: doc_id -> позиції в цьому документі
-        per_term = []
+        per_term: list[dict[int, tuple[int, ...]]] = []
         for term in self.terms:
             if term not in index:
                 return set()
             per_term.append({p.doc_id: p.positions for p in index[term]})
 
-        result = set()
-        for doc_id in set.intersection(*(set(d) for d in per_term)):
-            starts = set(per_term[0][doc_id])            # де може починатися фраза
+        result: set[int] = set()
+        common_docs = set(per_term[0]).intersection(*per_term[1:])
+        for doc_id in common_docs:
+            starts = set(per_term[0][doc_id])  # де може починатися фраза
             for offset, postings in enumerate(per_term[1:], start=1):
                 later = set(postings[doc_id])
                 starts = {s for s in starts if s + offset in later}
@@ -127,40 +135,53 @@ class Not(Node):
 
 # лексер
 
-_LEXEME_RE = re.compile(
-    r'\s*(?:(?P<lpar>\()|(?P<rpar>\))|"(?P<phrase>[^"]*)"|(?P<word>[^\s()"]+))'
-)
+_LEXEME_RE = re.compile(r'\s*(?:(?P<lpar>\()|(?P<rpar>\))|"(?P<phrase>[^"]*)"|(?P<word>[^\s()"]+))')
 _OPERATORS = ("AND", "OR", "NOT")
 
+type _Kind = Literal["LPAR", "RPAR", "TERM", "PHRASE", "AND", "OR", "NOT"]
 
-def _lex(text: str) -> list[tuple[str, object]]:
-    """Рядок -> список токенів (вид, значення). Слова проходять через tokenize()
+
+@dataclass(frozen=True, slots=True)
+class _Token:
+    kind: _Kind
+    text: str = ""  # для TERM
+    words: tuple[str, ...] = ()  # для PHRASE
+
+
+def _lex(text: str) -> list[_Token]:
+    """Рядок -> список токенів. Слова проходять через tokenize()
     з Lab 1, тож запит нормалізується так само, як документи."""
     text = text.strip()
-    tokens: list[tuple[str, object]] = []
+    tokens: list[_Token] = []
     pos = 0
     while pos < len(text):
         m = _LEXEME_RE.match(text, pos)
         if m is None:
-            raise QueryError(f"не вдалося розібрати запит біля {text[pos:pos + 12]!r} (незакриті лапки?)")
+            raise QueryError(
+                f"не вдалося розібрати запит біля {text[pos : pos + 12]!r} (незакриті лапки?)"
+            )
         pos = m.end()
 
         if m["lpar"]:
-            tokens.append(("LPAR", None))
+            tokens.append(_Token("LPAR"))
         elif m["rpar"]:
-            tokens.append(("RPAR", None))
+            tokens.append(_Token("RPAR"))
         elif m["phrase"] is not None:
             words = tuple(tokenize(m["phrase"]))
             if not words:
                 raise QueryError("порожня фраза в лапках")
-            tokens.append(("PHRASE", words))
+            tokens.append(_Token("PHRASE", words=words))
         else:
-            raw = m["word"]
-            if raw in _OPERATORS:
-                tokens.append((raw, None))
+            raw: str = m["word"]
+            if raw == "AND":
+                tokens.append(_Token("AND"))
+            elif raw == "OR":
+                tokens.append(_Token("OR"))
+            elif raw == "NOT":
+                tokens.append(_Token("NOT"))
             else:
-                for word in tokenize(raw):       # "foo.bar" -> foo, bar
-                    tokens.append(("TERM", word))
+                for word in tokenize(raw):  # "foo.bar" -> foo, bar
+                    tokens.append(_Token("TERM", text=word))
     return tokens
 
 
@@ -168,14 +189,14 @@ def _lex(text: str) -> list[tuple[str, object]]:
 
 
 class _Parser:
-    def __init__(self, tokens: list[tuple[str, object]]):
+    def __init__(self, tokens: list[_Token]) -> None:
         self.tokens = tokens
         self.pos = 0
 
-    def peek(self) -> str | None:
-        return self.tokens[self.pos][0] if self.pos < len(self.tokens) else None
+    def peek(self) -> _Kind | None:
+        return self.tokens[self.pos].kind if self.pos < len(self.tokens) else None
 
-    def advance(self) -> tuple[str, object]:
+    def advance(self) -> _Token:
         token = self.tokens[self.pos]
         self.pos += 1
         return token
@@ -202,7 +223,7 @@ class _Parser:
             if kind == "AND":
                 self.advance()
                 node = And(node, self.not_expr())
-            elif kind in ("TERM", "PHRASE", "LPAR", "NOT"):   # неявний AND
+            elif kind in ("TERM", "PHRASE", "LPAR", "NOT"):  # неявний AND
                 node = And(node, self.not_expr())
             else:
                 return node
@@ -218,9 +239,9 @@ class _Parser:
         if kind is None:
             raise QueryError("запит закінчився раніше, ніж очікувалось")
         if kind == "TERM":
-            return Term(self.advance()[1])
+            return Term(self.advance().text)
         if kind == "PHRASE":
-            words = self.advance()[1]
+            words = self.advance().words
             return Term(words[0]) if len(words) == 1 else Phrase(words)
         if kind == "LPAR":
             self.advance()

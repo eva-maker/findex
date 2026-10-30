@@ -1,4 +1,3 @@
-import argparse
 import functools
 import heapq
 import logging
@@ -6,19 +5,26 @@ import math
 from collections import defaultdict
 from dataclasses import dataclass
 from operator import itemgetter
-from pathlib import Path
-from typing import Protocol
+from typing import Final, Literal, Protocol
 
-from findex.corpus import read_document
 from findex.models import Index, Posting
-from findex.query import QueryError, parse
-from findex.serialize import open_index
-from findex.snippets import make_snippet
-from findex.timing import log, timed
+from findex.query import parse
+from findex.timing import timed
+
+log = logging.getLogger(__name__)
+
+ScorerName = Literal["bm25", "tfidf"]
 
 
 class Scorer(Protocol):
-    def __call__(self, term: str, posting: Posting, index: Index) -> float: ...
+    """Структурний інтерфейс: підходить будь-який виклик з такою сигнатурою.
+
+    TfIdf, BM25 і навіть lambda задовольняють його без жодного наслідування.
+    `/` після index робить параметри позиційними: так назви параметрів
+    у реалізації (ix, idx...) не обов'язково мають збігатися з тут.
+    """
+
+    def __call__(self, term: str, posting: Posting, index: Index, /) -> float: ...
 
 
 @dataclass(frozen=True)
@@ -50,6 +56,9 @@ class BM25:
         return idf * tf * (self.k1 + 1) / (tf + self.k1 * length_norm)
 
 
+DEFAULT_SCORER: Final[Scorer] = BM25()
+
+
 @dataclass(frozen=True, order=True)
 class SearchResult:
     # order=True порівнює поля по черзі, зверху вниз, тому score — першим:
@@ -74,7 +83,7 @@ def matching_ids(index: Index, query: str) -> tuple[tuple[str, ...], frozenset[i
 def search(
     index: Index,
     query: str,
-    scorer: Scorer = BM25(),
+    scorer: Scorer = DEFAULT_SCORER,
     k: int = 10,
 ) -> list[SearchResult]:
     """Спершу query language визначає, які документи ПІДХОДЯТЬ (Boolean),
@@ -85,52 +94,18 @@ def search(
     log.debug("запит %r: кеш %s", query, "HIT" if cache_hit else "miss")
 
     scores: defaultdict[int, float] = defaultdict(float)
-    for term in set(terms):                          # терміни під NOT балів не дають
+    for term in set(terms):  # терміни під NOT балів не дають
         for posting in index.get(term, ()):
             if posting.doc_id in matched:
                 scores[posting.doc_id] += scorer(term, posting, index)
 
     # топ-k без повного сортування: O(n log k)
     top = heapq.nlargest(k, scores.items(), key=itemgetter(1))
-    return [
-        SearchResult(score, doc_id, index.doc(doc_id).path.stem)
-        for doc_id, score in top
-    ]
+    return [SearchResult(score, doc_id, index.doc(doc_id).path.stem) for doc_id, score in top]
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Ranked search over a saved index.")
-    parser.add_argument("index_path", type=Path)
-    parser.add_argument("query", type=str)
-    parser.add_argument("--scorer", choices=("bm25", "tfidf"), default="bm25")
-    parser.add_argument("-k", type=int, default=10)
-    parser.add_argument("-v", "--verbose", action="store_true", help="показати лог часу й кешу")
-    parser.add_argument("--repeat", type=int, default=1, help="повторити запит N разів (щоб побачити кеш)")
-    args = parser.parse_args()
-
-    if args.verbose:
-        logging.basicConfig(level=logging.DEBUG, format="%(message)s")
-
-    scorer = BM25() if args.scorer == "bm25" else TfIdf()
-    try:
-        with open_index(args.index_path) as index:
-            for _ in range(args.repeat):
-                results = search(index, args.query, scorer=scorer, k=args.k)
-            terms, _matched = matching_ids(index, args.query)
-
-            print(f"Query: {args.query!r}  scorer={scorer}")
-            if not results:
-                print("Nothing found.")
-            for rank, result in enumerate(results, start=1):
-                print(f"{rank:2}. {result}")
-                text = read_document(index.doc(result.doc_id).path)
-                snippet = make_snippet(text, terms)
-                if snippet:
-                    print(f"      {snippet}")
-    except QueryError as error:
-        print(f"Помилка запиту: {error}")
-        return
-
-
-if __name__ == "__main__":
-    main()
+def make_scorer(name: ScorerName) -> Scorer:
+    """Рядок із CLI -> об'єкт-scorer. Literal не дає передати неіснуючу назву."""
+    if name == "bm25":
+        return BM25()
+    return TfIdf()

@@ -8,7 +8,9 @@ from pathlib import Path
 class Posting:
     doc_id: int
     freq: int
-    positions: tuple[int, ...] = ()   # позиції токенів у документі (лише якщо індекс збудовано з --positions)
+    positions: tuple[
+        int, ...
+    ] = ()  # позиції токенів у документі (лише якщо індекс збудовано з --positions)
 
 
 @dataclass(frozen=True, slots=True)
@@ -18,38 +20,39 @@ class DocMeta:
     length: int  # кількість токенів у документі
 
 
-class Index(Mapping):
-    def __init__(self, postings: dict[str, list[Posting]], doc_meta: dict[int, DocMeta]):
+class Index(Mapping[str, list[Posting]]):
+    def __init__(self, postings: dict[str, list[Posting]], doc_meta: dict[int, DocMeta]) -> None:
         # dict(...) а не сам defaultdict: у defaultdict звернення до неіснуючого
         # ключа тихо СТВОРЮЄ порожній запис замість KeyError, і індекс "псується".
         self._postings = dict(postings)
         self._doc_meta = dict(doc_meta)
 
-
+    # Mapping визначає __eq__ за вмістом, через що клас став би нехешованим,
+    # а lru_cache потребує хешованих аргументів. Порівнюємо за ідентичністю.
     def __eq__(self, other: object) -> bool:
         return self is other
 
     def __hash__(self) -> int:
         return object.__hash__(self)
 
-    # протокол контейнера 
+    # протокол контейнера
 
     def __len__(self) -> int:
-        return len(self._postings)          # len(index) = кількість термінів
+        return len(self._postings)  # len(index) = кількість термінів
 
     def __contains__(self, term: object) -> bool:
-        return term in self._postings       # "python" in index
+        return term in self._postings  # "python" in index
 
     def __getitem__(self, term: str) -> list[Posting]:
-        return self._postings[term]         # index["python"]; немає терміна -> KeyError
+        return self._postings[term]  # index["python"]; немає терміна -> KeyError
 
     def __iter__(self) -> Iterator[str]:
-        return iter(self._postings)         # for term in index
+        return iter(self._postings)  # for term in index
 
     def __repr__(self) -> str:
         return f"Index(terms={len(self):_}, docs={self.num_docs:_})"
 
-    # обчислювані атрибути 
+    # обчислювані атрибути
 
     @property
     def num_docs(self) -> int:
@@ -67,7 +70,6 @@ class Index(Mapping):
         for plist in self._postings.values():
             return bool(plist[0].positions)
         return False
-
 
     def doc_length(self, doc_id: int) -> int:
         return self._doc_meta[doc_id].length

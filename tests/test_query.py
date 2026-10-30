@@ -6,43 +6,43 @@ from findex.models import DocMeta, Index, Posting
 from findex.query import And, Not, Or, Phrase, QueryError, Term, parse
 from findex.ranking import search
 
-
 # дерева (парсер)
 
-def test_single_term():
+
+def test_single_term() -> None:
     assert parse("a") == Term("a")
 
 
-def test_implicit_and():
+def test_implicit_and() -> None:
     assert parse("a b") == And(Term("a"), Term("b"))
 
 
-def test_explicit_and():
+def test_explicit_and() -> None:
     assert parse("a AND b") == And(Term("a"), Term("b"))
 
 
-def test_and_binds_tighter_than_or():
+def test_and_binds_tighter_than_or() -> None:
     # 'a OR b c' — це a OR (b AND c), а не (a OR b) AND c
     assert parse("a OR b c") == Or(Term("a"), And(Term("b"), Term("c")))
 
 
-def test_parentheses_override_precedence():
+def test_parentheses_override_precedence() -> None:
     assert parse("(a OR b) c") == And(Or(Term("a"), Term("b")), Term("c"))
 
 
-def test_not_applies_to_next_atom():
+def test_not_applies_to_next_atom() -> None:
     assert parse("a NOT b") == And(Term("a"), Not(Term("b")))
 
 
-def test_phrase():
+def test_phrase() -> None:
     assert parse('"event loop"') == Phrase(("event", "loop"))
 
 
-def test_one_word_phrase_is_just_a_term():
+def test_one_word_phrase_is_just_a_term() -> None:
     assert parse('"python"') == Term("python")
 
 
-def test_full_example_from_the_lab():
+def test_full_example_from_the_lab() -> None:
     tree = parse('python AND (async OR await) NOT java "event loop"')
     expected = And(
         And(
@@ -54,26 +54,29 @@ def test_full_example_from_the_lab():
     assert tree == expected
 
 
-def test_words_are_normalized_like_documents():
+def test_words_are_normalized_like_documents() -> None:
     assert parse("Python") == Term("python")
 
 
-def test_lowercase_operators_are_ordinary_words():
+def test_lowercase_operators_are_ordinary_words() -> None:
     assert parse("a or b") == And(And(Term("a"), Term("or")), Term("b"))
 
 
-def test_operator_overloading_builds_the_same_tree():
+def test_operator_overloading_builds_the_same_tree() -> None:
     built = Term("a") & (Term("b") | Term("c")) & ~Term("d")
     assert built == parse("a (b OR c) NOT d")
 
 
-@pytest.mark.parametrize("bad", ["", "   ", "(a", "a)", "a AND", "a OR OR b", '"event loop', '""', "NOT"])
-def test_bad_queries_raise_query_error(bad):
+@pytest.mark.parametrize(
+    "bad", ["", "   ", "(a", "a)", "a AND", "a OR OR b", '"event loop', '""', "NOT"]
+)
+def test_bad_queries_raise_query_error(bad: str) -> None:
     with pytest.raises(QueryError):
         parse(bad)
 
 
 # виконання
+
 
 @pytest.fixture
 def index() -> Index:
@@ -91,32 +94,32 @@ def index() -> Index:
     return Index(postings, doc_meta)
 
 
-def test_term_and_and_or(index):
+def test_term_and_and_or(index: Index) -> None:
     assert parse("event").evaluate(index) == {0, 1, 3}
     assert parse("event loop").evaluate(index) == {0, 1, 3}
     assert parse("async OR java").evaluate(index) == {2, 3}
 
 
-def test_not(index):
+def test_not(index: Index) -> None:
     assert parse("python NOT async").evaluate(index) == {0, 1}
     assert Not(Term("event")).evaluate(index) == {2}
 
 
-def test_parentheses_in_evaluation(index):
+def test_parentheses_in_evaluation(index: Index) -> None:
     assert parse("(async OR java) event").evaluate(index) == {3}
 
 
-def test_phrase_respects_word_order(index):
+def test_phrase_respects_word_order(index: Index) -> None:
     # у doc1 слова є, але в іншому порядку: loop event
     assert parse('"event loop"').evaluate(index) == {0, 3}
     assert parse('"loop event"').evaluate(index) == {1}
 
 
-def test_phrase_with_unknown_word_matches_nothing(index):
+def test_phrase_with_unknown_word_matches_nothing(index: Index) -> None:
     assert parse('"event zebra"').evaluate(index) == set()
 
 
-def test_phrase_needs_positions():
+def test_phrase_needs_positions() -> None:
     no_positions = Index(
         {"a": [Posting(0, 1)], "b": [Posting(0, 1)]},
         {0: DocMeta(0, Path("x.txt"), 2)},
@@ -125,17 +128,17 @@ def test_phrase_needs_positions():
         parse('"a b"').evaluate(no_positions)
 
 
-def test_has_positions_flag(index):
+def test_has_positions_flag(index: Index) -> None:
     assert index.has_positions is True
     plain = Index({"a": [Posting(0, 1)]}, {0: DocMeta(0, Path("x.txt"), 1)})
     assert plain.has_positions is False
 
 
-def test_ranking_uses_the_query_language(index):
+def test_ranking_uses_the_query_language(index: Index) -> None:
     results = search(index, '"event loop"')
     assert {r.doc_id for r in results} == {0, 3}
 
 
-def test_negated_terms_do_not_score(index):
+def test_negated_terms_do_not_score(index: Index) -> None:
     results = search(index, "python NOT async")
     assert {r.doc_id for r in results} == {0, 1}

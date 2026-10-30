@@ -2,15 +2,16 @@ import time
 from pathlib import Path
 
 from findex.index import build_index
-from findex.search import evaluate_query
+from findex.models import Index
+from findex.search import Engine, evaluate_query
 
 
-def find_rarest_terms(index, n: int = 2) -> list[str]:
+def find_rarest_terms(index: Index, n: int = 2) -> list[str]:
     real_words = [term for term in index if term.isalpha() and len(term) > 2]
     return sorted(real_words, key=lambda term: (index.df(term), term))[:n]
 
 
-def timed_query(query: str, index, engine: str, repeats: int = 5) -> float:
+def timed_query(query: str, index: Index, engine: Engine, repeats: int = 5) -> float:
     start = time.perf_counter()
     for _ in range(repeats):
         evaluate_query(query, index, engine=engine)

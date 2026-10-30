@@ -1,10 +1,11 @@
 import re
+from collections.abc import Iterator
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterator
 
-
-_START_RE = re.compile(r"\*\*\* START OF (THE|THIS) PROJECT GUTENBERG EBOOK.*?\*\*\*", re.IGNORECASE)
+_START_RE = re.compile(
+    r"\*\*\* START OF (THE|THIS) PROJECT GUTENBERG EBOOK.*?\*\*\*", re.IGNORECASE
+)
 _END_RE = re.compile(r"\*\*\* END OF (THE|THIS) PROJECT GUTENBERG EBOOK.*?\*\*\*", re.IGNORECASE)
 
 
@@ -12,10 +13,10 @@ def _strip_boilerplate(text: str) -> str:
     """Remove the Project Gutenberg license header/footer, keep only the book text."""
     m = _START_RE.search(text)
     if m:
-        text = text[m.end():]
+        text = text[m.end() :]
     m = _END_RE.search(text)
     if m:
-        text = text[:m.start()]
+        text = text[: m.start()]
     return text.strip()
 
 
@@ -31,9 +32,18 @@ class Document:
     text: str
 
 
+def list_document_paths(corpus_dir: Path) -> list[Path]:
+    """Усі .txt у каталозі в стабільному (відсортованому) порядку: від нього залежить doc_id."""
+    return sorted(corpus_dir.glob("*.txt"))
+
+
+def load_document(path: Path) -> Document:
+    return Document(path=path, text=read_document(path))
+
+
 def iter_documents_with_meta(corpus_dir: Path) -> Iterator[Document]:
-    for path in sorted(corpus_dir.glob("*.txt")):
-        yield Document(path=path, text=read_document(path))
+    for path in list_document_paths(corpus_dir):
+        yield load_document(path)
 
 
 def iter_documents(corpus_dir: Path) -> Iterator[str]:

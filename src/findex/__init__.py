@@ -1,2 +1,1 @@
-def main() -> None:
-    print("Hello from findex!")
+"""findex — міні-пошуковик по текстовому корпусу."""

@@ -18,18 +18,18 @@ def index() -> Index:
     return Index(postings, doc_meta)
 
 
-def test_timed_keeps_name_and_doc():
+def test_timed_keeps_name_and_doc() -> None:
     @timed
-    def search_like():
+    def search_like() -> None:
         """Find."""
 
     assert search_like.__name__ == "search_like"
     assert search_like.__doc__ == "Find."
 
 
-def test_timed_logs_even_on_exception(caplog):
+def test_timed_logs_even_on_exception(caplog: pytest.LogCaptureFixture) -> None:
     @timed
-    def boom():
+    def boom() -> None:
         raise ValueError
 
     with caplog.at_level(logging.DEBUG, logger="findex"):
@@ -38,12 +38,12 @@ def test_timed_logs_even_on_exception(caplog):
     assert "boom took" in caplog.text
 
 
-def test_index_is_hashable_by_identity(index):
+def test_index_is_hashable_by_identity(index: Index) -> None:
     assert hash(index) == hash(index)
     assert {index: 1}[index] == 1
 
 
-def test_repeated_query_is_cache_hit(index):
+def test_repeated_query_is_cache_hit(index: Index) -> None:
     matching_ids.cache_clear()
     search(index, "common OR rare")
     hits = matching_ids.cache_info().hits
@@ -51,7 +51,7 @@ def test_repeated_query_is_cache_hit(index):
     assert matching_ids.cache_info().hits == hits + 1
 
 
-def test_cache_hit_is_logged(index, caplog):
+def test_cache_hit_is_logged(index: Index, caplog: pytest.LogCaptureFixture) -> None:
     matching_ids.cache_clear()
     with caplog.at_level(logging.DEBUG, logger="findex"):
         search(index, "common")
@@ -59,6 +59,6 @@ def test_cache_hit_is_logged(index, caplog):
     assert "miss" in caplog.text and "HIT" in caplog.text
 
 
-def test_cached_values_are_immutable(index):
+def test_cached_values_are_immutable(index: Index) -> None:
     terms, ids = matching_ids(index, "common")
     assert isinstance(terms, tuple) and isinstance(ids, frozenset)

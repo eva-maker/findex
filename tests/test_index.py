@@ -19,70 +19,72 @@ def index() -> Index:
     return Index(postings, doc_meta)
 
 
-def test_len_is_number_of_terms(index):
+def test_len_is_number_of_terms(index: Index) -> None:
     assert len(index) == 2
 
 
-def test_contains(index):
+def test_contains(index: Index) -> None:
     assert "cat" in index
     assert "python" not in index
 
 
-def test_getitem_returns_postings(index):
+def test_getitem_returns_postings(index: Index) -> None:
     assert index["dog"] == [Posting(1, 3)]
 
 
-def test_getitem_missing_raises_keyerror_and_does_not_mutate(index):
+def test_getitem_missing_raises_keyerror_and_does_not_mutate(index: Index) -> None:
     with pytest.raises(KeyError):
         index["python"]
-    assert "python" not in index      
+    assert "python" not in index
     assert len(index) == 2
 
 
-def test_iter_yields_terms(index):
+def test_iter_yields_terms(index: Index) -> None:
     assert sorted(index) == ["cat", "dog"]
 
 
-def test_repr(index):
+def test_repr(index: Index) -> None:
     assert repr(index) == "Index(terms=2, docs=2)"
 
 
-def test_num_docs_and_df_and_doc_length(index):
+def test_num_docs_and_df_and_doc_length(index: Index) -> None:
     assert index.num_docs == 2
     assert index.df("cat") == 2
     assert index.df("python") == 0
     assert index.doc_length(1) == 30
 
 
-def test_avg_doc_length_is_cached(index):
+def test_avg_doc_length_is_cached(index: Index) -> None:
     assert "avg_doc_length" not in index.__dict__
     assert index.avg_doc_length == 20.0
-    assert "avg_doc_length" in index.__dict__      
+    assert "avg_doc_length" in index.__dict__
 
 
-def test_mapping_methods_come_for_free(index):
+def test_mapping_methods_come_for_free(index: Index) -> None:
     assert index.get("python") is None
     assert sorted(index.keys()) == ["cat", "dog"]
 
 
-def test_open_index_closes_on_normal_exit(index, tmp_path):
+def test_open_index_closes_on_normal_exit(index: Index, tmp_path: Path) -> None:
     path = tmp_path / "ix.bin"
     save_index(index, path)
     with open_index(path) as ix:
         assert len(ix) == 2
-    assert len(ix) == 0                  # close() відпрацював
+    assert len(ix) == 0  # close() відпрацював
 
 
-def test_open_index_closes_even_on_exception(index, tmp_path):
+def test_open_index_closes_even_on_exception(index: Index, tmp_path: Path) -> None:
     path = tmp_path / "ix.bin"
     save_index(index, path)
+    opened: list[Index] = []
     with pytest.raises(RuntimeError):
         with open_index(path) as ix:
+            opened.append(ix)
             raise RuntimeError("boom")
-    assert len(ix) == 0                  # навіть після винятку
+    assert len(opened[0]) == 0  # навіть після винятку
 
 
-def test_json_roundtrip(index, tmp_path):
+def test_json_roundtrip(index: Index, tmp_path: Path) -> None:
     path = tmp_path / "ix.json"
     save_index(index, path)
     with open_index(path) as ix:

@@ -2,6 +2,7 @@ import gc
 import tracemalloc
 from array import array
 from collections import defaultdict
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -21,30 +22,35 @@ class PostingSlots:
     freq: int
 
 
-def _build(corpus_dir: Path, add_posting):
-    postings = defaultdict(list)
+def _build[P](corpus_dir: Path, make_posting: Callable[[int, int], P]) -> dict[str, list[P]]:
+    """Спільний каркас для двох варіантів з об'єктами.
+
+    [P] — generic за PEP 695: P це або PostingPlain, або PostingSlots, і pyright
+    знає, що словник на виході містить саме той тип, який створює make_posting.
+    """
+    postings: defaultdict[str, list[P]] = defaultdict(list)
     for doc_id, doc in enumerate(iter_documents_with_meta(corpus_dir)):
-        term_freq = defaultdict(int)
+        term_freq: defaultdict[str, int] = defaultdict(int)
         for token in tokenize(doc.text):
             term_freq[token] += 1
         for term, freq in term_freq.items():
-            add_posting(postings, term, doc_id, freq)
+            postings[term].append(make_posting(doc_id, freq))
     return postings
 
 
-def build_plain(corpus_dir: Path) -> dict:
-    return _build(corpus_dir, lambda p, t, d, f: p[t].append(PostingPlain(d, f)))
+def build_plain(corpus_dir: Path) -> dict[str, list[PostingPlain]]:
+    return _build(corpus_dir, PostingPlain)
 
 
-def build_slots(corpus_dir: Path) -> dict:
-    return _build(corpus_dir, lambda p, t, d, f: p[t].append(PostingSlots(d, f)))
+def build_slots(corpus_dir: Path) -> dict[str, list[PostingSlots]]:
+    return _build(corpus_dir, PostingSlots)
 
 
-def build_array(corpus_dir: Path) -> dict:
+def build_array(corpus_dir: Path) -> dict[str, array[int]]:
     """Кожен термін -> один плаский array('I') з парами doc_id, freq, doc_id, freq, ..."""
-    postings = defaultdict(lambda: array("I"))
+    postings: defaultdict[str, array[int]] = defaultdict(lambda: array("I"))
     for doc_id, doc in enumerate(iter_documents_with_meta(corpus_dir)):
-        term_freq = defaultdict(int)
+        term_freq: defaultdict[str, int] = defaultdict(int)
         for token in tokenize(doc.text):
             term_freq[token] += 1
         for term, freq in term_freq.items():
@@ -53,7 +59,7 @@ def build_array(corpus_dir: Path) -> dict:
     return postings
 
 
-def measure(name: str, build_fn, corpus_dir: Path):
+def measure(name: str, build_fn: Callable[[Path], object], corpus_dir: Path) -> None:
     gc.collect()
     tracemalloc.start()
     result = build_fn(corpus_dir)
