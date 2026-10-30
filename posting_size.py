@@ -1,6 +1,4 @@
-"""Скільки байтів займає один постінг у трьох варіантах + як росте словник.
-
-"""
+"""Скільки байтів займає один постінг у трьох варіантах + як росте словник."""
 
 import gc
 import sys
@@ -37,7 +35,7 @@ def bytes_per_item(make_items: Callable[[], object]) -> float:
 
 
 # як у справжньому індексі: doc_id від 0 до 19, freq невеликі.
-# Малі цілі (до 256) Python не створює щоразу, а бере готові 
+# Малі цілі (до 256) Python не створює щоразу, а бере готові
 plain = bytes_per_item(lambda: [PostingPlain(i % 20, i % 5 + 1) for i in range(N)])
 slots = bytes_per_item(lambda: [PostingSlots(i % 20, i % 5 + 1) for i in range(N)])
 
