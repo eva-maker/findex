@@ -1,16 +1,15 @@
-"""Скільки байтів займає ОДИН постінг у трьох варіантах + як росте словник.
+"""Скільки байтів займає один постінг у трьох варіантах + як росте словник.
 
-Запуск (з кореня проєкту, на будь-якій версії):
-    uv run python posting_size.py
 """
 
 import gc
 import sys
 import tracemalloc
 from array import array
+from collections.abc import Callable
 from dataclasses import dataclass
 
-N = 100_000  # скільки постінгів створюємо для виміру
+N = 100_000  # кількість постінгів для виміру
 
 
 @dataclass
@@ -25,12 +24,12 @@ class PostingSlots:  # як Posting у Лабі 2: два поля, slots, froze
     freq: int
 
 
-def bytes_per_item(make_items) -> float:
+def bytes_per_item(make_items: Callable[[], object]) -> float:
     """Міряє через tracemalloc, скільки пам'яті займає N штук."""
     gc.collect()
     tracemalloc.start()
     before, _ = tracemalloc.get_traced_memory()
-    items = make_items()  # тримаємо результат, щоб його не прибрали
+    items = make_items()  # для збереження результату
     after, _ = tracemalloc.get_traced_memory()
     tracemalloc.stop()
     del items
@@ -38,7 +37,7 @@ def bytes_per_item(make_items) -> float:
 
 
 # як у справжньому індексі: doc_id від 0 до 19, freq невеликі.
-# Малі цілі (до 256) Python не створює щоразу, а бере готові - це чесна картина.
+# Малі цілі (до 256) Python не створює щоразу, а бере готові 
 plain = bytes_per_item(lambda: [PostingPlain(i % 20, i % 5 + 1) for i in range(N)])
 slots = bytes_per_item(lambda: [PostingSlots(i % 20, i % 5 + 1) for i in range(N)])
 
