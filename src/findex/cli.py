@@ -10,21 +10,22 @@
 
 import json
 import logging
+import os
 import sys
 import time
 from enum import StrEnum
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
-from typing import Annotated, NoReturn
+from typing import Annotated, Final, NoReturn
 
 import typer
 from rich.console import Console
-from rich.progress import track
+from rich.progress import Progress
 from rich.table import Table
 from rich.text import Text
 
-from findex.corpus import list_document_paths, load_document, read_document
-from findex.index import index_documents
+from findex.corpus import list_document_paths, read_document
+from findex.index import Chunk, ExecutorName, build_index_parallel
 from findex.query import QueryError
 from findex.ranking import ScorerName, make_scorer, matching_ids, search
 from findex.serialize import IndexLoadError, open_index, save_index
@@ -56,6 +57,32 @@ class ScorerChoice(StrEnum):
 
     def as_name(self) -> ScorerName:
         return "bm25" if self is ScorerChoice.bm25 else "tfidf"
+
+
+class ExecutorChoice(StrEnum):
+    """Чим виконувати збірку індексу: звичайний цикл, потоки чи процеси."""
+
+    serial = "serial"
+    threads = "threads"
+    processes = "processes"
+
+    def as_name(self) -> ExecutorName:
+        match self:
+            case ExecutorChoice.serial:
+                return "serial"
+            case ExecutorChoice.threads:
+                return "threads"
+            case ExecutorChoice.processes:
+                return "processes"
+
+
+# Скільки воркерів за замовчуванням: на моєму компʼютері (4 ядра, 8 логічних) 4 процеси дали
+# найкращий час, а 8 уже не покращили (див. таблицю в README, Лаба 5).
+DEFAULT_WORKERS_CAP: Final = 4
+
+
+def default_workers() -> int:
+    return min(DEFAULT_WORKERS_CAP, os.cpu_count() or 1)
 
 
 def configure_logging(verbosity: int) -> None:
@@ -124,6 +151,27 @@ def index_command(
         int | None,
         typer.Option("--limit", min=1, help="Взяти лише перші N документів."),
     ] = None,
+    workers: Annotated[
+        int | None,
+        typer.Option(
+            "--workers",
+            "-w",
+            min=1,
+            help="Скільки потоків чи процесів (за замовч. min(4, ядер); для serial не потрібно).",
+        ),
+    ] = None,
+    executor: Annotated[
+        ExecutorChoice,
+        typer.Option(
+            "--executor", help="serial — один цикл, threads — потоки, processes — процеси."
+        ),
+    ] = ExecutorChoice.processes,
+    chunks: Annotated[
+        int | None,
+        typer.Option(
+            "--chunks", min=1, help="На скільки шматків ділити корпус (за замовч. = workers)."
+        ),
+    ] = None,
 ) -> None:
     """Побудувати індекс з каталогу текстів і зберегти у файл."""
     if not corpus.is_dir():
@@ -134,14 +182,26 @@ def index_command(
     if limit is not None:
         paths = paths[:limit]
 
+    if executor is ExecutorChoice.serial and workers is not None and workers > 1:
+        log.warning("--workers %d ігнорується: executor serial працює в одному циклі", workers)
+    worker_count = workers if workers is not None else default_workers()
+
     start = time.perf_counter()
-    # track() малює смугу прогресу в stderr і віддає елементи по одному:
-    # документи, як і раніше, читаються стрімом, не всі одразу.
-    docs = (
-        load_document(path)
-        for path in track(paths, description="Індексація", console=err, transient=True)
-    )
-    index = index_documents(docs, positions=positions)
+    # Смуга прогресу в stderr: рух на кожен готовий шматок (файли кожного воркер читає сам).
+    with Progress(console=err, transient=True) as progress:
+        task = progress.add_task("Індексація", total=len(paths))
+
+        def advance(chunk: Chunk) -> None:
+            progress.advance(task, len(chunk.paths))
+
+        index = build_index_parallel(
+            paths,
+            positions=positions,
+            workers=worker_count,
+            executor=executor.as_name(),
+            chunks=chunks,
+            on_chunk_done=advance,
+        )
     try:
         save_index(index, out_path)
     except OSError as error:

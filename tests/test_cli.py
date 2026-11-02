@@ -11,6 +11,10 @@ from findex.cli import app
 
 runner = CliRunner()
 
+# За замовчуванням `findex index` працює на процесах; у цих тестах нас цікавить не вони,
+# а сам CLI, тому беремо цикл (запуск процесів на Windows займає секунди).
+SERIAL = ["--executor", "serial"]
+
 
 @pytest.fixture(autouse=True)
 def _reset_findex_logger() -> None:
@@ -41,7 +45,7 @@ def test_version() -> None:
 
 def test_index_command_builds_and_saves(tiny_corpus: Path, tmp_path: Path) -> None:
     out = tmp_path / "ix.bin"
-    result = runner.invoke(app, ["index", str(tiny_corpus), "--out", str(out)])
+    result = runner.invoke(app, ["index", str(tiny_corpus), "--out", str(out), *SERIAL])
     assert result.exit_code == 0, result.output
     assert out.is_file()
     assert "terms=" in result.stdout
@@ -49,7 +53,9 @@ def test_index_command_builds_and_saves(tiny_corpus: Path, tmp_path: Path) -> No
 
 def test_index_limit_takes_first_n_documents(tiny_corpus: Path, tmp_path: Path) -> None:
     out = tmp_path / "ix.bin"
-    result = runner.invoke(app, ["index", str(tiny_corpus), "-o", str(out), "--limit", "2"])
+    result = runner.invoke(
+        app, ["index", str(tiny_corpus), "-o", str(out), "--limit", "2", *SERIAL]
+    )
     assert result.exit_code == 0
     assert "docs=2" in result.stdout
 

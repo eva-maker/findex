@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "tag": "nogil",
+    "date": "2026-11-02",
+    "cpu_model": "Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz",
+    "logical_cores": 8,
+    "python": "3.13.15",
+    "gil": false,
+    "positions": false,
+    "repeat": 3,
+    "docs": 20,
+    "serial_wall": 3.4529162000108045,
+    "merge_share": 0.0
+  },
+  "rows": [
+    {
+      "executor": "serial",
+      "workers": 1,
+      "chunks": 1,
+      "wall": 3.4529162000108045,
+      "cpu": 3.453125,
+      "rss_mb": 51.86328125,
+      "merge_wall": 0.024856100004399195,
+      "pickle_bytes": 0,
+      "pickle_s": 0.0,
+      "speedup": 1.0,
+      "serial_fraction": null,
+      "runs": 3
+    },
+    {
+      "executor": "threads",
+      "workers": 1,
+      "chunks": 1,
+      "wall": 3.477651799999876,
+      "cpu": 3.46875,
+      "rss_mb": 55.7734375,
+      "merge_wall": 0.03399850000278093,
+      "pickle_bytes": 0,
+      "pickle_s": 0.0,
+      "speedup": 0.9928872695106875,
+      "serial_fraction": null,
+      "runs": 3
+    },
+    {
+      "executor": "threads",
+      "workers": 2,
+      "chunks": 2,
+      "wall": 1.9168795000005048,
+      "cpu": 3.421875,
+      "rss_mb": 58.28515625,
+      "merge_wall": 0.045536499994341284,
+      "pickle_bytes": 0,
+      "pickle_s": 0.0,
+      "speedup": 1.801321470655769,
+      "serial_fraction": 0.11029598690782394,
+      "runs": 3
+    },
+    {
+      "executor": "threads",
+      "workers": 4,
+      "chunks": 4,
+      "wall": 1.3235703999816906,
+      "cpu": 3.984375,
+      "rss_mb": 81.2734375,
+      "merge_wall": 0.060587799991481006,
+      "pickle_bytes": 0,
+      "pickle_s": 0.0,
+      "speedup": 2.60878922651834,
+      "serial_fraction": 0.17775944479531014,
+      "runs": 3
+    },
+    {
+      "executor": "threads",
+      "workers": 8,
+      "chunks": 8,
+      "wall": 1.2356616999895778,
+      "cpu": 4.90625,
+      "rss_mb": 86.0234375,
+      "merge_wall": 0.06814409999060445,
+      "pickle_bytes": 0,
+      "pickle_s": 0.0,
+      "speedup": 2.7943863599882786,
+      "serial_fraction": 0.26612608123143194,
+      "runs": 3
+    }
+  ]
+}

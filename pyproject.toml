@@ -1,6 +1,6 @@
 [project]
 name = "findex"
-version = "0.4.0"
+version = "0.5.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
@@ -26,6 +26,10 @@ dev = [
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
     "ruff>=0.17.3",
+]
+# Лише для графіка в README: `uv run --group bench python scripts/plot_speedup.py ...`
+bench = [
+    "matplotlib>=3.10.0",
 ]
 
 [tool.pyright]
@@ -56,6 +60,10 @@ omit = [
     "src/findex/memory_benchmark.py",
     "src/findex/serialize_benchmark.py",
     "src/findex/ranking_checks.py",
+    # Лаба 5: так само одноразові скрипти вимірювань і демонстрацій
+    "src/findex/parallel_benchmark.py",
+    "src/findex/race_demo.py",
+    "src/findex/io_benchmark.py",
 ]
 
 [tool.coverage.report]
