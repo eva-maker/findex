@@ -12,3 +12,5 @@ dist/
 *.bin
 *.pkl
 index*.json
+
+crawl.log

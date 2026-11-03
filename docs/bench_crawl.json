@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "python": "3.14.2",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "cpu": "Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz",
+    "pages_on_site": 400,
+    "latency": 0.05,
+    "max_pages": 200,
+    "repeat": 3,
+    "keepalive": "\u043d\u0456 (HTTP/1.0, \u043d\u043e\u0432\u0435 \u0437'\u0454\u0434\u043d\u0430\u043d\u043d\u044f \u043d\u0430 \u0437\u0430\u043f\u0438\u0442)"
+  },
+  "rows": [
+    {
+      "label": "A",
+      "concurrency": 1,
+      "per_host": 1,
+      "delay": 0.0,
+      "runs": [
+        {
+          "wall": 17.863382800002,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 55.95703125,
+          "cpu": 4.46875,
+          "server_cpu": 0.34375,
+          "server_requests": 209,
+          "server_max_in_flight": 1
+        },
+        {
+          "wall": 17.77577780000138,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 55.984375,
+          "cpu": 4.0625,
+          "server_cpu": 0.34375,
+          "server_requests": 209,
+          "server_max_in_flight": 1
+        },
+        {
+          "wall": 17.62639489999856,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 55.921875,
+          "cpu": 4.328125,
+          "server_cpu": 0.5,
+          "server_requests": 209,
+          "server_max_in_flight": 1
+        }
+      ]
+    },
+    {
+      "label": "A",
+      "concurrency": 5,
+      "per_host": 5,
+      "delay": 0.0,
+      "runs": [
+        {
+          "wall": 4.436159000004409,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 56.37890625,
+          "cpu": 2.453125,
+          "server_cpu": 0.15625,
+          "server_requests": 212,
+          "server_max_in_flight": 5
+        },
+        {
+          "wall": 4.674386200000299,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 56.51171875,
+          "cpu": 2.546875,
+          "server_cpu": 0.421875,
+          "server_requests": 212,
+          "server_max_in_flight": 5
+        },
+        {
+          "wall": 4.822845800001232,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 56.33984375,
+          "cpu": 2.703125,
+          "server_cpu": 0.328125,
+          "server_requests": 214,
+          "server_max_in_flight": 5
+        }
+      ]
+    },
+    {
+      "label": "A",
+      "concurrency": 20,
+      "per_host": 20,
+      "delay": 0.0,
+      "runs": [
+        {
+          "wall": 2.4619753000006313,
+          "pages": 200,
+          "errors": 1,
+          "retries": 1,
+          "robots_skipped": 1,
+          "rss_mb": 58.51171875,
+          "cpu": 2.21875,
+          "server_cpu": 0.21875,
+          "server_requests": 239,
+          "server_max_in_flight": 20
+        },
+        {
+          "wall": 2.5594535999989603,
+          "pages": 200,
+          "errors": 1,
+          "retries": 1,
+          "robots_skipped": 1,
+          "rss_mb": 58.30078125,
+          "cpu": 2.296875,
+          "server_cpu": 0.453125,
+          "server_requests": 234,
+          "server_max_in_flight": 20
+        },
+        {
+          "wall": 2.5312569000016083,
+          "pages": 200,
+          "errors": 1,
+          "retries": 1,
+          "robots_skipped": 1,
+          "rss_mb": 57.8671875,
+          "cpu": 2.28125,
+          "server_cpu": 0.421875,
+          "server_requests": 233,
+          "server_max_in_flight": 20
+        }
+      ]
+    },
+    {
+      "label": "B",
+      "concurrency": 20,
+      "per_host": 2,
+      "delay": 0.0,
+      "runs": [
+        {
+          "wall": 9.688169799999741,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 56.18359375,
+          "cpu": 3.4375,
+          "server_cpu": 0.234375,
+          "server_requests": 210,
+          "server_max_in_flight": 2
+        },
+        {
+          "wall": 9.288410499997553,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 56.37109375,
+          "cpu": 3.234375,
+          "server_cpu": 0.265625,
+          "server_requests": 210,
+          "server_max_in_flight": 2
+        },
+        {
+          "wall": 9.90754200000083,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 56.390625,
+          "cpu": 3.765625,
+          "server_cpu": 0.265625,
+          "server_requests": 209,
+          "server_max_in_flight": 2
+        }
+      ]
+    },
+    {
+      "label": "C",
+      "concurrency": 20,
+      "per_host": 2,
+      "delay": 0.1,
+      "runs": [
+        {
+          "wall": 21.14524139999412,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 55.77734375,
+          "cpu": 4.515625,
+          "server_cpu": 0.546875,
+          "server_requests": 209,
+          "server_max_in_flight": 2
+        },
+        {
+          "wall": 21.15807310000673,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 56.1484375,
+          "cpu": 4.265625,
+          "server_cpu": 0.421875,
+          "server_requests": 209,
+          "server_max_in_flight": 2
+        },
+        {
+          "wall": 21.117905099999916,
+          "pages": 200,
+          "errors": 1,
+          "retries": 3,
+          "robots_skipped": 1,
+          "rss_mb": 56.0078125,
+          "cpu": 4.859375,
+          "server_cpu": 0.34375,
+          "server_requests": 209,
+          "server_max_in_flight": 2
+        }
+      ]
+    }
+  ]
+}

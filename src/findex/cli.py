@@ -8,6 +8,7 @@
     лише пишуть у свої `logging.getLogger(__name__)`.
 """
 
+import asyncio
 import json
 import logging
 import os
@@ -18,13 +19,19 @@ from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Annotated, Final, NoReturn
 
+import httpx
 import typer
 from rich.console import Console
+from rich.live import Live
 from rich.progress import Progress
 from rich.table import Table
 from rich.text import Text
 
-from findex.corpus import list_document_paths, read_document
+from findex.corpus import list_document_paths, read_document, unpack_jsonl
+from findex.crawler.crawl import DEFAULT_CONTACT, CrawlStats, make_user_agent
+from findex.crawler.display import render_stats
+from findex.crawler.runner import CrawlSettings, run_crawl
+from findex.crawler.urls import canonicalize
 from findex.index import Chunk, ExecutorName, build_index_parallel
 from findex.query import QueryError
 from findex.ranking import ScorerName, make_scorer, matching_ids, search
@@ -138,7 +145,10 @@ def root(
 
 @app.command("index")
 def index_command(
-    corpus: Annotated[Path, typer.Argument(help="Каталог з .txt-документами.")],
+    corpus: Annotated[
+        Path,
+        typer.Argument(help="Каталог з .txt-документами або .jsonl, який зібрав findex crawl."),
+    ],
     out_path: Annotated[
         Path,
         typer.Option("--out", "-o", help="Куди зберегти індекс (.json — JSON, інакше pickle)."),
@@ -172,8 +182,19 @@ def index_command(
             "--chunks", min=1, help="На скільки шматків ділити корпус (за замовч. = workers)."
         ),
     ] = None,
+    pages_dir: Annotated[
+        Path | None,
+        typer.Option("--pages-dir", help="Куди розпакувати сторінки з .jsonl (за замовч. поруч)."),
+    ] = None,
 ) -> None:
-    """Побудувати індекс з каталогу текстів і зберегти у файл."""
+    """Побудувати індекс з каталогу текстів (або з JSONL краулера) і зберегти у файл."""
+    if corpus.is_file() and corpus.suffix == ".jsonl":
+        # Індексація йде поза циклом подій і поза краулером: спочатку розкладаємо сторінки по
+        # .txt (так працюють і пошук, і сніпети), далі все як у Лабі 5.
+        target = pages_dir if pages_dir is not None else corpus.with_name(corpus.stem + "_pages")
+        count = unpack_jsonl(corpus, target)
+        err.print(f"Розпаковано {count} сторінок з {corpus} у {target}")
+        corpus = target
     if not corpus.is_dir():
         fail(f"каталог не знайдено: {corpus}")
     paths = list_document_paths(corpus)
@@ -305,3 +326,104 @@ def stats_command(
     for term, count in stats["top_terms"]:
         top_table.add_row(term, f"{count:,}")
     out.print(top_table)
+
+
+# Підміна транспорту для тестів: у справжньому запуску лишається None (справжня мережа).
+_test_transport: httpx.AsyncBaseTransport | None = None
+
+
+def _attach_crawl_log(path: Path, debug: bool) -> logging.Handler:
+    """crawl.log: статус кожного URL (логер findex.crawler.access) + повтори й попередження.
+
+    Із --debug сюди ж потрапляють скарги asyncio на колбеки, що блокували цикл (>100 мс).
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    handler = logging.FileHandler(path, mode="w", encoding="utf-8")
+    handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
+    for name in ("findex.crawler", "asyncio") if debug else ("findex.crawler",):
+        target = logging.getLogger(name)
+        target.addHandler(handler)
+        target.setLevel(logging.DEBUG if name == "asyncio" else logging.INFO)
+    logging.getLogger("findex.crawler").propagate = False  # не заважати живому екрану в stderr
+    return handler
+
+
+def _detach_crawl_log(handler: logging.Handler) -> None:
+    for name in ("findex.crawler", "asyncio"):
+        logging.getLogger(name).removeHandler(handler)
+    logging.getLogger("findex.crawler").propagate = True
+    handler.close()
+
+
+@app.command("crawl")
+def crawl_command(
+    seed: Annotated[str, typer.Argument(help="Початкова адреса, напр. http://127.0.0.1:8000/.")],
+    max_pages: Annotated[
+        int, typer.Option("--max-pages", min=1, help="Стеля на кількість сторінок.")
+    ] = 500,
+    concurrency: Annotated[
+        int, typer.Option("--concurrency", "-c", min=1, help="Скільки запитів одночасно.")
+    ] = 10,
+    per_host: Annotated[
+        int, typer.Option("--per-host", min=1, help="Скільки запитів одночасно до одного хоста.")
+    ] = 2,
+    out_path: Annotated[Path, typer.Option("--out", "-o", help="JSONL-файл зі сторінками.")] = Path(
+        "data/crawl.jsonl"
+    ),
+    delay: Annotated[
+        float, typer.Option("--delay", min=0.0, help="Мінімальна пауза між запитами до хоста, с.")
+    ] = 0.25,
+    timeout: Annotated[float, typer.Option("--timeout", min=0.1, help="Таймаут запиту, с.")] = 10.0,
+    domain: Annotated[
+        list[str] | None,
+        typer.Option("--domain", help="Дозволений домен (можна кілька; за замовч. хост seed)."),
+    ] = None,
+    log_file: Annotated[
+        Path, typer.Option("--log-file", help="Файл зі статусом кожного URL.")
+    ] = Path("crawl.log"),
+    contact: Annotated[
+        str, typer.Option("--contact", help="Адреса для зв'язку в User-Agent.")
+    ] = DEFAULT_CONTACT,
+    debug: Annotated[
+        bool, typer.Option("--debug", help="asyncio debug: попереджає про блокування циклу.")
+    ] = False,
+) -> None:
+    """Обійти сайт асинхронно (ввічливо) і дописувати сторінки у JSONL по мірі надходження."""
+    if canonicalize(seed) is None:
+        fail(f"це не http(s)-адреса: {seed}")
+    settings = CrawlSettings(
+        seeds=(seed,),
+        max_pages=max_pages,
+        concurrency=concurrency,
+        per_host=per_host,
+        allowed_domains=domain,
+        delay=delay,
+        timeout=timeout,
+        user_agent=make_user_agent(contact),
+    )
+    stats = CrawlStats()
+    handler = _attach_crawl_log(log_file, debug)
+    written = 0
+    try:
+        with Live(
+            render_stats(stats, max_pages),
+            console=err,
+            refresh_per_second=4,
+            transient=True,  # після обходу екран зникає, підсумок — у рядку нижче
+            get_renderable=lambda: render_stats(stats, max_pages),
+        ):
+            written = asyncio.run(
+                run_crawl(settings, out_path, stats, transport=_test_transport), debug=debug
+            )
+    except KeyboardInterrupt:
+        err.print(f"Перервано. У {out_path} лишилось {stats.fetched} сторінок (запис — по рядку).")
+        raise typer.Exit(code=130) from None
+    except OSError as error:
+        fail(f"не вдалося записати {out_path}: {error.strerror or error}")
+    finally:
+        _detach_crawl_log(handler)
+
+    out.print(
+        f"Зібрано {written} сторінок за {stats.elapsed:.1f} с ({stats.pages_per_second:.1f} стор/с), "
+        f"помилок: {stats.errors}, повторів: {stats.retries}  ->  {out_path}  (журнал: {log_file})"
+    )
