@@ -10,6 +10,7 @@ class SearchHit(BaseModel):
 
 class SearchResponse(BaseModel):
     query: str
+    mode: str = "keyword"
     total: int = Field(description="Скільки документів підходить під запит (до пагінації).")
     page: int
     k: int = Field(description="Розмір сторінки.")

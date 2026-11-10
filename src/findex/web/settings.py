@@ -9,3 +9,6 @@ class Settings(BaseSettings):
     corpus_dir: Path | None = None
     log_level: str = "INFO"
     enable_bench_routes: bool = False
+    # Семантичний пошук увімкнено, лише якщо задано файл векторів (див. `findex embed`).
+    embeddings_path: Path | None = None
+    embedding_cache: Path | None = None

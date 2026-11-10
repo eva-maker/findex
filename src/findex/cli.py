@@ -25,9 +25,17 @@ from findex.crawler.urls import canonicalize
 from findex.index import Chunk, ExecutorName, build_index_parallel
 from findex.query import QueryError
 from findex.ranking import ScorerName, make_scorer, matching_ids, search
+from findex.semantic import (
+    DEFAULT_MODEL,
+    FastEmbedder,
+    SemanticError,
+    SemanticIndex,
+    build_semantic_index,
+)
 from findex.serialize import IndexLoadError, open_index, save_index
 from findex.snippets import make_snippet
 from findex.stats import index_stats
+from findex.web.service import SemanticUnavailableError, run_search_mode
 
 log = logging.getLogger(__name__)
 
@@ -52,6 +60,12 @@ class ScorerChoice(StrEnum):
 
     def as_name(self) -> ScorerName:
         return "bm25" if self is ScorerChoice.bm25 else "tfidf"
+
+
+class ModeChoice(StrEnum):
+    keyword = "keyword"
+    semantic = "semantic"
+    hybrid = "hybrid"
 
 
 class ExecutorChoice(StrEnum):
@@ -233,19 +247,34 @@ def search_command(
         bool,
         typer.Option("--json", help="JSON-рядки в stdout (для пайпів) замість таблиці."),
     ] = False,
+    mode: Annotated[
+        ModeChoice, typer.Option("--mode", help="keyword — за словами, semantic — за змістом.")
+    ] = ModeChoice.keyword,
+    embeddings: Annotated[
+        Path,
+        typer.Option("--embeddings", help="Файл векторів (створює `findex embed`)."),
+    ] = Path("embeddings.npz"),
 ) -> None:
     """Ранжований пошук по збереженому індексу."""
     try:
         with open_index(index_path) as index:
-            results = search(index, query, scorer=make_scorer(scorer.as_name()), k=k)
-            terms, _matched = matching_ids(index, query)
             rows: list[tuple[int, float, int, Path, str]] = []
-            for rank, result in enumerate(results, start=1):
-                path = index.doc(result.doc_id).path
-                mark = "" if as_json else _MARK
-                snippet = make_snippet(read_document(path), terms, mark=mark)
-                rows.append((rank, result.score, result.doc_id, path, snippet))
-    except (IndexLoadError, QueryError) as error:
+            if mode is ModeChoice.keyword:
+                results = search(index, query, scorer=make_scorer(scorer.as_name()), k=k)
+                terms, _matched = matching_ids(index, query)
+                for rank, result in enumerate(results, start=1):
+                    path = index.doc(result.doc_id).path
+                    mark = "" if as_json else _MARK
+                    snippet = make_snippet(read_document(path), terms, mark=mark)
+                    rows.append((rank, result.score, result.doc_id, path, snippet))
+            else:
+                sem = SemanticIndex.load(embeddings)
+                pair = (sem, FastEmbedder(sem.model))
+                page = run_search_mode(index, None, query, k, 1, scorer.as_name(), mode.value, pair)
+                for rank, hit in enumerate(page.hits, start=1):
+                    snippet = hit.snippet.replace(_MARK, "") if as_json else hit.snippet
+                    rows.append((rank, hit.score, hit.doc_id, index.doc(hit.doc_id).path, snippet))
+    except (IndexLoadError, QueryError, SemanticError, SemanticUnavailableError) as error:
         fail(str(error))
     except OSError as error:
         fail(f"не вдалося прочитати файл: {error.filename or error}")
@@ -269,7 +298,8 @@ def search_command(
         log.info("за запитом %r нічого не знайдено", query)
         out.print("Нічого не знайдено.")
         return
-    table = Table(title=f"{query!r}  ({scorer.value})", title_justify="left")
+    label = scorer.value if mode is ModeChoice.keyword else mode.value
+    table = Table(title=f"{query!r}  ({label})", title_justify="left")
     table.add_column("#", justify="right")
     table.add_column("Оцінка", justify="right")
     table.add_column("Документ")
@@ -277,6 +307,39 @@ def search_command(
     for rank, score, _doc_id, path, snippet in rows:
         table.add_row(str(rank), f"{score:.3f}", path.stem, _snippet_text(snippet))
     out.print(table)
+
+
+@app.command("embed")
+def embed_command(
+    index_path: Annotated[Path, typer.Argument(help="Файл індексу.")],
+    corpus: Annotated[
+        Path | None,
+        typer.Option("--corpus", help="Каталог з .txt (якщо шляхи в індексі застаріли)."),
+    ] = None,
+    out_path: Annotated[
+        Path, typer.Option("--out", "-o", help="Куди зберегти вектори (.npz).")
+    ] = Path("embeddings.npz"),
+    model: Annotated[str, typer.Option("--model", help="Модель fastembed.")] = DEFAULT_MODEL,
+    cache: Annotated[
+        Path | None, typer.Option("--cache", help="Де зберігати завантажену модель.")
+    ] = None,
+) -> None:
+    """Порахувати вектори шматків тексту для семантичного пошуку (повільно, раз на корпус)."""
+    start = time.perf_counter()
+    try:
+        with open_index(index_path) as index:
+            err.print(f"Завантажую модель {model} (перший запуск качає ~90 МБ)…")
+            embedder = FastEmbedder(model, cache)
+            sem = build_semantic_index(index, corpus, embedder, model=model)
+        sem.save(out_path)
+    except (IndexLoadError, SemanticError) as error:
+        fail(str(error))
+    except OSError as error:
+        fail(f"не вдалося прочитати/записати файл: {error.filename or error}")
+    size = out_path.stat().st_size / 2**20
+    out.print(
+        f"{len(sem)} шматків -> {out_path} ({size:.1f} МБ, {time.perf_counter() - start:.0f} с)"
+    )
 
 
 @app.command("stats")

@@ -21,12 +21,13 @@ from findex.corpus import read_document
 from findex.models import Index
 from findex.query import QueryError
 from findex.ranking import ScorerName
+from findex.semantic import Embedder, FastEmbedder, SemanticError, SemanticIndex
 from findex.serialize import load_index
 from findex.snippets import warm_doc_tokens
 from findex.stats import IndexStats, index_stats
 from findex.vectorized import vectors_for
 from findex.web import bench_routes
-from findex.web.deps import IndexDep, SettingsDep
+from findex.web.deps import IndexDep, SemanticDep, SettingsDep
 from findex.web.schemas import (
     DocumentResponse,
     HealthResponse,
@@ -35,7 +36,14 @@ from findex.web.schemas import (
     StatsResponse,
     TermCount,
 )
-from findex.web.service import document_path, highlight, plain_snippet, run_search
+from findex.web.service import (
+    Mode,
+    SemanticUnavailableError,
+    document_path,
+    highlight,
+    plain_snippet,
+    run_search_mode,
+)
 from findex.web.settings import Settings
 
 log = logging.getLogger(__name__)
@@ -51,7 +59,10 @@ def _stats(index: Index) -> IndexStats:
     return index_stats(index, top=10)
 
 
-def create_app(settings: Settings | None = None) -> FastAPI:
+def create_app(
+    settings: Settings | None = None,
+    embedder_factory: Callable[[], Embedder] | None = None,
+) -> FastAPI:
     # Settings() без аргументів читає INDEX_PATH з оточення; немає — ValidationError одразу.
     settings = settings or Settings()  # pyright: ignore[reportCallIssue]
     logging.getLogger("findex").setLevel(settings.log_level.upper())
@@ -71,10 +82,26 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             for meta in app.state.index.docs()
         )
         log.info("токени %d документів: %.1f с", warmed, time.perf_counter() - warm_started)
+        app.state.semantic = None
+        app.state.embedder = None
+        if settings.embeddings_path is not None:
+            try:
+                sem = SemanticIndex.load(settings.embeddings_path)
+                embedder = (
+                    embedder_factory()
+                    if embedder_factory is not None
+                    else FastEmbedder(sem.model, settings.embedding_cache)
+                )
+            except SemanticError as error:
+                # Без векторів сервіс живе далі: keyword-режим працює, semantic дає 400.
+                log.error("семантичний пошук вимкнено: %s", error)
+            else:
+                app.state.semantic, app.state.embedder = sem, embedder
+                log.info("вектори: %d шматків, модель %s", len(sem), sem.model)
         yield
         app.state.index.close()  # завершення: SIGTERM -> uvicorn -> цей рядок
 
-    app = FastAPI(title="findex", version="0.7.0", lifespan=lifespan)
+    app = FastAPI(title="findex", version="0.8.0", lifespan=lifespan)
     app.state.settings = settings
     app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
     if settings.enable_bench_routes:
@@ -100,17 +127,20 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def search(
         index: IndexDep,
         settings: SettingsDep,
+        semantic: SemanticDep,
         q: Annotated[str, Query(min_length=1, max_length=200)],
         k: Annotated[int, Query(ge=1, le=100)] = 10,
         page: Annotated[int, Query(ge=1, le=1000)] = 1,
         scorer: ScorerName = "bm25",
+        mode: Mode = "keyword",
     ) -> SearchResponse:
         try:
-            result = run_search(index, settings.corpus_dir, q, k, page, scorer)
-        except QueryError as error:
+            result = run_search_mode(index, settings.corpus_dir, q, k, page, scorer, mode, semantic)
+        except (QueryError, SemanticUnavailableError) as error:
             raise HTTPException(status_code=400, detail=str(error)) from error
         return SearchResponse(
             query=q,
+            mode=mode,
             total=result.total,
             page=page,
             k=k,
@@ -162,17 +192,28 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         request: Request,
         index: IndexDep,
         settings: SettingsDep,
+        semantic: SemanticDep,
         q: str = "",
         page: Annotated[int, Query(ge=1, le=1000)] = 1,
         scorer: ScorerName = "bm25",
+        mode: Mode = "keyword",
     ) -> HTMLResponse:
         per_page = 10
-        context: dict[str, object] = {"q": q, "scorer": scorer, "page": page, "searched": False}
+        context: dict[str, object] = {
+            "q": q,
+            "scorer": scorer,
+            "mode": mode,
+            "has_semantic": semantic is not None,
+            "page": page,
+            "searched": False,
+        }
         if q.strip():
             context["searched"] = True
             try:
-                result = run_search(index, settings.corpus_dir, q, per_page, page, scorer)
-            except QueryError as error:
+                result = run_search_mode(
+                    index, settings.corpus_dir, q, per_page, page, scorer, mode, semantic
+                )
+            except (QueryError, SemanticUnavailableError) as error:
                 context["error"] = str(error)
             else:
                 context.update(

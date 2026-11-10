@@ -15,16 +15,23 @@ RUN uv sync --locked --no-dev --no-editable
 COPY deploy_corpus ./corpus
 RUN .venv/bin/findex index corpus --out index.bin --executor serial
 
+# Вектори для семантичного пошуку: модель (~90 МБ) качається тут, у збірці, а не при старті.
+RUN .venv/bin/findex embed index.bin --corpus corpus --out embeddings.npz --cache models
+
 # Етап 2: легкий образ без uv і без збірки.
 FROM python:3.14-slim-bookworm AS runtime
 RUN useradd --system --create-home --uid 10001 app
 WORKDIR /app
 COPY --from=builder /app/.venv ./.venv
 COPY --from=builder /app/index.bin ./index.bin
+COPY --from=builder /app/embeddings.npz ./embeddings.npz
+COPY --from=builder /app/models ./models
 COPY --from=builder /app/corpus ./corpus
 ENV PATH="/app/.venv/bin:$PATH" \
     INDEX_PATH=/app/index.bin \
     CORPUS_DIR=/app/corpus \
+    EMBEDDINGS_PATH=/app/embeddings.npz \
+    EMBEDDING_CACHE=/app/models \
     PYTHONUNBUFFERED=1
 USER app
 EXPOSE 8000

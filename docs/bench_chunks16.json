@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "tag": "chunks16",
+    "date": "2026-11-03",
+    "cpu_model": "Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz",
+    "logical_cores": 8,
+    "python": "3.14.2",
+    "gil": true,
+    "positions": false,
+    "repeat": 3,
+    "docs": 20,
+    "serial_wall": 3.812680699993507,
+    "merge_share": 0.011734184822315499
+  },
+  "rows": [
+    {
+      "executor": "serial",
+      "workers": 1,
+      "chunks": 16,
+      "wall": 3.812680699993507,
+      "cpu": 3.796875,
+      "rss_mb": 52.44921875,
+      "merge_wall": 0.037600299998302944,
+      "pickle_bytes": 0,
+      "pickle_s": 0.0,
+      "speedup": 1.0,
+      "serial_fraction": null,
+      "runs": 3
+    },
+    {
+      "executor": "processes",
+      "workers": 4,
+      "chunks": 16,
+      "wall": 1.6800995000230614,
+      "cpu": 5.390625,
+      "rss_mb": 59.5,
+      "merge_wall": 0.051638900011312217,
+      "pickle_bytes": 3220539,
+      "pickle_s": 1.1593084000051022,
+      "speedup": 2.269318394500548,
+      "serial_fraction": 0.2542146002508323,
+      "runs": 3
+    },
+    {
+      "executor": "processes",
+      "workers": 8,
+      "chunks": 16,
+      "wall": 1.89886880000995,
+      "cpu": 8.1875,
+      "rss_mb": 59.5234375,
+      "merge_wall": 0.04473870000219904,
+      "pickle_bytes": 3220539,
+      "pickle_s": 1.1154261999909068,
+      "speedup": 2.0078694746964763,
+      "serial_fraction": 0.4263318195030251,
+      "runs": 3
+    }
+  ]
+}
