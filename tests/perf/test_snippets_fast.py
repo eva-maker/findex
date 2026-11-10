@@ -49,7 +49,7 @@ def test_fast_snippet_equals_slow_on_synthetic(
 def test_fast_snippet_equals_slow_on_tiny(tiny_corpus: Path) -> None:
     (tiny_corpus / "d.txt").write_text(
         "Don’t stop. Don't go, state-of-the-art 3.14 İstanbul.", encoding="utf-8"
-)
+    )
     for path in sorted(tiny_corpus.glob("*.txt")):
         for terms in (["cat"], ["old", "man"], ["don't"], ["state-of-the-art"], ["3.14"], ["x"]):
             assert snippet_from_tokens(load_doc_tokens(path), terms) == make_snippet(
