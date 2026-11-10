@@ -14,3 +14,5 @@ dist/
 index*.json
 
 crawl.log
+
+*.npz
