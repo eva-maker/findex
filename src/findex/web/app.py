@@ -58,7 +58,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
-        
+
         app.state.index = load_index(settings.index_path)
         app.state.started_at = time.monotonic()
         log.info("індекс завантажено: %s", app.state.index)
@@ -82,11 +82,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.exception_handler(Exception)
     async def unexpected(request: Request, exc: Exception) -> JSONResponse:
-  
+
         rid = getattr(request.state, "request_id", "-")
         log.error("необроблений виняток [%s] %s", rid, request.url.path, exc_info=exc)
         return JSONResponse({"detail": "Internal Server Error", "request_id": rid}, status_code=500)
-
 
     @app.get("/search", response_model=SearchResponse)
     def search(
@@ -149,7 +148,6 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         # Сам факт, що get_index віддав індекс, і є перевіркою; немає індексу — 503 з Depends.
         return HealthResponse(status="ok" if len(index) > 0 else "empty")
 
-
     @app.get("/", response_class=HTMLResponse)
     def home(
         request: Request,
@@ -175,7 +173,6 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     has_next=page * per_page < result.total,
                 )
         return templates.TemplateResponse(request, "index.html", context)
-
 
     @app.get("/doc/{doc_id}", response_class=HTMLResponse)
     def doc_page(

@@ -28,7 +28,7 @@ async def one_round(
         return time.perf_counter() - started
 
     async def health_probe() -> float:
-        await asyncio.sleep(0.2) 
+        await asyncio.sleep(0.2)
         return await timed_health()
 
     async def timed_health() -> float:

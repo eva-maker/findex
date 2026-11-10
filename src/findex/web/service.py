@@ -9,7 +9,7 @@ from findex.models import Index
 from findex.ranking import ScorerName, make_scorer, matching_ids, search
 from findex.snippets import make_snippet
 
-_MARK = "\x00" 
+_MARK = "\x00"
 
 
 @dataclass(frozen=True, slots=True)

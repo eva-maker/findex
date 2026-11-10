@@ -47,7 +47,6 @@ _MARK = "\x00"
 
 
 class ScorerChoice(StrEnum):
-
     bm25 = "bm25"
     tfidf = "tfidf"
 
@@ -56,7 +55,6 @@ class ScorerChoice(StrEnum):
 
 
 class ExecutorChoice(StrEnum):
-
     serial = "serial"
     threads = "threads"
     processes = "processes"
