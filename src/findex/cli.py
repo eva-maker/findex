@@ -1,13 +1,3 @@
-"""Командний рядок findex: `findex index | search | stats`.
-
-Правила цього модуля:
-  * stdout — лише ДАНІ (таблиця результатів, JSON). Усе діагностичне — у stderr.
-  * очікувана помилка (немає файлу, поганий запит) — один рядок і ненульовий код,
-    без traceback.
-  * logging налаштовується один раз, тут, у точці входу. Бібліотечні модулі
-    лише пишуть у свої `logging.getLogger(__name__)`.
-"""
-
 import asyncio
 import json
 import logging
@@ -57,7 +47,6 @@ _MARK = "\x00"
 
 
 class ScorerChoice(StrEnum):
-    """typer будує --help і перевірку значень з Enum; нижче перетворюємо його в Literal."""
 
     bm25 = "bm25"
     tfidf = "tfidf"
@@ -67,7 +56,6 @@ class ScorerChoice(StrEnum):
 
 
 class ExecutorChoice(StrEnum):
-    """Чим виконувати збірку індексу: звичайний цикл, потоки чи процеси."""
 
     serial = "serial"
     threads = "threads"
@@ -83,8 +71,6 @@ class ExecutorChoice(StrEnum):
                 return "processes"
 
 
-# Скільки воркерів за замовчуванням: на моєму компʼютері (4 ядра, 8 логічних) 4 процеси дали
-# найкращий час, а 8 уже не покращили (див. таблицю в README, Лаба 5).
 DEFAULT_WORKERS_CAP: Final = 4
 
 
@@ -93,7 +79,6 @@ def default_workers() -> int:
 
 
 def configure_logging(verbosity: int) -> None:
-    """0 -> WARNING, -v -> INFO, -vv -> DEBUG. Усе йде в stderr."""
     level = {0: logging.WARNING, 1: logging.INFO}.get(verbosity, logging.DEBUG)
     package_logger = logging.getLogger("findex")
     for handler in list(package_logger.handlers):
@@ -105,7 +90,6 @@ def configure_logging(verbosity: int) -> None:
 
 
 def fail(message: str) -> NoReturn:
-    """Очікувана помилка: один зрозумілий рядок у stderr і код виходу 1."""
     typer.echo(f"Помилка: {message}", err=True)
     raise typer.Exit(code=1)
 
@@ -233,7 +217,6 @@ def index_command(
 
 
 def _snippet_text(snippet: str) -> Text:
-    """Рядок із _MARK навколо збігів -> rich Text із виділеними збігами."""
     text = Text()
     for i, part in enumerate(snippet.split(_MARK)):
         text.append(part, style="bold yellow" if i % 2 else None)
@@ -427,3 +410,35 @@ def crawl_command(
         f"Зібрано {written} сторінок за {stats.elapsed:.1f} с ({stats.pages_per_second:.1f} стор/с), "
         f"помилок: {stats.errors}, повторів: {stats.retries}  ->  {out_path}  (журнал: {log_file})"
     )
+
+
+@app.command("serve")
+def serve_command(
+    index_path: Annotated[
+        Path | None,
+        typer.Option("--index", help="Файл індексу (або змінна оточення INDEX_PATH)."),
+    ] = None,
+    corpus_dir: Annotated[
+        Path | None,
+        typer.Option("--corpus", help="Каталог з .txt для сніпетів (або CORPUS_DIR)."),
+    ] = None,
+    host: Annotated[
+        str, typer.Option("--host", help="0.0.0.0 — слухати зовнішню мережу.")
+    ] = "127.0.0.1",
+    port: Annotated[int, typer.Option("--port", min=1, max=65535)] = 8000,
+    workers: Annotated[
+        int, typer.Option("--workers", "-w", min=1, help="Скільки процесів uvicorn (Лаба 5).")
+    ] = 1,
+) -> None:
+    """Запустити веб-сервер: API на /docs, сторінка пошуку на /."""
+    import uvicorn  # важкий імпорт: потрібен лише цій команді
+
+    # Налаштування передаємо через оточення: так їх бачать і дочірні процеси --workers.
+    if index_path is not None:
+        os.environ["INDEX_PATH"] = str(index_path)
+    if corpus_dir is not None:
+        os.environ["CORPUS_DIR"] = str(corpus_dir)
+    if "INDEX_PATH" not in os.environ and not Path(".env").is_file():
+        fail("вкажіть --index або змінну оточення INDEX_PATH")
+    # factory=True: uvicorn сам викличе create_app() у кожному процесі.
+    uvicorn.run("findex.web.app:create_app", factory=True, host=host, port=port, workers=workers)

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — findex{% endblock %}
+{% block content %}
+<p><a href="/{% if q %}?q={{ q|urlencode }}{% endif %}">← До результатів</a></p>
+<h1>{{ title }}</h1>
+<pre class="text">{{ text }}</pre>
+{% endblock %}

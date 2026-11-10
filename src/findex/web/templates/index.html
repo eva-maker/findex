@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{% if q %}{{ q }} — {% endif %}findex{% endblock %}
+{% block content %}
+<form method="get" action="/" class="search">
+  <input type="search" name="q" value="{{ q }}" placeholder="Що шукаємо? Напр. old man AND sea" autofocus>
+  <select name="scorer" aria-label="Формула релевантності">
+    <option value="bm25" {% if scorer == "bm25" %}selected{% endif %}>BM25</option>
+    <option value="tfidf" {% if scorer == "tfidf" %}selected{% endif %}>TF-IDF</option>
+  </select>
+  <button type="submit">Шукати</button>
+</form>
+
+{% if error %}
+  <p class="error">Не вдалося розібрати запит: {{ error }}</p>
+{% elif searched %}
+  <p class="meta">Знайдено документів: {{ total }} · {{ took_ms }} мс{% if total %} · сторінка {{ page }}{% endif %}</p>
+  {% for hit in hits %}
+    <article>
+      <h2><a href="/doc/{{ hit.doc_id }}?q={{ q|urlencode }}">{{ hit.title }}</a>
+        <span class="score">{{ "%.2f"|format(hit.score) }}</span></h2>
+      <p>{{ hit.snippet|highlight }}</p>
+    </article>
+  {% else %}
+    <p>Нічого не знайдено.</p>
+  {% endfor %}
+  <nav class="pages">
+    {% if page > 1 %}<a href="/?q={{ q|urlencode }}&scorer={{ scorer }}&page={{ page - 1 }}">← Назад</a>{% endif %}
+    {% if has_next %}<a href="/?q={{ q|urlencode }}&scorer={{ scorer }}&page={{ page + 1 }}">Далі →</a>{% endif %}
+  </nav>
+{% else %}
+  <p class="hint">Пошук по корпусу текстів: AND, OR, NOT і дужки працюють.</p>
+{% endif %}
+{% endblock %}

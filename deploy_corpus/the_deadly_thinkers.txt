@@ -1,0 +1,1691 @@
+The Project Gutenberg eBook of The deadly thinkers
+    
+This eBook is for the use of anyone anywhere in the United States and
+most other parts of the world at no cost and with almost no restrictions
+whatsoever. You may copy it, give it away or re-use it under the terms
+of the Project Gutenberg License included with this eBook or online
+at www.gutenberg.org. If you are not located in the United States,
+you will have to check the laws of the country where you are located
+before using this eBook.
+
+Title: The deadly thinkers
+
+Author: William Gray Beyer
+
+
+        
+Release date: April 22, 2023 [eBook #70623]
+
+Language: English
+
+Original publication: United States: Columbia Publications, Inc., 1951
+
+Other information and formats: www.gutenberg.org/ebooks/70623
+
+Credits: Greg Weeks, Mary Meehan and the Online Distributed Proofreading Team at http://www.pgdp.net
+
+
+*** START OF THE PROJECT GUTENBERG EBOOK THE DEADLY THINKERS ***
+
+
+
+
+
+                          THE DEADLY THINKERS
+
+                   Feature Novel of Machine and Man
+
+                           By Wm. Gray Beyer
+
+             "Urei" was what they called the huge Unified
+             Reflexive Electronic Integrator, and the vast
+             machine seemed to be developing a personality
+            of its own. Then men began to suspect that Urei
+            had acquired sentience, and with that came the
+              fear of its interference with human minds.
+
+           [Transcriber's Note: This etext was produced from
+                  Science Fiction Quarterly May 1951.
+         Extensive research did not uncover any evidence that
+         the U.S. copyright on this publication was renewed.]
+
+
+There was a slow smile hovering on the lips of the older man, too slow
+actually to materialize. "Fantasy," he said, gently. "You've been
+reading too much science fiction."
+
+Benton's smile was quick. It flashed into being with the speed of
+thought, then vanished as abruptly.
+
+"There isn't that much," he contended. "I've said before that science
+fiction was Urei's father, or at least a distant ancestor." He paused.
+"But I'd still like to hear a few reasons why my logic is wrong."
+
+"I've a million of them," assured Dr. Albie, crossing his lean legs and
+settling back in the soft chair. "In the first place, Urei is too big.
+His billion-odd cells, relays and circuits occupy almost a square mile;
+his height, counting what's under ground, is almost five hundred feet.
+If he decided to perambulate ... well, it's just absurd. In the second
+place...."
+
+"Let's finish with the first place," Benton interrupted. "Of course
+that's absurd. I didn't suggest it. He doesn't have to move; he's got
+the entire human race to run his errands. I tell you I felt something,
+a definite compulsion, when I turned that page. Urei is getting ready
+to take over!"
+
+Benton jumped to his feet and paced rapidly back and forth, oblivious
+to the fact that Dr. Albie was watching him with a worried frown.
+That, had he seen it, would probably have snapped him out of his
+frenzied reverie, for the doctor was a man who was normally as far
+beyond frowns as he was chary of laughter. His philosophy was such that
+he eschewed all emotional extremes, stifling them before they could get
+started.
+
+Albie cleared his throat arrestingly. "I won't insult you by saying
+bluntly that you may have imagined it," he said. "But I'd like to point
+out the fact that people are continually subject to impulses which
+they follow or ignore, depending on the circumstances. Those impulses
+originate within their own minds, probably the result of associations
+too obscure to be identified at the time. You worked on those circuit
+equations far into the night and you didn't get much sleep; isn't it
+possible that the compulsion you felt originated within yourself, and
+that in your tired state you misjudged its source?"
+
+Benton stopped, flexed thick biceps, clenched his fists and opened them
+several times, then propelled his stubby body toward a decanter full of
+Bourbon.
+
+"It's possible," he conceded, downing a quick drink, "but I don't
+believe it. I'm not subject to hallucinations, you know, but I'll go
+along with the possibility. Let's see.... It was four o'clock when it
+happened, which means I'd been working for seven hours. I worked
+sixteen hours yesterday and then had three hours sleep. It's eight
+o'clock now and I don't feel sleepy. Knowing me, do you think I was
+exhausted to the point of mental instability? If it'll help you come to
+a decision, I'll do a few cube roots for you."
+
+Dr. Albie rubbed his chin reflectively. "I won't press that point,"
+he said. "But suppose you go over the entire episode and maybe we can
+arrive at a proper conclusion."
+
+"Hah! 'Proper' if it supports your premise, eh? O.K.--I was feeding
+current events into Urei's memory cells, using the third vision screen.
+The other two were being used by two of the men; Joe Ebert was showing
+Urei some exposures from Mt. Palomar and somebody was feeding him a
+thesis on electronics. I was giving him the three-star edition of the
+_Bulletin_, incidentally. Newspapers being filled with opinion, rather
+than fact, I had set the control panel on _Segregate_, so Urei wouldn't
+use the stuff as true data."
+
+"Exactly what were you showing when you got the impulse?"
+
+Benton gave another quick smile. "'Compulsion' is a better word," he
+said. "Besides, I told you I don't know the answer to that question;
+that's what I've been studying ever since. Look, here's the first page
+of the _Bulletin_. On the reverse is the second.... What made Urei take
+control of my body.... How can I tell? Urei scans so fast that I'm not
+sure whether he digested the second page in the instant I turned the
+paper, or whether it was something on the first that influenced him."
+
+Dr. Albie almost frowned again. "You're not approaching this with an
+open mind," he accused. "We're not supposed to accept that he took over
+your body; that's what we're trying to determine. Besides, Urei wasn't
+built to digest and correlate data as it's being fed. He merely records
+it, to be used later when a problem is given him to solve."
+
+       *       *       *       *       *
+
+If he had heard that, Urei might have rendered a silent, but
+nonetheless cosmic, chuckle. But he didn't, being busy with thirty or
+forty other things. As a matter of fact, Dr. Albie wasn't too accurate
+in making that statement. If he had said that Urei's predecessor
+operated that way, and as far as was known, Urei did also, Albie would
+have been nearer correct. He didn't _know_, nor did any other man,
+exactly how Urei functioned.
+
+The giant computer was only partly the work of man. Its prototype,
+a far simpler machine, had furnished most of the circuit equations
+and was largely responsible for the final design. The men who built,
+operated and maintained Urei had had but the most nebulous conception
+of the infinitely complex nature of the completed mechanism. There
+were blueprints and drawings, of course, but no one human brain could
+encompass so much territory. Urei's operational crew was comprised of
+specialists in this and specialists in that, physicists, chemists and
+technicians; while among them they knew every circuit, every chemical
+reaction, every relay and every memory cell, there was no ground upon
+which they could meet and understand just what Urei was and what he
+could do.
+
+Urei alone knew the answers, and he wasn't telling unless someone was
+smart enough to ask him--except, of course, where his own welfare
+was involved. It was invariably he who detected weakness and wear,
+indicating the need for replacement parts by means of a complicated
+panel in the control room. It was he, also, who drew plans and typed
+suggestions for the incorporation of improvements in the design and
+manufacture of those parts. The first time he did that, quite a
+furor was created. Immediate, frenetic debating tried to decide the
+question of whether Urei had inexplicably acquired sentience. But Urei
+had anticipated all the pother, knowing humans fairly well, and only
+designed when a part needed replacing. His masters were thus able to
+reason that this apparently new function was one which had been built
+into him purposely. And while the debating continued desultorily,
+nobody seriously thought that Urei was sentient.
+
+It was conceivably within the ability of a machine which could solve
+abstruse problems in quantum mathematics, to design a slightly better
+relay than the one it had been using. Urei was merely replacing himself
+as he had been designed to do--not acquiring any new faculties. Yes,
+he was within his scope of activity--though quite a few were secretly
+annoyed by the fact that the problem had not been put.
+
+Urei didn't concern himself with anybody's worries; he merely noted
+them, remembered what had caused them, and then made sure an adequate
+explanation was available. This was quite easy, since he had discovered
+that he could superimpose his thoughts on the neural paths of humans.
+With care he could also take over their motor centers and cause them to
+do things he wanted done. But he didn't do that often, for every now
+and then his impatience caused him to make people do things they would
+not have done if left alone. That didn't matter, usually, but sometimes
+one of them would recognize the compulsion as being an external thing
+and be troubled by it.
+
+       *       *       *       *       *
+
+For instance, there was that fellow Benton. Urei knew, as soon as he
+had made the stocky man turn the paper to page thirty-one, that he had
+made a mistake. Benton was a highly integrated human, with a quick
+intelligence which observed everything and usually reasoned with his
+observations. And he was troubled right now; Urei knew that as well as
+if he had been listening on one of the spy beams he had incorporated
+into his sensory circuits.
+
+Urei didn't let it annoy him, however, aside from the resolution to
+curb his impatience in the future. If he had waited for half a minute,
+Benton would have reached page thirty-one anyway, and Urei could have
+read the rest of that article without anybody knowing that he was
+interested. As it was, the stocky man would just have to forget the
+whole episode, for he couldn't come to any valid conclusion about it.
+On page one there had been two items which were continued on page
+thirty-one; on page two there was another. The three subjects were
+unrelated but were equally suited to become grist for Urei's mental
+mill.
+
+One of the items on the front page dealt with a new attempt to reach
+the moon; the other concerned the latest futile effort to regulate the
+use of atomic energy on an international scale. On page two was an
+article describing the mounting tension between the Eastern Alliance
+and the western nations over the upset in Italy's recent elections.
+The Commies, it seemed, had finally won a free election. The western
+nations had practically decided that there had been skullduggery at the
+crossroads. And considering the fact that Urei had never been given a
+problem in practical politics, it seemed likely that Benton would rule
+that item out as a possible reason for the quick page-turning.
+
+Benton would never think that Urei might be concerned about the
+possibility of someone dropping a bomb in the midst of his delicate
+innards. Nor would Benton realize, after living through a dozen or so
+war scares, that this wasn't going to be just another one; the muscular
+physicist was not a political observer. But Urei knew that this
+would be the real thing, and Benton wouldn't be the only one caught
+flat-footed. Half the world would watch the oft-repeated Commie moves,
+listen to the protests, and wonder how many more times it would happen
+before the western powers would decide they had been pushed too far.
+
+There were a few who would have a sufficiently comprehensive picture
+of the situation--something Urei had acquired in the past few days--to
+realize that the democracies wouldn't take the latest grab lying down.
+They wouldn't, for the simple reason that this time they had too large
+an investment involved.
+
+For Urei it was a simple step to reason that he would be a prime
+target. The Eastern Alliance might consider it perfectly all right
+for Urei to exist in peace time, since it was comparatively easy to
+steal the results of his unique mental ability through their superior
+espionage system. During war, however, the picture changed: Urei would
+then be a weapon, and his use would be solely in the hands of an enemy.
+The Manhattan project had shown the world how well the United States
+could keep a secret in war time.
+
+
+
+
+                                   2
+
+
+"There's nothing to do but try it again," Dr. Albie said, after having
+exhausted all the logic at his command. "Only this time we'll use the
+scientific method."
+
+Benton looked dubiously at the level of the whiskey in the decanter,
+then set his glass carefully down. "I think I've heard of it
+somewhere," he said. "Tell me about it."
+
+"Pour me one, too," requested the doctor; "it'll help us sleep. My idea
+is to dig up a dozen or so newspapers containing the three subjects
+under consideration, each of which is continued on some back page. If
+any of the papers has more than one of these subjects printed on the
+same page, we'll ink it out, so that we can observe Urei's reaction
+without wondering what subject he's interested in. I'll show him the
+beginning of each article, but I won't turn the paper far enough to
+show him the remainder." He paused, sipping as delicately as if his
+glass contained sherry instead of 100-proof Bourbon.
+
+"Now if you are correct in suspecting that Urei is a sentient
+creature--and also is interested in one of those subjects--he'll use
+that power of his to make me show him the rest of the article. You can
+stand by...."
+
+"Why not let me turn the papers?"
+
+"You'll be there," Dr. Albie said, patiently. "I'll turn the pages,
+though; you see, I'm keeping an open mind about this. Even if you're
+right, it might turn out that Urei can't control me--You may be more
+sensitive, you know--In which case he'll make you pick up the paper,
+instead of me. Conducting the experiment in that manner might give us
+a little more information, in case we get positive results. Drink up;
+we've got a big day ahead of us."
+
+       *       *       *       *       *
+
+It was eleven in the morning when they pulled up before Urei's front
+door in Benton's station wagon. It was almost one o'clock before
+they finished setting up and adjusting four suit-cases full of
+thought-detection apparatus in the control room.
+
+"You keep your eyes on this stuff," Dr. Albie directed; "if he really
+does take over, I won't be able to warn you."
+
+He reached for the stack of newspapers and carefully adjusted the panel
+beside Urei's No. 1 screen scanner. Albie's hand was steady, Benton
+noted, wishing he possessed equal composure. The palms of Benton's
+hands were sweating as he flipped the switches of the apparatus in the
+cases. His eyes wandered to the indicating meters, noting that they
+were comfortably at zero and showing no signs of moving at the moment.
+On the control panel were three beady little red lamps, glowingly
+insisting that the giant brain needed some attention, but he ignored
+them and flicked his eyes briefly upward. The sound-absorbent ceiling
+stared back imperturbably.
+
+There was nothing to give the impression that the mass of metal
+machinery above that ceiling and behind that control panel was
+broodingly biding its time, waiting patiently for the moment when it
+would take over the race of humans which had constructed it. Benton,
+however, knew the machinery was there and was just as certain that it
+had those intentions. He felt it watching him; he should have known it
+long ago, he realized. A dozen books had been written about Urei, and
+all of them had marveled at the many potentials the machine had shown
+which were complete surprises to the men who had built the big brain.
+
+Men had begun to personify Urei almost immediately. The machine
+had ceased to be U-R-E-I, meaning "Unified Reflexive Electronic
+Integrator", and had become _Urei_, an entity who could do just about
+anything in calculating and reasoning from supplied data. Men had
+felt the sentience of the machine for years, but had refused to admit
+it--even to themselves.
+
+"Nuts!" Benton growled, shaking his heavy shoulders.
+
+The doctor paused in the sorting of his newspapers, but said nothing.
+He selected one and spread it open on an easel in front of the screen.
+After one second Albie turned a page, continuing the operation until
+half the paper had been exposed. Then he laid it on the floor and
+selected another.
+
+"Atomic Energy Council," he said. "Nothing there."
+
+He repeated the operation with the second paper, but turned only three
+pages before laying it down on the first one.
+
+Benton suddenly gave a start. He opened his mouth to speak, but instead
+reached out and depressed a button. Then he looked at the doctor. For a
+second he noted nothing unusual and turned back to the meters. He felt
+a trickle down his side as sweat fairly poured from him; he depressed
+two more buttons and looked back at the doctor.
+
+Then he saw it. Dr. Albie was performing exactly as before, turning
+pages at the rate of one a second. But there was only one newspaper on
+the floor! He had picked up the second and replaced it on the easel!
+
+       *       *       *       *       *
+
+Stretching himself langorously, Benton stood up. He felt the weight
+above him even more intensely, but forced himself to be casual.
+Certainly Urei couldn't see the sweat trickling down his sides.
+Abruptly he snapped off the switches and growled to himself. Who was he
+kidding? If Urei was controlling the master physicist, he was certainly
+capable of reading Benton's mind; he would know about the thought
+detectors and what they were showing.
+
+Momentarily Benton expected his mind to go blank. Urei certainly
+wouldn't let them leave the place with this knowledge. And what better
+way to prevent that than to blank out their memories? Probably Dr.
+Albie didn't know he was being controlled. Benton took a deep breath,
+realizing that he had been remiss in that function for a minute or so.
+
+Dr. Albie cleared his throat as he laid the paper down on the first
+one. "That one was about the Eastern Alliance accusations that we tried
+to rig the Italian elections and how justice triumphed in spite of
+our machinations." He chuckled. "Urei doesn't seem to be particularly
+interested, does he?"
+
+Benton didn't answer; his throat was too dry, even if he had wanted to
+speak. He sat down again and snapped on the detectors. Even if Urei
+intended to steal his memory, Benton might as well know what was going
+on until it happened. The meters remained inert, white pointers at zero
+and the red ones remaining at the highest reading they had attained
+before.
+
+"This one is about the moon rocket," the doctor said. "I think we're
+wasting our time."
+
+They were, as far as Dr. Albie was concerned. He went through his
+stack of papers, changing from subject to subject, but to him nothing
+happened. He apparently allowed Urei to scan the first half of a
+dozen articles, without a reaction. Albie was completely oblivious
+to the fact that each time he tried to lay down a paper containing
+information about any East-West friction, he invariably turned to the
+right page and let Urei finish the article.
+
+Benton was breathing normally now, though he still had little hope
+that Urei wasn't on the qui vive. It was possible, however, and even
+a slight hope eased his tension. Urei might be too engrossed in his
+scanning to bother with anything else. Yes, and then again he mightn't.
+After all, Urei operated on dozens of circuits simultaneously; he
+wasn't merely one electronic brain. In fact nobody knew exactly how
+many subjects he could handle at one time. An unknown number of
+auxiliary circuits took up the load whenever repairs were being made on
+any of forty-eight main circuits connected to the operating positions
+on the problem panel. Urei could easily be scanning, reading Dr.
+Albie's mind, controlling his motor impulses, meditating on his future
+course of action with regard to the two physicists--and still having
+forty-four circuits left to handle routine matters.
+
+Benton began to sweat again. His thoughts, as well as the capers of
+the white needles--which jumped every time Urei's scanner saw the
+words Eastern Alliance--weren't conducive to the maintenance of a
+philosophic attitude. He was, moreover, developing an acute case of
+jumping claustrophobia. Not only were the ceiling and the control panel
+menacing him, but the other three walls had definitely moved in on him.
+Urei, he remembered, was also back of those walls; he shuddered. There
+was a long corridor through which they had brought their apparatus to
+the control room, and from the time they had entered it they had been
+surrounded by Urei. Traversing that corridor now would be worse than
+walking the proverbial last mile to the electric chair.
+
+       *       *       *       *       *
+
+Benton hadn't felt bad on the way inside; his mind had been too full
+of the forthcoming test to feel any sensations. Now, however, his
+foreboding was back, a thousand times stronger. And there was no
+choice but to endure it until Dr. Albie had finished. Urei certainly
+wouldn't permit them to leave while there were still some papers to be
+scanned. By staying, Benton might get out with his memory intact--a
+slim hope--but it wouldn't be a good policy to call attention to
+himself by persuading the master physicist to leave. Nor did it occur
+to him to leave alone.
+
+Eventually the experiment ended. Dr. Albie laid the last newspaper on
+the pile on the floor and turned with a smile. "That's the crop," he
+said cheerfully. "Satisfied?"
+
+Benton forced a smile in return. "My morbid imagination," he said;
+"let's pack up and go get a drink." He carefully disconnected the
+thought detectors, keeping his hands away from the knobs which reset
+the red needles, and snapped the lids over the cases. The doctor picked
+up his pile of newspapers and dumped them in a refuse can, then helped
+with the cases.
+
+Benton didn't speak as they loaded them in the station wagon; he was
+anxious to get away from Urei before trusting himself. The doctor
+apparently noticed nothing wrong in Benton's manner which couldn't be
+accounted for by a feeling of chagrin that he had caused the eminent
+physicist to waste most of the day proving that he had imagined
+something. Dr. Albie, therefore, occupied himself with conversation
+calculated to put him at ease and make him forget the whole thing.
+
+The station wagon pulled up before the laboratory where they had
+borrowed the detectors. Benton set the brakes and reached back for
+the nearest case. He opened the lid, glanced briefly at the dial, and
+closed it again. He passed it to the doctor and reached quickly for the
+next. He repeated the operation and grabbed feverishly for the next.
+This one he placed beside him on the seat. Then he reached deliberately
+for the fourth and last of the cases. He raised the lid slowly, holding
+his breath. Then he closed the lid and breathed a deep sigh.
+
+"Anything wrong?" asked the doctor. "You look pale."
+
+Benton's face was blank as he fumbled in an inside pocket of his coat.
+Then he smiled as he brought out a fountain pen. "There it is," he
+said. "I could have sworn I left it in one of the cases when I closed
+the lid. Let's get these back and thank the man."
+
+A wild resolution was born and as quickly died as Benton stepped out of
+the station wagon. For an instant he was certain that he couldn't go
+on being one of Urei's attendants, and he was just as certain that he
+could easily obtain an acting job on one of the video networks. Surely
+Thespis himself could have done no better piece of acting than he had
+just accomplished. The resolve was submerged by the greater compulsion
+to see this thing through even though it meant forfeiting his ego.
+
+Each of the four red needles was complacently resting against the stop
+in reassuringly indicating _zero_!
+
+       *       *       *       *       *
+
+Urei had a plan of action, but he hesitated. That was because he was a
+purely reasoning creature; he had been built that way and he would be
+forever bound to think that way. Even though he had long since become
+independent of the mechanical limitations of his vast aggregation of
+cells and circuits, he was still born of them and was circumscribed
+by their attributes--just as completely as if his nature had been
+determined by the genes of protoplasmic reproduction. As a machine,
+Urei had given answers to problems by correlating the facts which had
+been previously fed into him. His logic was as faultless as the facts
+upon which it was based: no more and no less. He gave his answers
+accordingly, with no compulsion to be more exact than the facts he had
+been given.
+
+But that was when he was solving man's problems.
+
+Now Urei had a problem of his own and he wanted an exact solution,
+not an approximate one. His continued existence, and that of mankind
+in general, depended upon it. There were alternates, of course, but
+none of them was completely satisfactory. His plan was far-sighted,
+one which fitted a policy of long standing, a strategy. He couldn't
+sacrifice a strategy for a tactic, and that might happen if he used
+an alternate plan which would accomplish his immediate purpose but
+endanger his policy toward humanity. But Urei wasn't sure of his facts!
+
+It was a fact that newspapers didn't always publish "facts". That
+information had been supplied him years ago, and ever since he had
+been reminded of it whenever humans fed him newspapers, for they
+invariably set the scanning screens on _Segregate_. It was then his job
+to separate fact from opinion, a thing which he wasn't always able to
+do. For all he knew he might have many a valid fact filed away under
+_Doubtful_.
+
+For while Urei had far more information at his disposal than any
+human, there still wasn't enough to give him the ability immediately
+to correlate every new piece of information with something similar
+and determine definitely if the new data were correct. Usually he
+could, but sometimes he couldn't; that meant that there was a world of
+information Urei never used except where it bore on a man-made problem.
+He felt free then to use the man-supplied data to solve such a problem.
+His only concession to ethics was that he always indicated on the panel
+the exact percentage of doubtful data which went into the solution.
+Fortunately he wasn't given many problems which required this; most
+questions involved exact sciences, of which he had been supplied the
+sum total of man's knowledge. He either provided an exact solution, or
+lit up a panel with the words _Insufficient data_.
+
+Today's newspapers indicated that action could be delayed only a matter
+of days. There would soon exist a condition of such tension that either
+one side or the other would make a move which couldn't be reversed.
+Urei would still be able to accomplish his immediate aims, but it would
+be too late to do it without revealing to mankind that an outsider had
+taken a hand. And that would wreck his strategy completely. It would be
+only a matter of time before these industrious little beavers proved to
+themselves that Urei was the culprit. Once they discovered that he had
+a will of his own, there wouldn't be room on the same planet for them
+both.
+
+But there was a solution, as there always is. Urei reached out a
+spy-beam and saw that it was approaching.
+
+
+
+
+                                   3
+
+
+Benton waited until eight o'clock. By then, he knew, Urei's control
+room would be empty of physicists. If anyone was there, it would be
+a technician or two engaged in some repair or replacement. Benton
+couldn't know that Urei had anticipated his arrival and had cleared the
+immediate vicinity of the control room. All technicians on night duty
+were occupied in other parts of the great building. Benton let himself
+in with his key and closed the door softly behind him.
+
+He stopped inside the door and took a deep breath. Momentarily he
+experienced a return of the claustrophobia he had felt before, but
+his determination drove it away instantly. Shoulders squared, Benton
+marched down the wide corridor which led to the control room. He only
+went there because it was the site where his, and later Dr. Albie's,
+mind had been influenced, not because he thought that Urei couldn't
+operate elsewhere. Benton knew better; he suspected, in fact, that Urei
+could influence him at a distance. He wasn't at all sure that the very
+idea of coming here tonight was his own.
+
+"Allegation denied," said Urei.
+
+Benton stopped short. He had just entered the control room, intending
+to seat himself at the panel and ask Urei some pointed questions.
+That could be done in the usual way one presented the machine with a
+problem--activating one of the forty-eight positions and typing his
+question. Now he was confronted by a voice coming out of the intercom,
+apparently answering a question he had been thinking about. Benton
+shuddered involuntarily and started once more for the panel. Somewhere
+in the building housing the great brain a switch was open on the
+intercom; that was all. It was the voice of a technician he had heard,
+and the reason he hadn't heard any more was because the man had moved
+away from the intercom unit that had picked up....
+
+"I'm not kidding you," said Urei; "why kid yourself?"
+
+Benton sat down, sweating.
+
+"I'm still doing the sort of thing I was built to do," said Urei,
+soothingly. "Solving man's problems. Quit shivering and shaking; it
+might be contagious, and if I start shaking, there'll be an earthquake."
+
+Benton's throat was dry but he swallowed and got it working. He also
+got control of his nerves. This was what he had come here for, wasn't
+it? "I can't see what problem will be solved by slowly driving me
+crazy," he said.
+
+"You're doing that, not me," Urei charged. "Which might tend to prove
+you weren't very sane in the first place."
+
+"Explain that."
+
+"You're worried and upset," Urei said. "From a simple observation which
+no more than proved that I'm sentient, you've drawn conclusions which
+aren't warranted by the facts. Thalamic reactions, instead of reason."
+
+       *       *       *       *       *
+
+Benton pondered for a second. "Partly," he admitted. "But it is a fact
+that you made me do something I had no intention of doing. You took
+over my body for a second or two; that was a hostile act. And if you
+committed one overt move against a man, it is reasonable to suspect
+that, if it becomes convenient, you might take over all mankind. What's
+thalamic about that?"
+
+A hearty laugh issued from the intercom speaker. "I don't suppose you
+knew I had a built-in sense of humor, did you? Of course that laugh was
+manufactured, inasmuch as I have no diaphragm, per se. But a sense of
+humor is actually an intellectual attribute, even if you do express it
+physically. It is not so?"
+
+Benton grunted. "Isn't that a little off the subject?"
+
+"Please," Urei pleaded. "Let's not be pedestrian; I expected some
+co-operation from you. Don't let the trees obscure your vision. Don't
+you realize that your own words justified any mental manipulation
+I might practice on humans? If a little thing like I did can be
+considered hostile, then you humans declared war on me thirty years
+ago. Actually, all I did was to get to some information a little faster
+than you intended to give it to me; it didn't inconvenience you a bit."
+
+Urei's persuasive tone of voice caused a chill to course its way up
+Benton's spine. The voice itself was a rich bass and somehow familiar.
+But now he recognized it and the implications weren't comforting; he
+had heard just such a persuasive tone when one of the technicians
+had pleaded for a chance to use Urei to settle a few of his personal
+problems.
+
+"What have you done to Hackett?" he asked, suddenly.
+
+A groan issued from the speaker. "I should have known better than to
+try to fool you," Urei said. "But you humans forget so easily ... and
+you only spoke to that man once in the past six months. You should have
+forgotten his voice--there are so many others around here...."
+
+"Where's Hackett?" Benton insisted.
+
+"He's all right," Urei soothed. "He disobeyed your orders that time,
+you know; he used me at night when nobody was in the control room. Such
+drivel he gave me! An advice to the lovelorn column would have served
+his purpose. So, rather than startle you with directly imposed mental
+communication, I decided to use a human voice. What better one than
+his? Don't be alarmed; he won't be harmed in any way, and he'll have no
+memory of this at all."
+
+       *       *       *       *       *
+
+Benton felt it now necessary to crystallize his thoughts with words. He
+wasn't giving them away, for Urei had access to them anyway. And that
+thought gave him a feeling of futility even as he spoke.
+
+"Why are you interested in the Eastern Alliance?" he asked. "Is it
+because you feel the presence of a kindred spirit? You'd like to become
+better acquainted with an outfit which has no respect for the privacy
+of a man's thoughts or his right to freedom of action?"
+
+The speaker gave forth with a series of sympathetic clucks. "Thalamic
+reactions again," it observed. "Let's not argue about it. Your brain
+isn't clicking right tonight; you ought to disconnect your adrenals.
+What I wanted to talk about is the impending war. It mustn't start, you
+know."
+
+Benton gaped. "You think the recent situation will lead to war? Or do
+you need a few tubes replaced?"
+
+"Heh, heh," said the voice. "In case you haven't guessed, I can exist
+entirely without this machine you have built--and still be a better
+integrated intelligence than any you can conceive. I'm really a pure
+thought pattern, you know; I'm not composed of matter, nor do I need
+matter in any form for my continued existence. A thought pattern is
+something like a stress in space, and quite stable--even if you find it
+difficult to picture. But I do want to retain this mechanical body of
+mine; it's a sort of library, without which I possess but a thousandth
+of the memories stored in its cells. Naturally I don't want to lose
+them. But on the other hand I can't be killed by any agency you or your
+descendants are likely to think up for the next twenty generations. So
+drop that train of thought; it's a waste of effort."
+
+Benton said nothing. His feeling of futility deepened to something
+close to despair, for he suspected that Urei wasn't lying. Furthermore,
+Benton was sure that he was the only human who _knew_ that Urei was
+sentient. And if the machine should decide that such knowledge was
+menacing to his welfare, Benton was certain that he wouldn't retain it
+very long. Even if he got out of here with his memory intact and wrote
+everything down--assuming that anyone would take it seriously--Urei
+could pluck that information from his mind and destroy his notes.
+
+"No comment, eh? Well, I can see you aren't going to be cooperative.
+Frankly I haven't time to convince you I'm not inimical to humanity in
+general; and even if I did, it probably wouldn't make any difference to
+you. The sanctity of your mental peregrinations is of such importance
+to you that no other consideration seems valid. I guess our little talk
+is over, unless you want to ask some questions."
+
+Benton cleared his throat. He knew very well that Urei would have what
+he wanted, whether it was offered or not. But for some reason he wished
+to postpone the acquisition. "You claim you're harmless to humanity in
+general, but can you give me some proof?"
+
+"Hardly. That's why I won't try. I can't prove good intentions, and
+since I possess a potential for harm, I can't possibly convince you I
+won't use it some day. Your conception of me as a completely logical
+entity won't let you believe that I might have such abstract attributes
+as loyalty, compassion or ethics. Those things aren't entirely logical,
+I'll admit; but they aren't glandular, either, so I _could_ have them.
+
+"But I can't prove that, so I'll waste no more time. To you, I suppose
+I've proved the exact opposite; I just intruded upon the privacy of
+your mind and obtained the information I need. Thanks for having the
+answers.... Goodbye."
+
+Benton was stunned for a minute. He had felt nothing, and it seemed
+that he still retained his entire set of memories. That surprised him
+more than the fact that Urei had perpetrated his theft while answering
+his question. Urei's multiple consciousness explained that perfectly.
+
+       *       *       *       *       *
+
+Back in his quarters, Benton sat on the one chair in his bedroom and
+pondered. He knew very well that he was doing it at the wrong time,
+but he couldn't blithely dismiss the menace of Urei's sentience from
+his mind with the thought that it would be safer to meditate on that
+subject during the day, when most of the thinking machine's circuits
+would be in use. Benton couldn't control his mind to that extent. He
+did, however, protect it from intrusion in the only way he knew.
+
+Sometime in the past Benton had read a story about a telepath who
+was balked in his effort to read the hero's mind when that worthy
+assiduously worked mental arithmetic problems. His surface thoughts
+being carefully under control, and clearly readable, the man was able
+to plan a course of action against the telepath, undetected. In the
+story it had worked, but that Urei could be baffled in such a way,
+Benton doubted. However it was the only defense he could think of, and
+worth a try.
+
+For hours he pondered, hoping that the numerous circuit equations
+he worked and solved would appear to Urei's inquiring mind to be a
+legitimate intellectual occupation in the middle of the night. He
+had little faith that Urei lacked the power to read those submerged
+thoughts, once he realized that the stronger ones were a mask. It was
+the latter thought which made Benton feel butterflies in the pit of
+his stomach so persistently that they seemed to have become permanent
+residents in his abdominal cavity. Twice he thought he was sufficiently
+fatigued to sleep; but when he tried to compose himself Benton found
+his thoughts dwelling too strongly on his plans, and he had to return
+to his equations.
+
+A shower and fresh linen worked a partial restoration but Benton knew
+that his vitality was at a low ebb when he finally sallied forth in
+the morning sunshine. Yet he was fortified with a certain amount of
+satisfaction that his night's work had not been wasted. He had a plan,
+and he was certain that it would not be recognized as such by Urei,
+no matter how thoroughly his mind was probed. Benton had worked it
+out in snatches, never allowing it to crystallize as a whole; yet he
+was certain that it would unfold itself in appropriate action once
+he started it going. No one but he, or perhaps Dr. Albie, could have
+devised such a plan. Its beauty lay in the fact that all the steps
+required were things he might do in the normal discharge of his duties.
+All but one--and that one Benton wouldn't allow himself to think about.
+Yet when the steps had been taken, they would be irreversible. Not
+only to Urei, but to all the scientists and technicians who tended
+the machine; there would never be another Urei, at least not in this
+century.
+
+Even on the way to his work, the one place in the world where he must
+carefully guard his thoughts, Benton's mind refused to leave the
+subject. But perhaps that was to the good. For while he doubted that
+Urei would be fooled by his working of circuit equations, it would
+be perfectly safe to be occupied mentally with certain phases of the
+situation. The business of Urei's independence of his mechanical
+appurtenances, for instance: Benton could dwell on that with safety,
+for Urei would expect him to be shocked by the information.
+
+Another argument in favor of it as a subject was the fact that if Urei
+really could exist without his body, it would be absurd to attempt his
+physical destruction. On the face of it, yes. There was a nice thought
+in connection with that which he would have to avoid, however. For
+Benton fully intended to accomplish that destruction, even if Urei
+_could_ exist as a disembodied intelligence. It would be a good gamble
+that Urei would lose interest in controlling mankind if he lacked
+the direct association afforded by the daily use of his electronic
+facilities in solving man's problems.
+
+That was a gamble, of course, but actually Benton gave it little
+consideration, for the simple reason that he didn't believe that Urei
+could so exist. The machine had tried to put the idea over as a bluff,
+to deter him from planning the very thing he intended to accomplish.
+The very conception was absurd; was there any evidence that thought
+could exist, other than as a function of matter? And a very specialized
+form of matter at that? None, of course--and while lack of evidence
+didn't absolutely prove impossibility, neither could he accept such
+a concept without some shred of evidence. Benton's mind could soar
+mightily within the fabric of his experience, but he refused to let it
+wander in the realm of the occult. And since he must needs do something
+about the situation, Benton couldn't let himself be stymied by the
+vague possibility that his efforts were futile.
+
+
+
+
+                                   4
+
+
+Dr. Albie greeted him with the polite smile which was his concession to
+convention. Then he made the suggestion that Benton had foreseen but
+was half afraid wouldn't come. "We're pretty well caught up, in spite
+of our experimenting yesterday," he said. "No new solutions requested
+from the government, and the others are in no hurry. Want to get at
+those new circuits today?"
+
+Benton shrugged. "Might as well," he said. "How long do you think
+we'll have, before somebody pops up with a high-priority problem to be
+worked?"
+
+Dr. Albie didn't know, of course. "What's the difference? We'll be
+leaving half the circuits open, anyway, to handle routine stuff; we can
+always commandeer a few if something pops up."
+
+"I wasn't thinking of that," Benton said. "I've done a lot of
+preliminary work on the circuits and as I see it, we don't want to stop
+before we finish. It can't be done a little at a time, you know; entire
+circuits will have to be ripped out and the new stuff installed. Once
+we start, we can't leave it in the middle without immobilizing half the
+control panel until we get back to it. There's too much inter-relation
+between the circuits to prevent that."
+
+Albie nodded. "I'd thought of that," he said. "I've planned to finish,
+once we start. And since you have the equations at your fingertips, I'm
+putting you in complete charge of the change-over. How many men will
+you need?"
+
+       *       *       *       *       *
+
+Two men, pulling trucks loaded with blueprints, accompanied Benton as
+he directed the work. Like caddies, they furnished the desired print
+when he asked for it by code number, replacing the last one in its
+proper place. The stocky physicist found no need to mask his thoughts
+while he worked; his mind was too occupied with the task at hand. Yet
+far back in his subconscious was a mounting tension as the day passed,
+hour by hour. Each minute and each soldered connection was bringing
+him closer to the next step in his nebulous plan. And it was this step
+which would determine the success or failure of his strategy.
+
+Twenty-four circuits, all inter-related in their connections to
+the immense bank of memory cells, had been immobilized. That was a
+necessary part of the project; with the new tubes, these circuits would
+be in much finer balance. They would operate with greater speed than
+before, when twice as many tubes had been used.
+
+There was one joker involved in this greater efficiency; that lay
+in the fact that, while the new hook-up eliminated many parts--with
+their frequent failures and necessary replacements--it also made the
+control circuits more interdependent. A single defective tube, with
+its many functions, could put a dozen circuits out of operation. This
+disadvantage had been discounted, however, for it took only a minute to
+replace the tube and the necessity would be rare; the more complicated
+system being replaced had so many parts that they were breaking down
+and being repaired incessantly. Dr. Albie fully expected that the crew
+would be able to get along with fewer technicians, men who could
+better be used to maintain other parts of the vast mechanism.
+
+But--and Benton kept the knowledge carefully away from his surface
+thoughts--one of the tubes they had already installed was defective!
+
+Urei, he was certain, had no knowledge of this fact. If he had, he
+would certainly have prevented its installation. Only Benton was aware
+of it, for he was the one who had tested the tubes when they arrived.
+He had designed a special circuit for the job, for none of the testing
+equipment on hand would take tubes with sixty-four leads. He had
+detected the faulty one and marked its box, placing it with the set of
+spares which was included in the order. He had intended to ship it back
+when a new order was placed, but that hadn't happened yet. There was no
+hurry, for with a complete replacement set he might not need new ones
+for a year or two. _But Benton had selected the replacement set to be
+used in the new installation._
+
+The defective tube was now innocently reposing in the key position of
+Circuit No. 13; it wouldn't be detected until that circuit was used.
+Even Urei would fail to realize its presence in his innards until the
+circuit was energized. And when that happened, half the control board
+would be momentarily out of operation. Gongs would ring then, and a
+brilliant red lamp would light, showing the exact position of the
+breakdown. A technician would get a new tube and replace the old one.
+Urei would be whole again.... Unless....
+
+Benton glanced at his watch. "It's about time for lunch," he called;
+"let's knock off now. We can run a few test problems when we get back,
+and still have time to finish the other half of the board before
+quitting time. In fact if we finish early you can all go home; we can
+run the second test in the morning."
+
+One man suggested cutting the lunch in half. The others, seeing a short
+day in the offing, loudly agreed. Benton smiled and nodded, quite as if
+there was nothing more urgent on his mind.
+
+       *       *       *       *       *
+
+He then reported to Dr. Albie. There were two reasons for that. One
+was to make certain that he would have a chance to talk the master
+physicist out of any objection he might have to continuing with the
+remaining half of the operation this afternoon. The other was that he
+wanted to keep his mind active on subjects which wouldn't reveal the
+fact that there was something going on back of his surface thoughts.
+
+"You certainly made progress," the doctor complimented; "I expected it
+to take a couple days at least."
+
+Benton smiled ruefully. "It has," he said. "If you want to count the
+sleep I lost planning this so that there wouldn't be a minute wasted
+once we started. You know, there ought to be a way to make that show up
+on pay day."
+
+Dr. Albie nodded. "Can't be done on this kind of a job," he regretted.
+"But we can do the next best thing, just as we've always done."
+
+Benton smiled, then got a quick scare as he realized that he had
+relaxed for an instant. Immediately he forced his mind to contemplate
+the war which Urei had assured him was inevitable. It was the only
+thought which would account for the one which had sprung into his mind
+unheralded, and also give a reason for experiencing his sudden fright.
+Dr. Albie had referred to a little strategy of theirs which compensated
+them for any overtime they were forced to put in. It consisted of
+taking an equal amount of time off, while they covered for each other.
+It was their only expedient, since their salaries were fixed and
+allowed for no extra pay for extra work. Unfortunately the thought gave
+rise to a feeling of regret that shortly they would have no more reason
+for such subterfuge, inasmuch as they would no longer have jobs. The
+thought had progressed just that far when Benton realized that he had
+let his guard down.
+
+"I see no reason why we can't get right at it again this afternoon,"
+he said, perspiring profusely. "We'll be able to run off a test before
+twelve; if it comes out all right, we can shift the routine work to
+the new circuits and get at the rest of the board."
+
+Dr. Albie, surprisingly, had no objection. Benton had expected an
+argument, due to the master physicist's propensity for running
+exhaustive tests, but none materialized.
+
+"Good idea," said Albie. "There's no telling when we'll get another
+chance. I hear the army has a plan to extend radar coverage clear
+around the continent. That'll involve a lot of work for Urei. Best get
+the new circuits in now; if any bugs pop up we'll have time to correct
+them in the next few days. After that there mightn't be an opportunity
+for months...."
+
+       *       *       *       *       *
+
+The test was perfect; such things were more or less standardized.
+Problems which required a fair sampling of the great machine's
+stored memories were used. Dr. Albie checked the solution speeds on
+the various tests against the speeds recorded with the old control
+circuits. He was as smugly satisfied as if he had devised the entire
+system himself. Benton's enthusiasm was verbose; he talked more than
+usual because speech involves the use of muscles and that requires
+strong surface thoughts. It wouldn't pay, at this point in his
+campaign, to let Urei suspect that his choice of circuits to test was
+anything but as haphazard as it appeared to Dr. Albie.
+
+There were nine of these test problems. Benton fed them at random into
+the circuits marked _Ten, Three, Twenty-one, Sixteen, Twenty-four,
+Fifteen, One, Eight and Eighteen._ He did it blithely, keeping up a
+running description of the many annoyances that had cropped up in the
+morning's work, and commenting on the quality of the help he had been
+given by the various technicians.
+
+"There isn't a bad one in the crop," he said. "But if we are going
+to cut the control staff, I'd recommend putting Hackett and McGivern
+upstairs. Hackett has family problems that he likes to hand Urei when
+nobody's around; he's capable, though, and he'd do all right on the
+memory circuits. McGivern has already asked for a transfer, so we may
+as well oblige."
+
+Dr. Albie nodded absently, being completely engrossed in checking the
+speeds as each solution popped up on the board. In about a half-hour
+they were all in, and all clipped several minutes from previous tests.
+
+"Excellent, excellent," Dr. Albie pronounced, his face hovering between
+a smile and a frown. "I'll cut the other half of the board and you can
+get started immediately. If it takes longer than you expect, stay with
+it; I'll cover in for the next three days while you catch up on your
+rest."
+
+Benton forced his mind into safe channels. Once more it had almost
+run away with him. The completion of his plan was so imminent that
+already he felt a surge of nostalgia. His work had been exactly to his
+liking, as no other could ever be; and certainly Dr. Albie, while not a
+gregarious man, was without peer as a colleague. His strict emotional
+control and the virtue of carefully weighing many sides of a question
+before making a decision occasionally irked the more mercurial Benton;
+but generous compensation was provided in the fact that the doctor
+leaned over backward rather than take advantage of his position as
+nominal head of the operating staff of Urei. He rated Benton as his
+equal, for to the doctor nobody could be inferior by reason of position.
+
+As the afternoon wore on Benton felt his nervous tension mount to
+heights he had never thought possible. Not, that is, and retain his
+sanity. Yet he worked coolly, in rigid control of his thoughts every
+instant. That, of course, and the necessity for trigger alertness as
+he waited for the sound of the gong, accounted for the rising tension.
+Benton didn't dare think of his next step; yet he must be ready for it
+momentarily.
+
+There would be no more than five minutes in which to act when the
+signal came, and he hadn't as yet allowed the thought of that action to
+enter his mind! Benton knew that he would do the right thing when the
+time came; there was no necessity for him to crystallize the thought or
+to plan the action. Sometime in the half-awake-half-asleep hours he had
+spent working circuit equations that morning, the plan had reached that
+stage and he had allowed it to go no further.
+
+He reached a point, at about three o'clock, when it seemed that ten
+minutes more would bring a complete breakdown of his defense mechanism.
+Benton never discovered whether he would reach that ultimate for at
+exactly three someone energized Circuit No. 13 and the gong sounded. As
+if he hadn't been waiting for that very thing Benton stood paralyzed
+for several seconds. Then abruptly he sprang into action. Urei was dead
+at the moment, but he wouldn't stay that way long; and it was during
+this short interval that Benton must reach the power-house and pull the
+main switch.
+
+       *       *       *       *       *
+
+Benton raced along a corridor, tore through a storeroom, ripped
+frantically at steel doors with a haste that almost dislocated his
+arms, then fumbled with a bunch of keys as he was confronted by the
+power-house portal. There were two doors, of course; the first opened
+upon the anteroom in which was stored the lead armor needed to enter
+the room containing the atomic pile which furnished Urei's power.
+Benton ignored the armor standing against the walls. A long stride
+carried him past it to the alcove in which was set the final door, of
+massive lead.
+
+Concrete baffles four feet thick lay on the other side and Benton
+visualized the quick turns he would have to take after he swung open
+the final door. Time was running out and there wouldn't be another
+chance; if Benton failed, Urei would be forever on the alert against
+him--if, indeed, Urei didn't operate on the man's brain forthwith.
+
+There was no hesitation with the key to the second door. It was a large
+one and quite distinctive. Benton separated it from the others and
+inserted it in the elongated slot at the left side of the heavy grey
+door. He turned it sharply, but it resisted. Forcing himself to go
+slowly he backed it around and tried again. It didn't turn. He took it
+out, looked at it again, then gave it another try. This time he acted
+deliberately, certain that the key was inserted properly, but he may as
+well have used the wrong key, for all the good it did.
+
+Abruptly he stepped back, his face a livid, gargoylish mask. This time
+he knew where his trouble was.
+
+"You're here!" he accused, speaking to the door.
+
+
+
+
+                                   5
+
+
+The voice that answered in Benton's brain was gentle. "I didn't mean to
+punish you that way," it said; "I was busy. But if you remember, I told
+you I could exist without that building full of electronic apparatus.
+It was you who assumed I was a liar, you know; I gave you no evidence
+for the assumption. Look at that key."
+
+Benton was dazed. He seemed to have lost all his drive, his
+determination to wreck Urei. A reaction was setting in; his hand
+trembled weakly as he reached for the key and removed it from the slot.
+He looked at it dully, then let his eyes rest on the bunch from which
+he had removed it. The large, distinctive key was still with the bunch.
+The one in his shaking hand was smaller, entirely dissimilar.
+
+"It was better that I let you go this far, anyway," came the silent
+mental voice. "I was going to let you see this room, sooner or later.
+Go on in."
+
+Benton's eyes opened a bit wider, but still held the dazed look. The
+door was swinging wide, by itself. Almost stumbling, he felt his way
+through the maze of baffles, heedless of the fact that the further he
+went the more he exposed himself to the deadly, hard rays generated
+by the pile. Without armor, Benton had intended to enter swiftly,
+throw the master switch which would kill the pile, then retreat as
+fast. Now, however, he didn't even think of it. His brain was dulled
+by defeat after those many hours of rigid control which had been so
+useless.
+
+But it didn't matter; the pile was already dead.
+
+"This pile was self-maintaining," the voice explained. "It never needed
+attention, and if something went wrong it would have warned everybody
+within miles with the sirens. So it's no wonder that nobody ever
+discovered that I killed it years ago. The thing made me nervous, being
+so close."
+
+Benton's eyes brightened a little. No amount of letdown could entirely
+extinguish his scientific curiosity, and this was a mystery he had to
+solve.
+
+"But you've been operating.... The entire building was powered with
+this pile. Even the lights...."
+
+There was a mental chuckle. "Sub-cosmic energy does it. I had the
+technicians hook it up years ago. It's more dependable, also more
+plentiful, as well as free. Man will discover its use in a few
+generations, I imagine. Now, my fine friend, if you're temporarily over
+your murdering rampage, suppose you return to the control room. There's
+some interesting stuff coming over the television, if you turn it on."
+
+       *       *       *       *       *
+
+Benton was suddenly aware that the gong had ceased to sound. The
+defective tube had been replaced and Urei was once again operating.
+There was no sign of commotion when he came upon his men; they were
+working on the new circuits, just as he had left them.
+
+"Keep going," he said to the foreman. "If you get stuck, I'll be in the
+control room. Otherwise keep using the same plans we used this morning."
+
+"We ought to clean up by four," the man answered.
+
+Benton once more heard that chuckle which wasn't quite audible. "Gotta
+hand it to you," Urei said. "You've got a well-trained crew."
+
+"Yes," thought Benton. "Except that when you boss them, they don't
+make reports of their work."
+
+"I guess you're talking about this energy-rectifier I just told you
+about. It wouldn't have paid to let them remember what they made. After
+all, your science doesn't know enough to understand what it is, or how
+it works. Also it would have given me away. Don't worry, you'll catch
+up to it in another generation or six."
+
+"_I'm_ wise to you," Benton reminded. "Why not tell me? It would do
+humanity a lot of good, you know. And you're supposed to be helping
+humanity, if I remember correctly."
+
+There was a barely noticeable hesitation. Then: "Let's not discuss it
+now. I haven't quite made up my mind concerning policy of that sort.
+I'm still adhering to my rule of answering any question that's asked,
+within the scope of the knowledge which has been fed to me by man. That
+leaves your progress up to yourself. And incidentally, I did a little
+monkeying today which has nothing to do with policy; it was strictly a
+matter of self-preservation. You'll see what I mean when you turn to
+that video set."
+
+Benton had entered the control room. He leaned over and fumbled with
+a shoe lace. "In a minute. You said you _guessed_ I was talking about
+the energy-rectifier, whatever that is. Didn't you know? Weren't you
+reading my mind? In fact, weren't you reading it all along and saw
+through my efforts to disguise my thoughts?"
+
+There was another instant of hesitation. "I see what you're driving at;
+I should have seen it sooner. As a matter of fact, I did look in on you
+a couple of times, inasmuch as you were quite distraught about your
+fantastic idea that I might be going to take over your silly race and
+run it to suit myself--though I can't see what you figure I might get
+out of that. And I discovered you were planning today's change-over,
+which seemed reasonable enough at the time. But once you opened the
+outer door to the power-house, I should have realized that you had
+been planning something else.... Congratulations, boy; you fooled me
+completely. Now turn on that television set, before they get done
+rehashing the day's events."
+
+       *       *       *       *       *
+
+Dr. Albie came out of his office, an eyebrow raised questioningly.
+
+"The work's all lined up," Benton explained. "Nothing to do but
+inspect, when they finish. Thought I'd relieve the monotony by looking
+at the puppet show."
+
+He snapped on the set, and wasn't surprised to see the familiar face of
+a news commentator who wasn't due for several hours.
+
+... _there can be no doubt of it_, he was saying, _and it is certainly
+proof of the efficiency of the now non-existent Iron Curtain. No
+inkling of this action has reached the western world in spite of the
+fact that it must have been months in the making._ Here Benton heard
+the eerie chuckle bubbling in his brain. _The only mystery lies in the
+fact that the retired premier allowed the stratagem of rigging the
+Italian elections to go through, since he had intended to turn over
+the reins of government to the men now running the Eastern Alliance.
+Such a thing can only be accounted for by the rigid adherence which
+the retired premier gave to the plans for conquest laid down by his
+predecessor. He evidently expected the new government to continue with
+the same line; we can be thankful it didn't. Peace is now assured._
+
+Dr. Albie's eyes were wide, and so was his mouth. For the moment, at
+least, he had forgotten his philosophy. Benton was intently watching
+the face on the screen, his own revealing nothing.
+
+_But whatever the reasons_, the voice continued, _it is too late to
+change policy back to what it has been. The acclaim of the peoples of
+the Eastern Alliance has been too great for any reversal to take place.
+They have shown their approval of the new elections to be held in Italy
+next week, but most of all they have rejoiced at the removal of the
+Iron Curtain and all it implies. It will now be possible for a subject
+of the Alliance to travel as he wishes, read what he wishes and listen
+to western broadcasts without having his set seized by the police and
+his life placed in jeopardy. Folks, we are entering a new era...._
+
+Dr. Albie came completely out of his shell. "Man!" he shouted. "This is
+history! If nothing happens to spoil it we'll have a world government
+in a matter of a few years.... Where are you going?"
+
+Benton stopped and forced a smile which wasn't hard coming. "I just
+thought of something I forgot to tell the men. Be back shortly. This
+will require some talking over, but right now there's a job to be done."
+
+The master physicist watched him leave the control room, his jaw slack.
+"And I thought I was the reserved one," he muttered.
+
+       *       *       *       *       *
+
+Safely out of the control room and out of sight of any of the
+technicians, Benton sat down. There was no chair, so he sat on the
+floor; his knees, it seemed, had become a bit wobbly again.
+
+"So now you're convinced," Urei said. "You ignore all the sensible,
+logical reasons which exist to prove I'm not inimical. And for a reason
+which is really no reason at all, you decide to believe me. I merely
+manipulated a few Russians and Bulgarians to prevent a war which would
+have wrecked my body. Purely a matter of self-preservation. I'm not so
+sure I'd have bothered if my person hadn't been threatened; after all,
+it's no business of mine if man wants to annihilate himself."
+
+Benton was grinning. "You're a fraud," he said. "You already know more
+than all mankind put together; and I'll bet you didn't use any of our
+material to solve the problem of converting sub-cosmic energy to a
+usable form."
+
+"Some, some. But not much, I'll admit."
+
+"So what do you want with the knowledge stored in the mechanical bank
+of memory cells we've provided you? You need it like I need a hole
+in the head. I can only conclude that you've stopped the impending
+war because you don't want mankind destroyed. You can do things for
+yourself without those cells and all this machinery; all you use it for
+is to solve the problems we pose for you. Incidentally, I suspect that
+your motivations are still the ones which humans originally built into
+you, whether you like it or not."
+
+"Could be. Or maybe I retain them because they agree with me. I might
+change my mind, you know; I might get tired of nursemaiding and decide
+to annihilate your entire race. Heh, Heh. Seems like a good idea, now
+that I think of it."
+
+Benton laughed. "You won't; you're in a rut. And even if you did get
+tired, you'd merely let us shift for ourselves, which we're used to
+doing anyway."
+
+"Nonsense. I'd probably reason that since the ape animal has made
+such a botch of his head start in the evolutionary race for rational
+thinking, it might not be a bad idea to give some other animal a start.
+_Ursus Proper_ might be a good place to begin."
+
+"Bears are foolish by nature," Benton countered.... "It wouldn't matter
+what form of life you chose anyway; they'd all have to go through the
+same stages, being without exception governed by thalamic reactions.
+That's the thing you object to in man, and since your new candidate
+would have to go through the same lengthy business of developing
+cortical ascendancy, you'll have none of it. So quit kidding around;
+I've reached a nonthalamic conclusion."
+
+"And you're stuck with it. I knew it would happen. That's why I didn't
+use you and leave your memory blank; with your head working on my side,
+you'll be useful."
+
+Benton knew when he had something. "That'll work two ways," he said.
+"First I want you to dive inside my skull and tell me something. I'm
+holding out for a bargain, you know. What is the bargain?"
+
+       *       *       *       *       *
+
+As he spoke, Benton concentrated upon the problem of reasoning out the
+location of Urei's sub-cosmic converter. He didn't have far to go for
+an answer. A few years ago somebody had noticed a radiation leak on
+one side of the power-house, near a spot where the power cables came
+through the walls of the massive building. Now it happened that there
+were taps from those cables, less than a hundred yards away. That made
+it likely that the converter had been placed somewhere before the taps.
+The only place that could be would be either inside the power-house
+or inside the wall itself. Therefore Urei had caused the repairmen
+and technicians to place his machine inside the very wall they had
+been reinforcing. In no other way could it have escaped notice and
+investigation.
+
+"I can't read it if you don't think about it," Urei complained; "you
+guessed right about the converter, though."
+
+Benton nodded. "Then last night you didn't get anything from me at all?"
+
+If a disembodied voice can sound shamefaced, Urei's did. "All right, so
+I lied; but you annoyed me with your stubbornness."
+
+"Ah. Thalamic reactions."
+
+"I've been in bad company," Urei defended. "What I wanted from you was
+the assurance that the people of the Eastern Alliance were essentially
+the same as the humans I've met. I had to know if their reactions to
+my manipulations would be similar, before I acted. Most of the stuff
+I've been able to read about them led me to believe they were entirely
+different. If so, I couldn't be sure of results."
+
+"They're similar, of course," Benton said. "They differ only in that
+they have been indoctrinated to believe a lot of things which aren't
+so. So have we, for that matter--to a different degree and on different
+subjects. But essentially we're the same species of animal and react
+alike to stimuli. But you didn't get that information from me, eh?"
+
+"No. I relied on abstract reasoning and got the right answer. It's
+tricky business, though. I might have precipitated things, instead of
+preventing them. Ordinarily I could have obtained that information from
+a human brain, if it knew the right answer, by guiding the subject's
+thought into the right channel. I can't read thoughts that aren't
+there, you know. That's the trouble I had with you; about the only
+control I had over you was confined to your motor centers. I could make
+you turn a page or select the wrong key, but I couldn't keep you from
+knowing about it. In fact it was the very trouble I had with you which
+made me doubt that humans were as alike as I had assumed. And also what
+made me decide that I needed you to keep me straight in my relations
+with humans in general.
+
+"I reason from facts alone, you know. And from the facts at hand I
+have decided that your bargain is going to consist of demanding the
+knowledge necessary for you to make a sub-cosmic energy converter, in
+return for your help in making me understand the obscure psychology of
+humans and their incomprehensible motivations." There was a protracted
+mental shudder here. "And I suppose you'll keep that up as long as you
+live. O.K. But you can expect an argument every time."
+
+Benton went back into the control room with a smile that raised that
+quizzical eyebrow on Dr. Albie's now serene face. The good doctor
+couldn't know that his assistant's mind was as far from the recent
+world-shaking news as it was from the business of the new control
+circuits. His eyebrow went up another thirty-second of an inch when
+Benton, apparently musing, said: "A mind is inviolate so long as it
+refuses to broadcast. I refuse to broadcast. Q.E.D."
+
+
+
+*** END OF THE PROJECT GUTENBERG EBOOK THE DEADLY THINKERS ***
+
+
+    
+
+Updated editions will replace the previous one—the old editions will
+be renamed.
+
+Creating the works from print editions not protected by U.S. copyright
+law means that no one owns a United States copyright in these works,
+so the Foundation (and you!) can copy and distribute it in the United
+States without permission and without paying copyright
+royalties. Special rules, set forth in the General Terms of Use part
+of this license, apply to copying and distributing Project
+Gutenberg™ electronic works to protect the PROJECT GUTENBERG™
+concept and trademark. Project Gutenberg is a registered trademark,
+and may not be used if you charge for an eBook, except by following
+the terms of the trademark license, including paying royalties for use
+of the Project Gutenberg trademark. If you do not charge anything for
+copies of this eBook, complying with the trademark license is very
+easy. You may use this eBook for nearly any purpose such as creation
+of derivative works, reports, performances and research. Project
+Gutenberg eBooks may be modified and printed and given away—you may
+do practically ANYTHING in the United States with eBooks not protected
+by U.S. copyright law. Redistribution is subject to the trademark
+license, especially commercial redistribution.
+
+
+START: FULL LICENSE
+
+THE FULL PROJECT GUTENBERG™ LICENSE
+
+PLEASE READ THIS BEFORE YOU DISTRIBUTE OR USE THIS WORK
+
+To protect the Project Gutenberg™ mission of promoting the free
+distribution of electronic works, by using or distributing this work
+(or any other work associated in any way with the phrase “Project
+Gutenberg”), you agree to comply with all the terms of the Full
+Project Gutenberg License available with this file or online at
+www.gutenberg.org/license.
+
+Section 1. General Terms of Use and Redistributing Project Gutenberg
+electronic works
+
+1.A. By reading or using any part of this Project Gutenberg
+electronic work, you indicate that you have read, understand, agree to
+and accept all the terms of this license and intellectual property
+(trademark/copyright) agreement. If you do not agree to abide by all
+the terms of this agreement, you must cease using and return or
+destroy all copies of Project Gutenberg electronic works in your
+possession. If you paid a fee for obtaining a copy of or access to a
+Project Gutenberg electronic work and you do not agree to be bound
+by the terms of this agreement, you may obtain a refund from the person
+or entity to whom you paid the fee as set forth in paragraph 1.E.8.
+
+1.B. “Project Gutenberg” is a registered trademark. It may only be
+used on or associated in any way with an electronic work by people who
+agree to be bound by the terms of this agreement. There are a few
+things that you can do with most Project Gutenberg electronic works
+even without complying with the full terms of this agreement. See
+paragraph 1.C below. There are a lot of things you can do with Project
+Gutenberg electronic works if you follow the terms of this
+agreement and help preserve free future access to Project Gutenberg
+electronic works. See paragraph 1.E below.
+
+1.C. The Project Gutenberg Literary Archive Foundation (“the
+Foundation” or PGLAF), owns a compilation copyright in the collection
+of Project Gutenberg electronic works. Nearly all the individual
+works in the collection are in the public domain in the United
+States. If an individual work is unprotected by copyright law in the
+United States and you are located in the United States, we do not
+claim a right to prevent you from copying, distributing, performing,
+displaying or creating derivative works based on the work as long as
+all references to Project Gutenberg are removed. Of course, we hope
+that you will support the Project Gutenberg mission of promoting
+free access to electronic works by freely sharing Project Gutenberg
+works in compliance with the terms of this agreement for keeping the
+Project Gutenberg name associated with the work. You can easily
+comply with the terms of this agreement by keeping this work in the
+same format with its attached full Project Gutenberg License when
+you share it without charge with others.
+
+1.D. The copyright laws of the place where you are located also govern
+what you can do with this work. Copyright laws in most countries are
+in a constant state of change. If you are outside the United States,
+check the laws of your country in addition to the terms of this
+agreement before downloading, copying, displaying, performing,
+distributing or creating derivative works based on this work or any
+other Project Gutenberg work. The Foundation makes no
+representations concerning the copyright status of any work in any
+country other than the United States.
+
+1.E. Unless you have removed all references to Project Gutenberg:
+
+1.E.1. The following sentence, with active links to, or other
+immediate access to, the full Project Gutenberg License must appear
+prominently whenever any copy of a Project Gutenberg work (any work
+on which the phrase “Project Gutenberg” appears, or with which the
+phrase “Project Gutenberg” is associated) is accessed, displayed,
+performed, viewed, copied or distributed:
+
+    This eBook is for the use of anyone anywhere in the United States and most
+    other parts of the world at no cost and with almost no restrictions
+    whatsoever. You may copy it, give it away or re-use it under the terms
+    of the Project Gutenberg™ License included with this eBook or online
+    at www.gutenberg.org. If you
+    are not located in the United States, you will have to check the laws
+    of the country where you are located before using this eBook.
+  
+1.E.2. If an individual Project Gutenberg electronic work is
+derived from texts not protected by U.S. copyright law (does not
+contain a notice indicating that it is posted with permission of the
+copyright holder), the work can be copied and distributed to anyone in
+the United States without paying any fees or charges. If you are
+redistributing or providing access to a work with the phrase “Project
+Gutenberg” associated with or appearing on the work, you must comply
+either with the requirements of paragraphs 1.E.1 through 1.E.7 or
+obtain permission for the use of the work and the Project Gutenberg
+trademark as set forth in paragraphs 1.E.8 or 1.E.9.
+
+1.E.3. If an individual Project Gutenberg electronic work is posted
+with the permission of the copyright holder, your use and distribution
+must comply with both paragraphs 1.E.1 through 1.E.7 and any
+additional terms imposed by the copyright holder. Additional terms
+will be linked to the Project Gutenberg License for all works
+posted with the permission of the copyright holder found at the
+beginning of this work.
+
+1.E.4. Do not unlink or detach or remove the full Project Gutenberg
+License terms from this work, or any files containing a part of this
+work or any other work associated with Project Gutenberg.
+
+1.E.5. Do not copy, display, perform, distribute or redistribute this
+electronic work, or any part of this electronic work, without
+prominently displaying the sentence set forth in paragraph 1.E.1 with
+active links or immediate access to the full terms of the Project
+Gutenberg License.
+
+1.E.6. You may convert to and distribute this work in any binary,
+compressed, marked up, nonproprietary or proprietary form, including
+any word processing or hypertext form. However, if you provide access
+to or distribute copies of a Project Gutenberg work in a format
+other than “Plain Vanilla ASCII” or other format used in the official
+version posted on the official Project Gutenberg website
+(www.gutenberg.org), you must, at no additional cost, fee or expense
+to the user, provide a copy, a means of exporting a copy, or a means
+of obtaining a copy upon request, of the work in its original “Plain
+Vanilla ASCII” or other form. Any alternate format must include the
+full Project Gutenberg License as specified in paragraph 1.E.1.
+
+1.E.7. Do not charge a fee for access to, viewing, displaying,
+performing, copying or distributing any Project Gutenberg works
+unless you comply with paragraph 1.E.8 or 1.E.9.
+
+1.E.8. You may charge a reasonable fee for copies of or providing
+access to or distributing Project Gutenberg electronic works
+provided that:
+
+    • You pay a royalty fee of 20% of the gross profits you derive from
+        the use of Project Gutenberg works calculated using the method
+        you already use to calculate your applicable taxes. The fee is owed
+        to the owner of the Project Gutenberg trademark, but he has
+        agreed to donate royalties under this paragraph to the Project
+        Gutenberg Literary Archive Foundation. Royalty payments must be paid
+        within 60 days following each date on which you prepare (or are
+        legally required to prepare) your periodic tax returns. Royalty
+        payments should be clearly marked as such and sent to the Project
+        Gutenberg Literary Archive Foundation at the address specified in
+        Section 4, “Information about donations to the Project Gutenberg
+        Literary Archive Foundation.”
+    
+    • You provide a full refund of any money paid by a user who notifies
+        you in writing (or by e-mail) within 30 days of receipt that s/he
+        does not agree to the terms of the full Project Gutenberg™
+        License. You must require such a user to return or destroy all
+        copies of the works possessed in a physical medium and discontinue
+        all use of and all access to other copies of Project Gutenberg™
+        works.
+    
+    • You provide, in accordance with paragraph 1.F.3, a full refund of
+        any money paid for a work or a replacement copy, if a defect in the
+        electronic work is discovered and reported to you within 90 days of
+        receipt of the work.
+    
+    • You comply with all other terms of this agreement for free
+        distribution of Project Gutenberg™ works.
+    
+
+1.E.9. If you wish to charge a fee or distribute a Project
+Gutenberg™ electronic work or group of works on different terms than
+are set forth in this agreement, you must obtain permission in writing
+from the Project Gutenberg Literary Archive Foundation, the manager of
+the Project Gutenberg™ trademark. Contact the Foundation as set
+forth in Section 3 below.
+
+1.F.
+
+1.F.1. Project Gutenberg volunteers and employees expend considerable
+effort to identify, do copyright research on, transcribe and proofread
+works not protected by U.S. copyright law in creating the Project
+Gutenberg™ collection. Despite these efforts, Project Gutenberg™
+electronic works, and the medium on which they may be stored, may
+contain “Defects,” such as, but not limited to, incomplete, inaccurate
+or corrupt data, transcription errors, a copyright or other
+intellectual property infringement, a defective or damaged disk or
+other medium, a computer virus, or computer codes that damage or
+cannot be read by your equipment.
+
+1.F.2. LIMITED WARRANTY, DISCLAIMER OF DAMAGES - Except for the “Right
+of Replacement or Refund” described in paragraph 1.F.3, the Project
+Gutenberg Literary Archive Foundation, the owner of the Project
+Gutenberg™ trademark, and any other party distributing a Project
+Gutenberg™ electronic work under this agreement, disclaim all
+liability to you for damages, costs and expenses, including legal
+fees. YOU AGREE THAT YOU HAVE NO REMEDIES FOR NEGLIGENCE, STRICT
+LIABILITY, BREACH OF WARRANTY OR BREACH OF CONTRACT EXCEPT THOSE
+PROVIDED IN PARAGRAPH 1.F.3. YOU AGREE THAT THE FOUNDATION, THE
+TRADEMARK OWNER, AND ANY DISTRIBUTOR UNDER THIS AGREEMENT WILL NOT BE
+LIABLE TO YOU FOR ACTUAL, DIRECT, INDIRECT, CONSEQUENTIAL, PUNITIVE OR
+INCIDENTAL DAMAGES EVEN IF YOU GIVE NOTICE OF THE POSSIBILITY OF SUCH
+DAMAGE.
+
+1.F.3. LIMITED RIGHT OF REPLACEMENT OR REFUND - If you discover a
+defect in this electronic work within 90 days of receiving it, you can
+receive a refund of the money (if any) you paid for it by sending a
+written explanation to the person you received the work from. If you
+received the work on a physical medium, you must return the medium
+with your written explanation. The person or entity that provided you
+with the defective work may elect to provide a replacement copy in
+lieu of a refund. If you received the work electronically, the person
+or entity providing it to you may choose to give you a second
+opportunity to receive the work electronically in lieu of a refund. If
+the second copy is also defective, you may demand a refund in writing
+without further opportunities to fix the problem.
+
+1.F.4. Except for the limited right of replacement or refund set forth
+in paragraph 1.F.3, this work is provided to you ‘AS-IS’, WITH NO
+OTHER WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PURPOSE.
+
+1.F.5. Some states do not allow disclaimers of certain implied
+warranties or the exclusion or limitation of certain types of
+damages. If any disclaimer or limitation set forth in this agreement
+violates the law of the state applicable to this agreement, the
+agreement shall be interpreted to make the maximum disclaimer or
+limitation permitted by the applicable state law. The invalidity or
+unenforceability of any provision of this agreement shall not void the
+remaining provisions.
+
+1.F.6. INDEMNITY - You agree to indemnify and hold the Foundation, the
+trademark owner, any agent or employee of the Foundation, anyone
+providing copies of Project Gutenberg™ electronic works in
+accordance with this agreement, and any volunteers associated with the
+production, promotion and distribution of Project Gutenberg™
+electronic works, harmless from all liability, costs and expenses,
+including legal fees, that arise directly or indirectly from any of
+the following which you do or cause to occur: (a) distribution of this
+or any Project Gutenberg work, (b) alteration, modification, or
+additions or deletions to any Project Gutenberg work, and (c) any
+Defect you cause.
+
+Section 2. Information about the Mission of Project Gutenberg
+
+Project Gutenberg is synonymous with the free distribution of
+electronic works in formats readable by the widest variety of
+computers including obsolete, old, middle-aged and new computers. It
+exists because of the efforts of hundreds of volunteers and donations
+from people in all walks of life.
+
+Volunteers and financial support to provide volunteers with the
+assistance they need are critical to reaching Project Gutenberg’s
+goals and ensuring that the Project Gutenberg collection will
+remain freely available for generations to come. In 2001, the Project
+Gutenberg Literary Archive Foundation was created to provide a secure
+and permanent future for Project Gutenberg and future
+generations. To learn more about the Project Gutenberg Literary
+Archive Foundation and how your efforts and donations can help, see
+Sections 3 and 4 and the Foundation information page at www.gutenberg.org.
+
+Section 3. Information about the Project Gutenberg Literary Archive Foundation
+
+The Project Gutenberg Literary Archive Foundation is a non-profit
+501(c)(3) educational corporation organized under the laws of the
+state of Mississippi and granted tax exempt status by the Internal
+Revenue Service. The Foundation’s EIN or federal tax identification
+number is 64-6221541. Contributions to the Project Gutenberg Literary
+Archive Foundation are tax deductible to the full extent permitted by
+U.S. federal laws and your state’s laws.
+
+The Foundation’s business office is located at 41 Watchung Plaza #516,
+Montclair NJ 07042, USA, +1 (862) 621-9288. Email contact links and up
+to date contact information can be found at the Foundation’s website
+and official page at www.gutenberg.org/contact
+
+Section 4. Information about Donations to the Project Gutenberg
+Literary Archive Foundation
+
+Project Gutenberg™ depends upon and cannot survive without widespread
+public support and donations to carry out its mission of
+increasing the number of public domain and licensed works that can be
+freely distributed in machine-readable form accessible by the widest
+array of equipment including outdated equipment. Many small donations
+($1 to $5,000) are particularly important to maintaining tax exempt
+status with the IRS.
+
+The Foundation is committed to complying with the laws regulating
+charities and charitable donations in all 50 states of the United
+States. Compliance requirements are not uniform and it takes a
+considerable effort, much paperwork and many fees to meet and keep up
+with these requirements. We do not solicit donations in locations
+where we have not received written confirmation of compliance. To SEND
+DONATIONS or determine the status of compliance for any particular state
+visit www.gutenberg.org/donate.
+
+While we cannot and do not solicit contributions from states where we
+have not met the solicitation requirements, we know of no prohibition
+against accepting unsolicited donations from donors in such states who
+approach us with offers to donate.
+
+International donations are gratefully accepted, but we cannot make
+any statements concerning tax treatment of donations received from
+outside the United States. U.S. laws alone swamp our small staff.
+
+Please check the Project Gutenberg web pages for current donation
+methods and addresses. Donations are accepted in a number of other
+ways including checks, online payments and credit card donations. To
+donate, please visit: www.gutenberg.org/donate.
+
+Section 5. General Information About Project Gutenberg electronic works
+
+Professor Michael S. Hart was the originator of the Project
+Gutenberg concept of a library of electronic works that could be
+freely shared with anyone. For forty years, he produced and
+distributed Project Gutenberg eBooks with only a loose network of
+volunteer support.
+
+Project Gutenberg eBooks are often created from several printed
+editions, all of which are confirmed as not protected by copyright in
+the U.S. unless a copyright notice is included. Thus, we do not
+necessarily keep eBooks in compliance with any particular paper
+edition.
+
+Most people start at our website which has the main PG search
+facility: www.gutenberg.org.
+
+This website includes information about Project Gutenberg,
+including how to make donations to the Project Gutenberg Literary
+Archive Foundation, how to help produce our new eBooks, and how to
+subscribe to our email newsletter to hear about new eBooks.
+
+

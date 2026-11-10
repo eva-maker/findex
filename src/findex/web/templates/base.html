@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}findex{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+  <main>
+    <header><a class="brand" href="/">findex</a><a class="api" href="/docs">API</a></header>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
