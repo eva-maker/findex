@@ -30,11 +30,13 @@ COPY --from=builder /app/corpus ./corpus
 ENV PATH="/app/.venv/bin:$PATH" \
     INDEX_PATH=/app/index.bin \
     CORPUS_DIR=/app/corpus \
-    EMBEDDINGS_PATH=/app/embeddings.npz \
-    EMBEDDING_CACHE=/app/models \
     PYTHONUNBUFFERED=1
 USER app
 EXPOSE 8000
+
+# Семантичний режим вимкнений за замовчуванням (512 МБ на Render можуть не вистачити).
+# Вмикається змінними оточення EMBEDDINGS_PATH=/app/embeddings.npz і EMBEDDING_CACHE=/app/models
+# в налаштуваннях сервісу, без зміни коду. Вектори й модель в образі вже лежать.
 
 # PORT дає платформа (Render, Railway); локально — 8000. exec: щоб SIGTERM дійшов до uvicorn
 # і lifespan встиг виконати завершення.

@@ -101,7 +101,7 @@ def create_app(
         yield
         app.state.index.close()  # завершення: SIGTERM -> uvicorn -> цей рядок
 
-    app = FastAPI(title="findex", version="0.8.0", lifespan=lifespan)
+    app = FastAPI(title="findex", version="1.0.0", lifespan=lifespan)
     app.state.settings = settings
     app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
     if settings.enable_bench_routes:
