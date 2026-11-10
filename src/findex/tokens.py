@@ -2,6 +2,9 @@ import re
 import unicodedata
 from collections.abc import Iterator
 
+import numpy as np
+from numpy.typing import NDArray
+
 _APOSTROPHE_VARIANTS = ("\u2018", "\u2019", "\u201b", "\u2032")
 
 
@@ -38,6 +41,12 @@ def token_spans(text: str) -> Iterator[tuple[str, int, int]]:
         yield match.group().lower(), match.start(), match.end()
 
 
+def token_table(text: str) -> tuple[list[str], NDArray[np.int32]]:
+    matches = list(_TOKEN_RE.finditer(text))
+    tokens = [m.group().lower() for m in matches]
+    spans = np.array([m.span() for m in matches], dtype=np.int32).reshape(-1, 2)
+    return tokens, spans
+
+
 def tokenize(text: str) -> Iterator[str]:
-    for token, _start, _end in token_spans(_normalize(text)):
-        yield token
+    yield from map(str.lower, _TOKEN_RE.findall(_normalize(text)))

@@ -22,7 +22,9 @@ from findex.models import Index
 from findex.query import QueryError
 from findex.ranking import ScorerName
 from findex.serialize import load_index
+from findex.snippets import warm_doc_tokens
 from findex.stats import IndexStats, index_stats
+from findex.vectorized import vectors_for
 from findex.web import bench_routes
 from findex.web.deps import IndexDep, SettingsDep
 from findex.web.schemas import (
@@ -62,6 +64,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         app.state.index = load_index(settings.index_path)
         app.state.started_at = time.monotonic()
         log.info("індекс завантажено: %s", app.state.index)
+        vectors_for(app.state.index)
+        warm_started = time.perf_counter()
+        warmed = warm_doc_tokens(
+            document_path(app.state.index, meta.doc_id, settings.corpus_dir)
+            for meta in app.state.index.docs()
+        )
+        log.info("токени %d документів: %.1f с", warmed, time.perf_counter() - warm_started)
         yield
         app.state.index.close()  # завершення: SIGTERM -> uvicorn -> цей рядок
 

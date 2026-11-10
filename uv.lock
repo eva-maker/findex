@@ -228,6 +228,7 @@ dependencies = [
     { name = "fastapi" },
     { name = "httpx" },
     { name = "jinja2" },
+    { name = "numpy" },
     { name = "pydantic-settings" },
     { name = "rich" },
     { name = "typer" },
@@ -239,10 +240,13 @@ bench = [
     { name = "matplotlib" },
 ]
 dev = [
+    { name = "flameprof" },
     { name = "httpx2" },
     { name = "hypothesis" },
+    { name = "py-spy" },
     { name = "pyright" },
     { name = "pytest" },
+    { name = "pytest-benchmark" },
     { name = "pytest-cov" },
     { name = "ruff" },
 ]
@@ -252,6 +256,7 @@ requires-dist = [
     { name = "fastapi", specifier = ">=0.162.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "jinja2", specifier = ">=3.1.6" },
+    { name = "numpy", specifier = ">=2.5.4" },
     { name = "pydantic-settings", specifier = ">=2.16.2" },
     { name = "rich", specifier = ">=15.0.0" },
     { name = "typer", specifier = ">=0.27.3" },
@@ -261,13 +266,22 @@ requires-dist = [
 [package.metadata.requires-dev]
 bench = [{ name = "matplotlib", specifier = ">=3.10.0" }]
 dev = [
+    { name = "flameprof", specifier = ">=0.4" },
     { name = "httpx2", specifier = ">=2.16.0" },
     { name = "hypothesis", specifier = ">=6.170.12" },
+    { name = "py-spy", specifier = ">=0.4.3" },
     { name = "pyright", specifier = ">=1.1.414" },
     { name = "pytest", specifier = ">=9.1.1" },
+    { name = "pytest-benchmark", specifier = ">=5.3.1" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "ruff", specifier = ">=0.17.3" },
 ]
+
+[[package]]
+name = "flameprof"
+version = "0.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c0/e7/114f6710d31854b694598f577f9eac49d7f38b7fb8a55e86e2d3f848fd1c/flameprof-0.4.tar.gz", hash = "sha256:dbc86d4190cbbba624f1e0a40f44d9db96138e27534d83c8ef42d420857875a3", size = 7865, upload-time = "2018-12-25T09:28:48.554Z" }
 
 [[package]]
 name = "fonttools"
@@ -902,6 +916,31 @@ wheels = [
 ]
 
 [[package]]
+name = "py-cpuinfo2"
+version = "10.1.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/dc/97/a8b1ddada14c8280a047c0746f95cb05d94a31b1a331cea22bcdc2b2a82d/py_cpuinfo2-10.1.1.tar.gz", hash = "sha256:7861133863663f16e06eca63b12904ef100b5760415e92372dac0162799a4771", size = 100840, upload-time = "2026-03-25T21:49:40.797Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/23/0a/ba69d2dde1ae12ef1d389ea5a216384c5ff6ef7a1e7a48d1e9b6686f6790/py_cpuinfo2-10.1.1-py3-none-any.whl", hash = "sha256:adc53396bfb206e6498d078ec2ab407f85799ecd819584ac36a8f80a2d4d762d", size = 23791, upload-time = "2026-03-25T21:49:39.574Z" },
+]
+
+[[package]]
+name = "py-spy"
+version = "0.4.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e9/66/a94b309aa5a43be455c7132d53b7b61c20d2a554e6d0f487fa7c2f392d7d/py_spy-0.4.3.tar.gz", hash = "sha256:65ac4319f8c20dcd1e2ea219935c6b4fd98179b0b7faf59181eae2680a85fad4", size = 333376, upload-time = "2026-11-02T19:29:33.014Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c3/bb/0f0b540860bcb23f865906b46c2bd3e16da5ce63e00369f07a77e9144b3f/py_spy-0.4.3-py2.py3-none-macosx_10_12_universal2.macosx_10_12_x86_64.macosx_11_0_arm64.whl", hash = "sha256:b4e22d1fbc22bffa7d8e43c8b13daf47f56f14dbdbc813590093df81f0a971c6", size = 3709935, upload-time = "2026-11-02T19:29:19.821Z" },
+    { url = "https://files.pythonhosted.org/packages/a0/14/aacb1e585f952d50c61900ca3b7ed39cea679b56286e69f10801e715f2d7/py_spy-0.4.3-py2.py3-none-macosx_11_0_arm64.whl", hash = "sha256:89ccab893c89b65f8f45bd51f8173294eaeebefbfc4252345681de8048420437", size = 1842092, upload-time = "2026-11-02T19:29:21.807Z" },
+    { url = "https://files.pythonhosted.org/packages/67/ba/ea41d8ffd2ac549f40d60bfc5a1ad0bb6a613e0ab837fb156a5817ec6b4a/py_spy-0.4.3-py2.py3-none-manylinux1_i686.manylinux_2_5_i686.whl", hash = "sha256:a21b6958bf1200ff225c4f360834a77f7e12556ac11dcd863e26c9345b468783", size = 2324281, upload-time = "2026-11-02T19:29:23.45Z" },
+    { url = "https://files.pythonhosted.org/packages/78/1f/651389a861f6148754443834a50dd576993257af5f645d4316ab94505267/py_spy-0.4.3-py2.py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl", hash = "sha256:8a4277225f470d394a85cca0cdd944bef87f0097b6f20150a6dd3ac2e92806b8", size = 2936517, upload-time = "2026-11-02T19:29:25.142Z" },
+    { url = "https://files.pythonhosted.org/packages/60/c3/c9384da6992d64e0dffab551cda3d1e990de1a2685fcfcc16fc8e5a98b18/py_spy-0.4.3-py2.py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:bbcec46930d464b3bfc142d6d02ade4dd8ad5627823263b3eff0280e80c7c132", size = 2819927, upload-time = "2026-11-02T19:29:26.455Z" },
+    { url = "https://files.pythonhosted.org/packages/43/7b/23bd7b54e3abf04bd7857a65a236259ac89e2d038bc24129f608735b68a6/py_spy-0.4.3-py2.py3-none-manylinux2014_armv7l.manylinux_2_17_armv7l.whl", hash = "sha256:885d61020f763792e99cb3ad0788ae424b73cef45d5420ec9683f30e270b5d75", size = 2844389, upload-time = "2026-11-02T19:29:28.097Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/95/6ef39a234f17b05cc28efb4a584e93d36fdf633f306b8e10bbbe1409fc51/py_spy-0.4.3-py2.py3-none-win_amd64.whl", hash = "sha256:b14e00fddd4bfb12628e5c04b7d22c6754ae4c31bdfad0728adbe091ed26445f", size = 1919678, upload-time = "2026-11-02T19:29:29.902Z" },
+    { url = "https://files.pythonhosted.org/packages/da/51/d7b71770563ce783b3927addf31d3dee9db920487a4a54c49172081f55f6/py_spy-0.4.3-py2.py3-none-win_arm64.whl", hash = "sha256:7de40c2903602a7cca888c26cc5d37aed004a7fd07b5258d1a14356c00540974", size = 1803460, upload-time = "2026-11-02T19:29:31.541Z" },
+]
+
+[[package]]
 name = "pydantic"
 version = "2.14.3"
 source = { registry = "https://pypi.org/simple" }
@@ -1048,6 +1087,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e4/47/b9efed96c114afcfa3c9d3fe98a76a1d14c74a9e266d397cf6eb64be5e01/pytest-9.1.1.tar.gz", hash = "sha256:1088fbde8f2b49d95a549a195707afa7a76a3ce9bcadc26b6d71f0ffda5fe313", size = 1636369, upload-time = "2026-06-19T10:58:32.857Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/24/25/1de2678b631f5a49215c6c96fff41ba892b0a34df68d6d80292b1b48aa7f/pytest-9.1.1-py3-none-any.whl", hash = "sha256:37a86b45efb9a47a61a36449063e8e18d0cab3161329fc099eb21783169c4f0c", size = 386536, upload-time = "2026-06-19T10:58:31.347Z" },
+]
+
+[[package]]
+name = "pytest-benchmark"
+version = "5.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "py-cpuinfo2" },
+    { name = "pytest" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/13/d1/1bc61155de46f25473a06476ad1b3a94f96d40d49cfa98f82c1184117808/pytest_benchmark-5.3.1.tar.gz", hash = "sha256:c1ee70a58f9bfb1ac955cc634247a340b0df7bcb949071cfca396f16c6fc3516", size = 385467, upload-time = "2026-11-01T03:32:10.048Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/78/75/919ac85ad3f762e45aa369d2f68d40390e316474b6bb8434aeb6e3c8bf8b/pytest_benchmark-5.3.1-py3-none-any.whl", hash = "sha256:d7732a9952b1c4a4a32277adc693739126eab37afc3a711847f53805ccadc020", size = 49142, upload-time = "2026-11-01T03:32:08.359Z" },
 ]
 
 [[package]]

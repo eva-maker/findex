@@ -28,3 +28,14 @@ jobs:
 
       - name: Tests
         run: uv run pytest --cov
+
+      - name: Benchmarks (pytest-benchmark)
+        run: >
+          uv run pytest tests/perf/test_benchmarks.py --benchmark-enable --benchmark-only
+          --benchmark-columns=min,median,mean,rounds --benchmark-json=benchmark.json
+
+      - name: Save benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark
+          path: benchmark.json

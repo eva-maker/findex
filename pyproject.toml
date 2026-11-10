@@ -11,6 +11,7 @@ dependencies = [
     "fastapi>=0.162.0",
     "httpx>=0.28.1",
     "jinja2>=3.1.6",
+    "numpy>=2.5.4",
     "pydantic-settings>=2.16.2",
     "rich>=15.0.0",
     "typer>=0.27.3",
@@ -26,10 +27,13 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "flameprof>=0.4",
     "httpx2>=2.16.0",
     "hypothesis>=6.170.12",
+    "py-spy>=0.4.3",
     "pyright>=1.1.414",
     "pytest>=9.1.1",
+    "pytest-benchmark>=5.3.1",
     "pytest-cov>=7.1.0",
     "ruff>=0.17.3",
 ]
@@ -48,33 +52,32 @@ target-version = "py314"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
-# E501 вимкнено: у проєкті багато довгих коментарів українською, їх не переносимо.
 ignore = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-ra --strict-markers"
+addopts = "-ra --strict-markers --benchmark-disable"
 markers = ["slow: повільні тести (реальний корпус); пропусти їх через -m 'not slow'"]
 
 [tool.coverage.run]
 source = ["findex"]
-# Одноразові скрипти вимірювань з Лаб 1–3 (запускаються руками, друкують таблиці для README).
-# Їх не покриваємо тестами навмисно: вони виконуються й дають числа, а не логіку для перевірки.
+
 omit = [
     "src/findex/__main__.py",
     "src/findex/benchmark.py",
     "src/findex/memory_benchmark.py",
     "src/findex/serialize_benchmark.py",
     "src/findex/ranking_checks.py",
-    # Лаба 5: так само одноразові скрипти вимірювань і демонстрацій
+ 
     "src/findex/parallel_benchmark.py",
     "src/findex/race_demo.py",
     "src/findex/io_benchmark.py",
-    # Лаба 6: сайт-дзеркало і бенчмарк краулера (запускаються руками)
+
     "src/findex/mirror_server.py",
     "src/findex/crawl_benchmark.py",
-    # Лаба 7: бенчмарк веб-сервера (запускається руками проти живого сервера)
+  
     "src/findex/web_benchmark.py",
+    "src/findex/numpy_benchmark.py",
 ]
 
 [tool.coverage.report]

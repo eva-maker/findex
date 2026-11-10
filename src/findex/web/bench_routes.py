@@ -7,7 +7,7 @@ from findex.models import Index
 from findex.query import QueryError
 from findex.ranking import ScorerName
 from findex.web.deps import get_index, get_settings
-from findex.web.service import run_search
+from findex.web.service import run_search_baseline
 from findex.web.settings import Settings
 
 router = APIRouter(prefix="/_bench", include_in_schema=False)
@@ -22,7 +22,9 @@ async def search_async(
     scorer: ScorerName = "bm25",
 ) -> dict[str, int]:
     try:
-        page = run_search(index, settings.corpus_dir, q, k, 1, scorer)  # блокує цикл подій!
+        page = run_search_baseline(
+            index, settings.corpus_dir, q, k, 1, scorer
+        )  # блокує цикл подій!
     except QueryError:
         return {"total": 0}
     return {"total": page.total}
@@ -37,7 +39,9 @@ async def search_to_thread(
     scorer: ScorerName = "bm25",
 ) -> dict[str, int]:
     try:
-        page = await asyncio.to_thread(run_search, index, settings.corpus_dir, q, k, 1, scorer)
+        page = await asyncio.to_thread(
+            run_search_baseline, index, settings.corpus_dir, q, k, 1, scorer
+        )
     except QueryError:
         return {"total": 0}
     return {"total": page.total}
